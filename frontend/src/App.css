@@ -24,8 +24,14 @@ body {
 /* Header Components */
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 2.5rem 3rem;
+  padding: 2rem 3rem;
+  gap: 1rem;
+}
+.header .header-inner {
+  display: flex;
+  align-items: center;
   gap: 1rem;
 }
 .header .btn-header {
@@ -38,7 +44,7 @@ body {
   border-radius: 10rem;
 }
 .header .select-location-header {
-  padding: 0.5rem 0.5rem;
+  padding: 0.3rem 0.3rem;
   border-radius: 50rem;
   background-color: var(--dard-brown);
 }
@@ -51,6 +57,23 @@ body {
 .header .select-location-header button svg {
   color: var(--color-red);
 }
+.header .regLogBtn {
+  background-color: var(--color-red);
+  padding: 15px 15px;
+  font-size: 0.875rem;
+  border-radius: 8px;
+}
+.header .regLogBtn:hover {
+  background-color: var(--color-red);
+}
+#bucket-btn {
+  border: 2px solid white;
+  color: white;
+  font-weight: bolder;
+  height: 60px;
+  transform: rotateX(45);
+}
+
 /* Map Component */
 .map-h2 {
   text-transform: uppercase;
@@ -102,9 +125,54 @@ body {
 #modal {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  text-align: center;
 }
 #modal-modal-title {
   font-weight: bold;
+}
+.modal-search-loc {
+  cursor: pointer;
+}
+/* Drawer Component */
+.drawer {
+  border-right: 1px solid var(--light-brown);
+  padding: 0 1rem;
+}
+/* Media Queries */
+@media (max-width: 909px) {
+  .header .regLogBtn {
+    padding: 10px 10px;
+    font-size: 0.575rem;
+  }
+}
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem 0.5rem;
+  }
+  .header .btn-header {
+    display: none;
+  }
+  .header .select-location-header button {
+    padding: 0.2rem 0.2rem;
+    font-size: 8px;
+  }
+  #bucket-btn {
+    height: 40px;
+  }
+  .logo img {
+    width: 40px;
+  }
+  #modal {
+    font-size: 13px;
+  }
+  #modal-modal-title {
+    font-size: 18px;
+  }
+}
+@media (max-width: 464px) {
+  .header .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

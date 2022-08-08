@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import GoogleMapReact from "google-map-react";
 import { toast } from "react-toastify";
+import { LocationOn } from "@mui/icons-material";
+import locationContext from "../context/locationContext";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-export default function Map({ longitude, latitude, api }) {
+export default function Map({ api, zoom }) {
+  const context = useContext(locationContext);
+  const { latitude, longitude } = context;
   const defaultProps = {
     center: {
       lat: latitude,
       lng: longitude,
     },
-    zoom: 20,
+    zoom: zoom,
   };
 
   useEffect(() => {
@@ -25,10 +29,14 @@ export default function Map({ longitude, latitude, api }) {
       <GoogleMapReact
         bootstrapURLKeys={{ key: api }}
         center={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        zoom={defaultProps.zoom}
         yesIWantToUseGoogleMapApiInternals
       >
-        <AnyReactComponent lat={latitude} lng={longitude} text="My Marker" />
+        <AnyReactComponent
+          lat={latitude}
+          lng={longitude}
+          text={<LocationOn color="error" />}
+        />
       </GoogleMapReact>
     </div>
   );
