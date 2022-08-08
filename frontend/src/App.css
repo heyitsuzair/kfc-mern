@@ -9,7 +9,7 @@ body {
   font-family: "Poppins";
 }
 :root {
-  --dard-brown: #1c1816;
+  --dark-brown: #1c1816;
   --light-brown: #48413e;
   --color-red: #e4002b;
 }
@@ -37,7 +37,7 @@ body {
 .header .btn-header {
   padding: 0.5rem 0.5rem;
   border-radius: 50rem;
-  background-color: var(--dard-brown);
+  background-color: var(--dark-brown);
 }
 .header .btn-header button {
   background-color: var(--light-brown);
@@ -46,7 +46,7 @@ body {
 .header .select-location-header {
   padding: 0.3rem 0.3rem;
   border-radius: 50rem;
-  background-color: var(--dard-brown);
+  background-color: var(--dark-brown);
 }
 .header .select-location-header button {
   background-color: var(--dark-brown);
@@ -139,6 +139,34 @@ body {
   border-right: 1px solid var(--light-brown);
   padding: 0 1rem;
 }
+/* Deals Component */
+.deal-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 3rem 0;
+  margin: 1rem 0;
+  border-bottom: 1px solid var(--light-brown);
+}
+.deals .deals-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+}
+.deals .deals-image {
+  background-color: var(--dark-brown);
+  border-radius: 100%;
+  padding: 0.3rem 0.3rem;
+  display: flex;
+}
+.deals .deals-image.active {
+  border: 3px solid var(--color-red);
+}
+.deals img {
+  border-radius: 40px;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
@@ -169,10 +197,20 @@ body {
   #modal-modal-title {
     font-size: 18px;
   }
+  .deal-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .deals .deals-inner {
+    font-size: 10px;
+  }
 }
 @media (max-width: 464px) {
   .header .header-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+  .deal-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
