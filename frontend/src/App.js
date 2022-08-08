@@ -1,9 +1,10 @@
 import "./App.css";
-import Header from "./components/Header";
-import TopBar from "./components/TopBar";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import LocationState from "./context/locationState";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+
 function App() {
   return (
     <>
@@ -15,8 +16,11 @@ function App() {
           draggable={true}
           theme="dark"
         />
-        <TopBar />
-        <Header />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </Router>
       </LocationState>
     </>
   );

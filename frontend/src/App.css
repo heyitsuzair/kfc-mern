@@ -71,7 +71,7 @@ body {
   color: white;
   font-weight: bolder;
   height: 60px;
-  transform: rotateX(45);
+  min-width: 50px;
 }
 
 /* Map Component */
