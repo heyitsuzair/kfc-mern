@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function Deals({ src, name, classes }) {
-  console.log(classes);
   return (
     <div className="deals">
       <div className="deals-inner">

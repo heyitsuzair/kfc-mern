@@ -38,6 +38,10 @@ body {
   align-items: center;
   padding: 2rem 3rem;
   gap: 1rem;
+  top: 0;
+  position: sticky;
+  z-index: 999;
+  background-color: black;
 }
 .header .header-inner {
   display: flex;
@@ -230,6 +234,42 @@ body {
   display: none !important;
   color: var(--color-red);
 }
+/* Footer Component */
+#footer {
+  background-color: var(--dark-brown);
+  padding: 3rem 1rem;
+}
+#footer #footer-box {
+  height: 50px;
+  border-right: 2px solid white;
+}
+#footer .footer-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+#footer .footer-icons .icon-item svg {
+  background-color: white;
+  border-radius: 100%;
+  padding: 0.5rem 0.5rem;
+}
+#footer .footer-icons .youtube {
+  color: red;
+}
+#footer .footer-icons .insta {
+  color: black;
+}
+#footer .footer-icons .fb {
+  color: blue;
+}
+#footer .footer-links {
+  margin: 0.5rem 0;
+}
+#footer .footer-links a {
+  text-decoration: none;
+  color: white;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
@@ -292,5 +332,10 @@ body {
   }
   .deal-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 385px) {
+  .footer-box-cont {
+    display: none;
   }
 }
