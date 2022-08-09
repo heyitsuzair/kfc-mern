@@ -12,6 +12,8 @@ import deal3 from "../images/deal3.png";
 import deal4 from "../images/deal4.png";
 import deal5 from "../images/deal5.png";
 import deal6 from "../images/deal6.png";
+import TopSelling from "../components/TopSelling";
+
 export default function Home() {
   return (
     <>
@@ -27,6 +29,7 @@ export default function Home() {
           <Deals src={deal5} name="Snacks & Beverages" />
           <Deals src={deal6} name="Midnight" />
         </div>
+        <TopSelling />
       </Container>
     </>
   );

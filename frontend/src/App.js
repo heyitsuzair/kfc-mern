@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import LocationState from "./context/locationState";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
           </Routes>
         </Router>
+        <Footer />
       </LocationState>
     </>
   );
