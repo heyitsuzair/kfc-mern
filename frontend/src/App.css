@@ -39,6 +39,9 @@ body {
   padding: 2rem 3rem;
   gap: 1rem;
   top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   position: sticky;
   z-index: 999;
   background-color: black;
@@ -200,7 +203,7 @@ body {
   margin-bottom: 3rem !important;
 }
 .grid-item .card-img {
-  margin: auto;
+  text-align: center;
   filter: drop-shadow(0px 4px 33px rgba(228, 0, 43, 0.11));
 }
 .grid-item:hover {
@@ -211,6 +214,7 @@ body {
 .grid-item h4,
 .grid-item h5 {
   margin-bottom: 2rem;
+  color: white;
 }
 .grid-item h5 {
   color: #d4d4d4;
@@ -233,6 +237,12 @@ body {
 .plus-icon {
   display: none !important;
   color: var(--color-red);
+}
+.card-link {
+  text-decoration: none;
+}
+.card-footer h2 strong {
+  color: white;
 }
 /* Footer Component */
 #footer {
@@ -269,6 +279,31 @@ body {
 #footer .footer-links a {
   text-decoration: none;
   color: white;
+}
+/* Product Component */
+.product-info-inner .info {
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.product-info-inner .info .addcartp {
+  background-color: var(--color-red);
+  padding: 0.1rem 0;
+  border-radius: 10px;
+}
+.product-info-inner .info .input-div {
+  display: flex;
+  align-items: center;
+}
+.product-info-inner .info .input-div span {
+  margin: 0 1.5rem;
+}
+.product-info-inner .info .add-to-bucket {
+  background-color: var(--color-red);
+  border-radius: 10px;
+  margin: 0 3rem;
+  padding: 0.8rem 1rem;
 }
 /* Media Queries */
 @media (max-width: 909px) {
@@ -324,6 +359,16 @@ body {
   .grid-item {
     padding: 0.3rem 0.8rem;
   }
+  .product-info-inner .info {
+    align-items: flex-start;
+  }
+  .product-info-inner .info .add-to-bucket {
+    padding: 0.9rem 0.7rem;
+    margin: 0 1rem;
+  }
+  .product-info-inner .info .addcartp {
+    font-size: 14px;
+  }
 }
 @media (max-width: 464px) {
   .header .header-inner {
@@ -332,6 +377,15 @@ body {
   }
   .deal-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .product-info-inner .info .input-div {
+    width: 95vw;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .product-info-inner .info .add-to-bucket {
+    margin-top: 1rem;
+    width: 91.6vw;
   }
 }
 @media (max-width: 385px) {

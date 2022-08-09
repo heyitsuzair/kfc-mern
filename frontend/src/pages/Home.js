@@ -1,7 +1,5 @@
 import React from "react";
 
-import Header from "../components/Header";
-import TopBar from "../components/TopBar";
 import Hero from "../components/Hero";
 import Container from "@mui/material/Container";
 import Deals from "../components/Deals";
@@ -17,8 +15,6 @@ import TopSelling from "../components/TopSelling";
 export default function Home() {
   return (
     <>
-      <TopBar />
-      <Header />
       <Container>
         <Hero />
         <div className="deal-container">
