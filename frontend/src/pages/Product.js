@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ellipse from "../images/bg-ellipse.png";
 import topSel1 from "../images/topsel1.png";
+import AddonCard from "../components/AddonCard";
 export default function Product() {
   return (
     <div className="product">
@@ -90,6 +91,20 @@ export default function Product() {
             </Grid>
           </Box>
         </div>
+        <Box>
+          <Grid
+            container
+            marginBottom={30}
+            columnSpacing={{ xs: 3, sm: 3, md: 3 }}
+          >
+            <Grid item sm={6} xs={12} md={3}>
+              <AddonCard title="Add Ons" />
+            </Grid>
+            <Grid item sm={6} xs={12} md={3}>
+              <AddonCard title="Add a Soft Drink" />
+            </Grid>
+          </Grid>
+        </Box>
       </Container>
     </div>
   );
