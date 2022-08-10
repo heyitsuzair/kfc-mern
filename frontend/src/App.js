@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Product from "./pages/Product";
 import Header from "./components/Header";
 import TopBar from "./components/TopBar";
+import Login from "./pages/Login";
 function App() {
   return (
     <>
@@ -20,11 +21,12 @@ function App() {
           theme="dark"
         />
         <TopBar />
-        <Header />
         <Router>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<Product />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
           <Footer />
         </Router>

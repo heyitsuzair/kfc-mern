@@ -8,6 +8,7 @@ import { useContext } from "react";
 import locationContext from "../context/locationContext";
 import { useEffect } from "react";
 import Drawer from "./Drawer";
+import { Link } from "react-router-dom";
 export default function Header() {
   const context = useContext(locationContext);
   const { getLocation } = context;
@@ -37,9 +38,11 @@ export default function Header() {
       </div>
       <div className="header-inner">
         <Drawer />
-        <Button variant="contained" className="regLogBtn">
-          <strong>Register / Sign In</strong>
-        </Button>
+        <Link to="/login">
+          <Button variant="contained" className="regLogBtn">
+            <strong>Register / Sign In</strong>
+          </Button>
+        </Link>
       </div>
     </div>
   );

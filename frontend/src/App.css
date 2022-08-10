@@ -23,6 +23,20 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+/* Mui Customisations */
+.floatingLabel {
+  color: #d4d4d4 !important;
+  font-weight: 600 !important;
+}
+.floatingLabel.Mui-focused {
+  color: var(--color-red) !important;
+}
+
+.floatingInput {
+  color: white !important;
+  font-weight: 600 !important;
+}
+
 /* Top Bar Component */
 .top-bar {
   display: flex;
@@ -355,11 +369,65 @@ body {
   color: var(--color-red);
   cursor: pointer;
 }
+/* Login Page */
+.login {
+  background-color: var(--dark-brown);
+  max-width: 900px !important;
+  padding: 5rem 0;
+  border-radius: 5px;
+}
+#login-btn {
+  background-color: var(--color-red);
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 1rem 0;
+}
+#login-parent {
+  background-image: url("./images/bg.png");
+  padding: 130px 0;
+}
+.login .or-login-with {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  justify-content: center;
+  gap: 1rem;
+}
+.login #gif {
+  width: 20rem;
+}
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+.login .login-with-google {
+  background-color: white;
+  width: 3vw;
+  display: flex;
+  justify-content: center;
+  border-radius: 100%;
+  padding: 1rem 0.5rem;
+  margin: 2rem auto;
+}
+.login .guest {
+  cursor: pointer;
+}
+.lines {
+  width: 120px;
+  height: 2px;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
     padding: 10px 10px;
     font-size: 0.575rem;
+  }
+  .lines {
+    width: 100px;
+    height: 2px;
+  }
+  .login {
+    max-width: 700px !important;
   }
 }
 @media (max-width: 768px) {
@@ -421,6 +489,9 @@ body {
   }
   .addon-item {
     max-height: 40vh;
+  }
+  .login #gif {
+    width: 10rem;
   }
 }
 @media (max-width: 464px) {
