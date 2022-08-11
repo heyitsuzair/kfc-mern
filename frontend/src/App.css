@@ -84,6 +84,7 @@ body {
   border-radius: 10rem;
   color: white;
   font-weight: bold;
+  gap: 1rem;
 }
 .header .select-location-header button svg {
   color: var(--color-red);
@@ -93,6 +94,7 @@ body {
   padding: 15px 15px;
   font-size: 0.875rem;
   border-radius: 8px;
+  font-family: "Poppins";
 }
 .header .regLogBtn:hover {
   background-color: var(--color-red);
@@ -104,7 +106,10 @@ body {
   height: 60px;
   min-width: 50px;
 }
-
+.header .sel-loc {
+  display: flex;
+  align-items: center;
+}
 /* Map Component */
 .map-h2 {
   text-transform: uppercase;
@@ -416,9 +421,47 @@ body {
   width: 120px;
   height: 2px;
 }
+/* Autocomplete Component */
+.location-search-input {
+  background-color: rgb(52, 52, 52);
+  color: white;
+  border: none;
+  padding: 1rem 1rem;
+  border-radius: 8px 8px 0px 0px;
+  border-bottom: 1px solid white;
+  outline: none;
+  width: 59vw;
+  font-family: "Poppins";
+  margin: 1rem 0;
+}
+.location-search-input:hover {
+  border-bottom: 2px solid var(--color-red);
+}
+
 /* My Kfc Page */
 .hello-sec h1 {
   font-weight: 500;
+}
+.address-icon svg {
+  color: var(--color-red);
+}
+.address {
+  margin-right: auto;
+}
+.edit-address {
+  display: flex;
+  gap: 1rem;
+}
+.edit-address .del-add,
+.edit-address .edit-add {
+  color: red;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.select-dif-loc {
+  color: var(--color-red);
 }
 /* Media Queries */
 @media (max-width: 909px) {

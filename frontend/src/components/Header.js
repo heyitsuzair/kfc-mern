@@ -21,7 +21,9 @@ export default function Header() {
     <div className="header">
       <div className="header-inner">
         <div className="logo">
-          <img src={logo} alt="KFC" />
+          <Link to="/">
+            <img src={logo} alt="KFC" />
+          </Link>
         </div>
         <div className="btn-header">
           <Button variant="contained" disableElevation>

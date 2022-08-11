@@ -32,9 +32,9 @@ export default function ModalFunc() {
   };
   return (
     <div>
-      <Button onClick={handleOpen}>
+      <div className="sel-loc" onClick={handleOpen}>
         Select Location <ArrowDropDown />
-      </Button>
+      </div>
 
       <Modal
         open={open}
@@ -59,7 +59,11 @@ export default function ModalFunc() {
             zoom={zoom}
           />
 
-          <AutoComplete api={GOOGLE_MAPS_API_KEY} style={{ width: "100%" }} />
+          <AutoComplete
+            api={GOOGLE_MAPS_API_KEY}
+            setZoom={setZoom}
+            style={{ width: "100%" }}
+          />
           <Box
             sx={{ display: "flex", marginTop: "1rem", gap: ".5rem" }}
             className="modal-search-loc"

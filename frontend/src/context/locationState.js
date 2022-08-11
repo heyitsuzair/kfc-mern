@@ -11,7 +11,9 @@ export default function LocationState({ children }) {
     });
   };
   return (
-    <locationContext.Provider value={{ getLocation, longitude, latitude }}>
+    <locationContext.Provider
+      value={{ getLocation, longitude, latitude, setLatitude, setLongitude }}
+    >
       {children}
     </locationContext.Provider>
   );

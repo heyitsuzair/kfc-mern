@@ -1,13 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import { toast } from "react-toastify";
 import { LocationOn } from "@mui/icons-material";
-import locationContext from "../context/locationContext";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-export default function Map({ api, zoom }) {
-  const context = useContext(locationContext);
-  const { latitude, longitude } = context;
+export default function Map({ api, zoom, longitude, latitude }) {
   const defaultProps = {
     center: {
       lat: latitude,
@@ -20,7 +17,6 @@ export default function Map({ api, zoom }) {
     if (longitude === 69.3451 && latitude === 30.3753) {
       toast.error("Please Allow Location From Browser");
     }
-    //eslint-disable-next-line
   }, [longitude, latitude]);
 
   return (
