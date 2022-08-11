@@ -416,6 +416,10 @@ body {
   width: 120px;
   height: 2px;
 }
+/* My Kfc Page */
+.hello-sec h1 {
+  font-weight: 500;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {

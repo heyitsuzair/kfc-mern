@@ -51,7 +51,9 @@ export default function Login() {
                   marginBottom: "1rem",
                   paddingRight: "0",
                 }}
-                inputProps={{ className: "floatingInput" }}
+                inputProps={{
+                  className: "floatingInput",
+                }}
                 InputLabelProps={{
                   className: "floatingLabel",
                 }}

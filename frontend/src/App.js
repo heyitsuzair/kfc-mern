@@ -9,6 +9,7 @@ import Product from "./pages/Product";
 import Header from "./components/Header";
 import TopBar from "./components/TopBar";
 import Login from "./pages/Login";
+import MyKfc from "./pages/MyKfc";
 function App() {
   return (
     <>
@@ -27,6 +28,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<Product />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/myKfc" element={<MyKfc />} />
           </Routes>
           <Footer />
         </Router>

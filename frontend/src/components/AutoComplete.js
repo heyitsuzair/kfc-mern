@@ -112,6 +112,9 @@ export default function GoogleMaps({ api, setLongitude, setLatitude }) {
         borderTopRightRadius: "1rem",
         border: "none",
         borderBottom: "2px solid white",
+        "&:hover": {
+          borderBottom: "2px solid red",
+        },
       }}
       getOptionLabel={(option) =>
         typeof option === "string" ? option : option.description
@@ -135,7 +138,13 @@ export default function GoogleMaps({ api, setLongitude, setLatitude }) {
           {...params}
           placeholder="Select Area"
           fullWidth
-          variant="filled"
+          variant="outlined"
+          inputProps={{
+            className: "floatingInput",
+          }}
+          InputLabelProps={{
+            className: "floatingLabel",
+          }}
         />
       )}
       renderOption={(props, option) => {

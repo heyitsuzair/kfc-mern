@@ -38,7 +38,7 @@ export default function Header() {
       </div>
       <div className="header-inner">
         <Drawer />
-        <Link to="/login">
+        <Link to="/login" style={{ textDecoration: "none" }}>
           <Button variant="contained" className="regLogBtn">
             <strong>Register / Sign In</strong>
           </Button>
