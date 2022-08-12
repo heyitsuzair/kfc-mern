@@ -39,6 +39,7 @@ export default function Product() {
   useEffect(() => {
     getCats();
     getProdDetail(id);
+    window.scroll(0, 0);
     //eslint-disable-next-line
   }, []);
   return (

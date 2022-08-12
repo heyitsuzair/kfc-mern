@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import DealSection from "../components/DealSection";
 import CategoryPageSkeleton from "../components/CatergoryPageSkeleton";
 export default function CategoryPage() {
   const { id } = useParams();
@@ -17,15 +18,18 @@ export default function CategoryPage() {
         setProducts(res.data.getCatProducts);
         setLoading(false);
       });
+    //eslint-disable-next-line
   };
   useEffect(() => {
+    setLoading(true);
     getCatProds();
     window.scroll(0, 0);
     //eslint-disable-next-line
-  }, []);
+  }, [id]);
   return (
     <>
       <Container>
+        <DealSection />
         <div className="cat-container">
           {loading ? (
             <CategoryPageSkeleton />
@@ -50,6 +54,7 @@ export default function CategoryPage() {
                           price={prod.price}
                           src={prod.prodImg}
                           id={prod._id}
+                          catName={prod.catId.name}
                         />
                       );
                     })}

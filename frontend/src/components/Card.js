@@ -4,12 +4,31 @@ import { Button } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { FavoriteBorder } from "@mui/icons-material";
+import { useState } from "react";
+import { useEffect } from "react";
 
-export default function Card({ src, title, desc, price, id }) {
+export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
+  const [btn, setBtn] = useState(null);
+  const [link, setLink] = useState("");
+
+  const checkMidnight = () => {
+    if (catName === "Midnight") {
+      hour < 2 ? setLink(`/product/${id}`) : setLink("");
+      hour < 2 ? setBtn(false) : setBtn(true);
+    } else {
+      setLink(`/product/${id}`);
+      setBtn(false);
+    }
+  };
+  useEffect(() => {
+    checkMidnight();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <Grid className="grid-item" item>
-      <Link to={hour < 4 ? `/product/${id}` : ""} className="card-link">
+      <Link to={link} className="card-link">
         <div className="add-to-fav" style={{ textAlign: "right" }}>
           <FavoriteBorder sx={{ color: "#e4002b" }} />
         </div>
@@ -22,7 +41,7 @@ export default function Card({ src, title, desc, price, id }) {
           />
         </div>
         <h4>{title}</h4>
-        <h5>{desc}</h5>
+        <h5>{desc.substring(0, 50)} ...</h5>
         <div className="card-footer">
           <h2>
             <strong>Rs {price}</strong>
@@ -30,11 +49,7 @@ export default function Card({ src, title, desc, price, id }) {
           <strong>
             <Add className="plus-icon" />
           </strong>
-          <Button
-            variant="contained"
-            className="add-to-bucket"
-            disabled={hour < 4 ? false : true}
-          >
+          <Button variant="contained" className="add-to-bucket" disabled={btn}>
             <strong>Add To Bucket</strong>
           </Button>
         </div>
