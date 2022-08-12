@@ -3,11 +3,15 @@ import { Grid } from "@mui/material";
 import { Button } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { FavoriteBorder } from "@mui/icons-material";
 
 export default function Card({ src, title, desc, price }) {
   return (
     <Grid className="grid-item" item xs={12} sm={12} md={12}>
       <Link to="/product/12" className="card-link">
+        <div className="add-to-fav" style={{ textAlign: "right" }}>
+          <FavoriteBorder sx={{ color: "#e4002b" }} />
+        </div>
         <div className="card-img">
           <img className="top-sel-img" src={src} alt="Top Selling" />
         </div>

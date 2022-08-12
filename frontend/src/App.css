@@ -468,6 +468,38 @@ body {
   color: var(--color-red);
   text-decoration: none;
 }
+/* Order History Component */
+.order-history {
+  background-color: var(--dark-brown);
+  padding: 1rem 2rem;
+  text-align: center;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+/* Favourites Component */
+.favourites {
+  margin: 3rem 0;
+}
+.fav-price {
+  color: white;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.fav-price .add-fav-to-bucket {
+  display: flex;
+  color: var(--color-red);
+  cursor: pointer;
+}
+.fav-price .add-fav-to-bucket .add-fav {
+  margin-left: 0.5rem;
+}
+.fav-card .fav-icon {
+  text-align: right;
+}
+.fav-card .fav-img {
+  text-align: center;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
