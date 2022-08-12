@@ -11,6 +11,7 @@ import TopBar from "./components/TopBar";
 import Login from "./pages/Login";
 import MyKfc from "./pages/MyKfc";
 import OrderHistory from "./pages/OrderHistory";
+import CategoryPage from "./pages/CategoryPage";
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/myKfc" element={<MyKfc />} />
             <Route path="/orderHistory" element={<OrderHistory />} />
+            <Route path="/cat" element={<CategoryPage />} />
           </Routes>
           <Footer />
         </Router>
