@@ -7,9 +7,9 @@ import { FavoriteBorder } from "@mui/icons-material";
 
 export default function Card({ src, title, desc, price }) {
   return (
-    <Grid className="grid-item" item xs={12} sm={12} md={12}>
+    <Grid className="grid-item" item>
       <Link to="/product/12" className="card-link">
-        <div className="add-to-fav" style={{ textAlign: "right" }} onClick={{}}>
+        <div className="add-to-fav" style={{ textAlign: "right" }}>
           <FavoriteBorder sx={{ color: "#e4002b" }} />
         </div>
         <div className="card-img">

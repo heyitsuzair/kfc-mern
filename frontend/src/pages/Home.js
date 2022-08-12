@@ -36,6 +36,7 @@ export default function Home() {
                     classes={index === 0 ? "active" : ""}
                     src={cat.catPic}
                     name={cat.name}
+                    id={cat._id}
                   />
                 </>
               );

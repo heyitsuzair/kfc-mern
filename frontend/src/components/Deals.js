@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Deals({ src, name, classes }) {
+export default function Deals({ src, name, classes, id }) {
   return (
     <div className="deals">
-      <Link to="/cat" style={{ color: "white", textDecoration: "none" }}>
+      <Link
+        to={`/cat/${id}`}
+        style={{ color: "white", textDecoration: "none" }}
+      >
         <div className="deals-inner">
           <div
             className={`deals-image ${classes}`}
