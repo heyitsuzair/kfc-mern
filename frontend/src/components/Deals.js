@@ -6,7 +6,7 @@ export default function Deals({ src, name, classes }) {
       <Link to="/cat" style={{ color: "white", textDecoration: "none" }}>
         <div className="deals-inner">
           <div
-            className={`deals-image ${classes === undefined ? "" : "active"}`}
+            className={`deals-image ${classes}`}
             style={{
               border: src === "../images/deal1.png" ? "2px solid white" : "",
             }}

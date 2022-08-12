@@ -109,6 +109,7 @@ export default function ModalFunc() {
               }}
               size="large"
               variant="outlined"
+              onClick={handleClose}
             >
               Select
             </Button>

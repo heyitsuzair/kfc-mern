@@ -195,7 +195,7 @@ body {
 .deals .deals-image {
   background-color: var(--dark-brown);
   border-radius: 100%;
-  padding: 0.3rem 0.3rem;
+  padding: 0.5rem 0;
   display: flex;
 }
 .deals .deals-image.active {
