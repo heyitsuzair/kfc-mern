@@ -463,6 +463,11 @@ body {
 .select-dif-loc {
   color: var(--color-red);
 }
+/* Past Order Component */
+.view-all {
+  color: var(--color-red);
+  text-decoration: none;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {

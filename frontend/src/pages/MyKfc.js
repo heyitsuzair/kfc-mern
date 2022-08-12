@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import Accordin from "../components/Accordin";
+import PastOrders from "../components/PastOrders";
 export default function MyKfc() {
   return (
     <Container>
@@ -23,6 +24,9 @@ export default function MyKfc() {
           </Grid>
           <Grid item xs={12} md={12} sm={12}>
             <Accordin />
+          </Grid>
+          <Grid item xs={12} md={12} sm={12}>
+            <PastOrders />
           </Grid>
         </div>
       </div>
