@@ -248,6 +248,12 @@ body {
   padding: 0.9rem 0.9rem;
   border-radius: 10px;
 }
+.grid-item .card-footer .add-to-bucket.Mui-disabled {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #979797;
+  padding: 0.9rem 0.9rem;
+  border-radius: 10px;
+}
 .top-sel-img {
   margin: auto;
   padding: 4rem 0;
@@ -315,14 +321,18 @@ body {
   display: flex;
   align-items: center;
 }
-.product-info-inner .info .input-div span {
-  margin: 0 1.5rem;
+.product-info-inner .info .input-div {
+  font-weight: bolder;
 }
 .product-info-inner .info .add-to-bucket {
   background-color: var(--color-red);
   border-radius: 10px;
   margin: 0 3rem;
   padding: 0.8rem 1rem;
+  font-weight: bold;
+}
+.quantity {
+  margin: 0 1rem;
 }
 /* Addon Component */
 
@@ -577,6 +587,11 @@ body {
   .login #gif {
     width: 10rem;
   }
+  .grid-item h4,
+  .grid-item h5 {
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
 }
 @media (max-width: 464px) {
   .header .header-inner {
@@ -595,6 +610,9 @@ body {
     margin-top: 1rem;
     width: 92vw;
     margin-left: auto;
+  }
+  .addons-container {
+    margin: 2rem 0;
   }
 }
 @media (max-width: 385px) {

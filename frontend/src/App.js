@@ -2,6 +2,7 @@ import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import LocationState from "./context/locationState";
+import DealState from "./context/dealState";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
@@ -16,26 +17,28 @@ function App() {
   return (
     <>
       <LocationState>
-        <ToastContainer
-          autoClose={3000}
-          position="top-right"
-          pauseOnHover={true}
-          draggable={true}
-          theme="dark"
-        />
-        <TopBar />
-        <Router>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<Product />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/myKfc" element={<MyKfc />} />
-            <Route path="/orderHistory" element={<OrderHistory />} />
-            <Route path="/cat/:id" element={<CategoryPage />} />
-          </Routes>
-          <Footer />
-        </Router>
+        <DealState>
+          <ToastContainer
+            autoClose={3000}
+            position="top-right"
+            pauseOnHover={true}
+            draggable={true}
+            theme="dark"
+          />
+          <TopBar />
+          <Router>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<Product />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/myKfc" element={<MyKfc />} />
+              <Route path="/orderHistory" element={<OrderHistory />} />
+              <Route path="/cat/:id" element={<CategoryPage />} />
+            </Routes>
+            <Footer />
+          </Router>
+        </DealState>
       </LocationState>
     </>
   );

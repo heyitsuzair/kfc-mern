@@ -24,3 +24,12 @@ module.exports.getCatProds = async (req, res) => {
     console.error(error);
   }
 };
+module.exports.getProdDetail = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const getDetail = await product.findById(id);
+    res.status(200).json(getDetail);
+  } catch (error) {
+    console.error(error);
+  }
+};

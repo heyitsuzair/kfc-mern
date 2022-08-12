@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import topsel1 from "../images/topsel1.png";
-import topsel2 from "../images/topsel2.png";
-import topsel3 from "../images/topsel3.png";
-import topsel4 from "../images/topsel4.png";
 import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -53,6 +49,7 @@ export default function CategoryPage() {
                           desc={prod.desc}
                           price={prod.price}
                           src={prod.prodImg}
+                          id={prod._id}
                         />
                       );
                     })}
