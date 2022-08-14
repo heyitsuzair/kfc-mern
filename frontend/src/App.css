@@ -195,7 +195,7 @@ body {
 .deals .deals-image {
   background-color: var(--dark-brown);
   border-radius: 100%;
-  padding: 0.5rem 0;
+  padding: 0.2rem 0.2rem;
   display: flex;
 }
 .deals .deals-image.active {
@@ -352,10 +352,10 @@ body {
 .addon-item {
   background-color: var(--dark-brown);
   border: 1px solid #707070;
-  padding: 20px 30px;
+  padding: 20px 20px;
   margin-bottom: 1rem;
   border-radius: 12px;
-  height: 60vh;
+  height: 70vh;
 }
 .addon-item .addon-info {
   display: flex;
@@ -373,6 +373,7 @@ body {
   display: flex;
 }
 .addon-item .addon-info .addon-name {
+  width: 15vw;
   display: flex;
   flex-direction: column;
   font-weight: 500;
@@ -582,7 +583,7 @@ body {
     font-size: 14px;
   }
   .addon-item {
-    max-height: 40vh;
+    height: 40vh;
   }
   .login #gif {
     width: 10rem;
@@ -613,6 +614,12 @@ body {
   }
   .addons-container {
     margin: 2rem 0;
+  }
+  .addon-item {
+    height: 50vh;
+  }
+  .add-ons {
+    margin-top: 6rem;
   }
 }
 @media (max-width: 385px) {

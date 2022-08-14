@@ -13,31 +13,34 @@ import Login from "./pages/Login";
 import MyKfc from "./pages/MyKfc";
 import OrderHistory from "./pages/OrderHistory";
 import CategoryPage from "./pages/CategoryPage";
+import AddonState from "./context/addonState";
 function App() {
   return (
     <>
       <LocationState>
         <DealState>
-          <ToastContainer
-            autoClose={3000}
-            position="top-right"
-            pauseOnHover={true}
-            draggable={true}
-            theme="dark"
-          />
-          <TopBar />
-          <Router>
-            <Header />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/myKfc" element={<MyKfc />} />
-              <Route path="/orderHistory" element={<OrderHistory />} />
-              <Route path="/cat/:id" element={<CategoryPage />} />
-            </Routes>
-            <Footer />
-          </Router>
+          <AddonState>
+            <ToastContainer
+              autoClose={3000}
+              position="top-right"
+              pauseOnHover={true}
+              draggable={true}
+              theme="dark"
+            />
+            <TopBar />
+            <Router>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/myKfc" element={<MyKfc />} />
+                <Route path="/orderHistory" element={<OrderHistory />} />
+                <Route path="/cat/:id" element={<CategoryPage />} />
+              </Routes>
+              <Footer />
+            </Router>
+          </AddonState>
         </DealState>
       </LocationState>
     </>

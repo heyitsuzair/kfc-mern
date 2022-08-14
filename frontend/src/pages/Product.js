@@ -14,20 +14,22 @@ import ProductPageSkeleton from "../components/ProductPageSkeleton";
 import { useContext } from "react";
 import dealContext from "../context/dealContext";
 import DealSkeleton from "../components/DealSkeleton";
+import addonContext from "../context/addonContext";
 export default function Product() {
   const context = useContext(dealContext);
-  const { getCats, loading } = context;
+  const { getCats } = context;
+  const addon_context = useContext(addonContext);
+  const { getAllAddons, addons, loading, getAllSoftdrinks, softdrinks } =
+    addon_context;
   const [detail, setDetail] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-  const [loading1, setLoading1] = useState(true);
 
   const getProdDetail = async (prodId) => {
     await axios
       .get(`http://localhost:5000/api/product/getProd/${prodId}`)
       .then((res) => {
         setDetail(res.data);
-        setLoading1(false);
       });
   };
 
@@ -39,6 +41,8 @@ export default function Product() {
   useEffect(() => {
     getCats();
     getProdDetail(id);
+    getAllAddons();
+    getAllSoftdrinks();
     window.scroll(0, 0);
     //eslint-disable-next-line
   }, []);
@@ -46,7 +50,7 @@ export default function Product() {
     <div className="product">
       <Container>
         {loading ? <DealSkeleton /> : <DealSection />}
-        {loading1 ? (
+        {loading ? (
           <ProductPageSkeleton />
         ) : (
           <>
@@ -133,11 +137,11 @@ export default function Product() {
             marginBottom={30}
             columnSpacing={{ xs: 3, sm: 3, md: 3 }}
           >
-            <Grid item sm={6} xs={12} md={3}>
-              <AddonCard title="Add Ons" />
+            <Grid item sm={6} xs={12} md={4}>
+              <AddonCard title="Add Ons" addons={addons} />
             </Grid>
-            <Grid item sm={6} xs={12} md={3}>
-              <AddonCard title="Add a Soft Drink" />
+            <Grid item sm={6} xs={12} md={4}>
+              <AddonCard title="Add a Soft Drink" addons={softdrinks} />
             </Grid>
           </Grid>
         </Box>
