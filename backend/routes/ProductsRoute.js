@@ -5,9 +5,11 @@ const {
   getCatProds,
   getProdDetail,
   updateProduct,
+  delProduct,
 } = require("../controllers/ProductController");
 router.post("/addProduct", addProduct);
 router.get("/getCatProds/:id", getCatProds);
 router.get("/getProd/:id", getProdDetail);
 router.post("/updateProd/:id", updateProduct);
+router.post("/delProd/:id", delProduct);
 module.exports = router;

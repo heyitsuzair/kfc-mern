@@ -45,3 +45,14 @@ module.exports.updateCat = async (req, res) => {
     console.error(error);
   }
 };
+module.exports.delCat = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedCat = await cat.findByIdAndDelete(id);
+    if (deletedCat) {
+      return res.status(200).json("Category Deleted");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};

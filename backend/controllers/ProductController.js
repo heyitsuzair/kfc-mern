@@ -75,3 +75,14 @@ module.exports.updateProduct = async (req, res) => {
     console.error(error);
   }
 };
+module.exports.delProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProd = await product.findByIdAndDelete(id);
+    if (deletedProd) {
+      return res.status(200).json("Product Deleted");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
