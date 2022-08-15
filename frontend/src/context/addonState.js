@@ -5,11 +5,12 @@ import axios from "axios";
 export default function LocationState({ children }) {
   const [loading, setLoading] = useState(true);
   const [addons, setAddons] = useState([]);
+  const [addonQuantity, setAddonQuantity] = useState([]);
   const [softdrinks, setSoftdrinks] = useState([]);
   const getAllAddons = async () => {
-    await axios
-      .get("http://localhost:5000/api/addon/getAddons")
-      .then((res) => setAddons(res.data));
+    await axios.get("http://localhost:5000/api/addon/getAddons").then((res) => {
+      setAddons(res.data);
+    });
   };
   const getAllSoftdrinks = async () => {
     await axios
@@ -19,7 +20,15 @@ export default function LocationState({ children }) {
   };
   return (
     <addonContext.Provider
-      value={{ loading, getAllAddons, addons, getAllSoftdrinks, softdrinks }}
+      value={{
+        loading,
+        getAllAddons,
+        addons,
+        getAllSoftdrinks,
+        softdrinks,
+        setAddonQuantity,
+        addonQuantity,
+      }}
     >
       {children}
     </addonContext.Provider>

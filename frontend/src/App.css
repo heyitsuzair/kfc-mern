@@ -377,6 +377,7 @@ body {
   display: flex;
   flex-direction: column;
   font-weight: 500;
+  padding-left: 1rem;
 }
 .addon-item .addon-info .addon-name .addon-price {
   color: #979797;
@@ -384,6 +385,14 @@ body {
 .addon-item .addon-info .addon-add span {
   color: var(--color-red);
   cursor: pointer;
+}
+.addon-item .addon-quantity svg {
+  color: var(--color-red);
+  cursor: pointer;
+}
+.addon-item .addon-quantity span {
+  width: 1vw;
+  text-align: center;
 }
 /* Login Page */
 .login {

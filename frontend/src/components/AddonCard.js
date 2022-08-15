@@ -1,9 +1,16 @@
 import { Grid } from "@mui/material";
-import React from "react";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import React, { useEffect } from "react";
+import {
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  Add,
+  Remove,
+} from "@mui/icons-material";
 import { useState } from "react";
+import AddonItem from "./AddonItem";
 export default function AddonCard({ title, addons }) {
   const [show, setShow] = useState("none");
+  const [addonQuant, setAddonQuant] = useState([]);
   const [text, setText] = useState({
     text: "View More (3)",
     icon: <KeyboardArrowDown />,
@@ -21,11 +28,6 @@ export default function AddonCard({ title, addons }) {
         });
   };
 
-  const handleAdd = (e) => {
-    e.target.style.display = "none";
-    e.target.parentElement.nextSibling.style.display = "flex";
-  };
-
   return (
     <Grid className="addons-container">
       <div className="add-ons">
@@ -36,38 +38,14 @@ export default function AddonCard({ title, addons }) {
         {addons.slice(0, 2).map((addon, index) => {
           return (
             <div className="addon-info" key={index}>
-              <div className="img">
-                <img src={addon.pic} alt="Addon" width={30} />
-              </div>
-              <div className="addon-name">
-                <span>{addon.name}</span>
-                <span className="addon-price">{addon.price}</span>
-              </div>
-              <div className="addon-add" onClick={(e) => handleAdd(e)}>
-                <span>+ Add</span>
-              </div>
-              <div className="addon-quantity" style={{ display: "none" }}>
-                {addon._id}
-              </div>
+              <AddonItem addon={addon} index={index} />
             </div>
           );
         })}
         {addons.slice(2, 5).map((addon, index) => {
           return (
             <div className="addon-info" key={index} style={{ display: show }}>
-              <div className="img">
-                <img src={addon.pic} alt="Addon" width={30} />
-              </div>
-              <div className="addon-name">
-                <span>{addon.name}</span>
-                <span className="addon-price">{addon.price}</span>
-              </div>
-              <div className="addon-add" onClick={(e) => handleAdd(e)}>
-                <span>+ Add</span>
-              </div>
-              <div className="addon-quantity" style={{ display: "none" }}>
-                {addon._id}
-              </div>
+              <AddonItem addon={addon} index={index} />
             </div>
           );
         })}
