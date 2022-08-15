@@ -332,7 +332,8 @@ body {
   font-weight: bold;
 }
 .quantity {
-  margin: 0 1rem;
+  width: 3vw;
+  text-align: center;
 }
 /* Addon Component */
 
@@ -391,7 +392,7 @@ body {
   cursor: pointer;
 }
 .addon-item .addon-quantity span {
-  width: 1vw;
+  width: 2vw;
   text-align: center;
 }
 /* Login Page */

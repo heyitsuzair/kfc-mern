@@ -21,6 +21,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
       setBtn(false);
     }
   };
+  const handleClick = () => {};
   useEffect(() => {
     checkMidnight();
     //eslint-disable-next-line
@@ -30,7 +31,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
     <Grid className="grid-item" item>
       <Link to={link} className="card-link">
         <div className="add-to-fav" style={{ textAlign: "right" }}>
-          <FavoriteBorder sx={{ color: "#e4002b" }} />
+          <FavoriteBorder onClick={handleClick} sx={{ color: "#e4002b" }} />
         </div>
         <div className="card-img">
           <img

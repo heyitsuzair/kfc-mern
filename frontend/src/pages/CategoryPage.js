@@ -9,8 +9,10 @@ import DealSection from "../components/DealSection";
 import CategoryPageSkeleton from "../components/CatergoryPageSkeleton";
 export default function CategoryPage() {
   const { id } = useParams();
+
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  // get all category products
   const getCatProds = async () => {
     await axios
       .get(`http://localhost:5000/api/product/getCatProds/${id}`)
@@ -26,6 +28,7 @@ export default function CategoryPage() {
     window.scroll(0, 0);
     //eslint-disable-next-line
   }, [id]);
+  document.title = products[0] === undefined ? "Deals" : products[0].catId.name;
   return (
     <>
       <Container>

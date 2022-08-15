@@ -4,11 +4,12 @@ import addonContext from "../context/addonContext";
 
 export default function AddonItem({ addon, index }) {
   const context = useContext(addonContext);
-  const { addonQuantity, setAddonQuantity } = context;
+  const { addonQuantity } = context;
   const [quantity, setQuantity] = useState({
     id: "",
     quantity: "",
   });
+  // handle whcn clicked on add icon
   const handleAdd = (e, id) => {
     e.target.parentElement.style.display = "none";
     e.target.parentElement.nextSibling.style.display = "flex";
@@ -17,9 +18,9 @@ export default function AddonItem({ addon, index }) {
       quantity: 1,
     });
     addonQuantity.push({ id: id, quantity: 1 });
-    console.log(addonQuantity);
   };
 
+  //handle when clicked on either + or -
   const handleQuantity = (operator, e, id) => {
     const filteredAddon = addonQuantity.filter((addonCheck) => {
       return addonCheck.id === id;

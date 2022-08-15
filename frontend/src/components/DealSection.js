@@ -8,6 +8,7 @@ export default function DealSection() {
   const context = useContext(dealContext);
   const { cats, getCats } = context;
   const [active, setActive] = useState("");
+  // set a deal as active
   const handleActive = (i) => {
     setActive(i);
   };

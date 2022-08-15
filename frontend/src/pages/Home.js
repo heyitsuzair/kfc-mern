@@ -13,6 +13,7 @@ export default function Home() {
   const { loading, getCats } = context;
 
   useEffect(() => {
+    // get all the categories
     getCats();
     //eslint-disable-next-line
   }, []);

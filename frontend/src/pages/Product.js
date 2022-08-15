@@ -15,6 +15,7 @@ import { useContext } from "react";
 import dealContext from "../context/dealContext";
 import DealSkeleton from "../components/DealSkeleton";
 import addonContext from "../context/addonContext";
+
 export default function Product() {
   const context = useContext(dealContext);
   const { getCats } = context;
@@ -25,14 +26,19 @@ export default function Product() {
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
 
+  // get product detail when page is loaded
   const getProdDetail = async (prodId) => {
-    await axios
-      .get(`http://localhost:5000/api/product/getProd/${prodId}`)
-      .then((res) => {
-        setDetail(res.data);
-      });
+    try {
+      await axios
+        .get(`http://localhost:5000/api/product/getProd/${prodId}`)
+        .then((res) => {
+          setDetail(res.data);
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
-
+  //handle when clicked on red button + or -
   const handleClick = (condition) => {
     const newValue = condition === "+" ? quantity + 1 : quantity - 1;
     setQuantity(newValue);
@@ -46,6 +52,7 @@ export default function Product() {
     window.scroll(0, 0);
     //eslint-disable-next-line
   }, []);
+  document.title = detail.name;
   return (
     <div className="product">
       <Container>

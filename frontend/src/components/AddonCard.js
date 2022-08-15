@@ -1,20 +1,15 @@
 import { Grid } from "@mui/material";
-import React, { useEffect } from "react";
-import {
-  KeyboardArrowDown,
-  KeyboardArrowUp,
-  Add,
-  Remove,
-} from "@mui/icons-material";
+import React from "react";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
 import AddonItem from "./AddonItem";
 export default function AddonCard({ title, addons }) {
   const [show, setShow] = useState("none");
-  const [addonQuant, setAddonQuant] = useState([]);
   const [text, setText] = useState({
     text: "View More (3)",
     icon: <KeyboardArrowDown />,
   });
+  // handle click on view more and less more
   const handleClick = () => {
     show === "none" ? setShow("flex") : setShow("none");
     text.text === "View More (3)"

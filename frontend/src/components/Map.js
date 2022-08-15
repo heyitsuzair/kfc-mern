@@ -14,6 +14,7 @@ export default function Map({ api, zoom, longitude, latitude }) {
   };
 
   useEffect(() => {
+    //check whether location is allowed or not
     if (longitude === 69.3451 && latitude === 30.3753) {
       toast.error("Please Allow Location From Browser");
     }

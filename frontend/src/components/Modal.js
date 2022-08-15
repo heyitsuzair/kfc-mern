@@ -26,6 +26,7 @@ export default function ModalFunc() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [zoom, setZoom] = useState(10);
+  // handle the location when clicked on select current location
   const handleClick = () => {
     getLocation();
     setZoom(13);
