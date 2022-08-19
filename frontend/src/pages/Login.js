@@ -37,7 +37,6 @@ export default function Login() {
     google.accounts.id.prompt();
     //eslint-disable-next-line
   }, []);
-  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div id="login-parent">
       <Container className="login">
