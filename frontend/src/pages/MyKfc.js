@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import Accordin from "../components/Accordin";
 import PastOrders from "../components/PastOrders";
 import Favourites from "../components/Favourites";
+import { useNavigate } from "react-router-dom";
 export default function MyKfc() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/login");
+    }
+    //eslint-disable-next-line
+  }, []);
   return (
     <Container>
       <div className="my-kfc">

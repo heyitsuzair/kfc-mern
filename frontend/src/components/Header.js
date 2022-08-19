@@ -9,13 +9,20 @@ import locationContext from "../context/locationContext";
 import { useEffect } from "react";
 import Drawer from "./Drawer";
 import { Link } from "react-router-dom";
+import SignOutBtn from "./SignOutBtn";
+import userContext from "../context/userContext";
+
 export default function Header() {
   const context = useContext(locationContext);
   const { getLocation } = context;
+  const context2 = useContext(userContext);
+  const { user } = context2;
+
   useEffect(() => {
     getLocation();
+
     //eslint-disable-next-line
-  }, []);
+  }, [user, localStorage.getItem("user")]);
 
   return (
     <div className="header">
@@ -40,11 +47,17 @@ export default function Header() {
       </div>
       <div className="header-inner">
         <Drawer />
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <Button variant="contained" className="regLogBtn">
-            <strong>Register / Sign In</strong>
-          </Button>
-        </Link>
+        {localStorage.getItem("user") === null ? (
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <Button variant="contained" className="regLogBtn">
+              <strong>Register / Sign In</strong>
+            </Button>
+          </Link>
+        ) : (
+          <>
+            <SignOutBtn />
+          </>
+        )}
       </div>
     </div>
   );

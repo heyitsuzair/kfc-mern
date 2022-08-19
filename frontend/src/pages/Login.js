@@ -2,8 +2,42 @@ import React from "react";
 import { Container } from "@mui/system";
 import { Grid, TextField, Button, Box } from "@mui/material";
 import gif from "../images/login.gif";
-import GoogleIcon from "../images/google-icon.svg";
+import jwt_decode from "jwt-decode";
+import { useEffect } from "react";
+import { useContext } from "react";
+import userContext from "../context/userContext";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+  const navigate = useNavigate();
+  const context = useContext(userContext);
+  const { setUser } = context;
+  const handleCallBackResponse = (response) => {
+    const userObj = jwt_decode(response.credential);
+    setUser(userObj);
+    localStorage.setItem("user", JSON.stringify(userObj));
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/");
+      return;
+    }
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID,
+      callback: handleCallBackResponse,
+      auto_select: true,
+    });
+    google.accounts.id.renderButton(
+      document.getElementById("login-with-google"),
+      { theme: "outline", size: "large" }
+    );
+    // right top prompt
+    google.accounts.id.prompt();
+    //eslint-disable-next-line
+  }, []);
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div id="login-parent">
       <Container className="login">
@@ -59,7 +93,7 @@ export default function Login() {
                 }}
                 color="error"
               />
-              <Button variant="contained" id="login-btn">
+              <Button variant="contained" id="login-btn" disabled>
                 Login
               </Button>
               <div className="or-login-with">
@@ -72,7 +106,7 @@ export default function Login() {
                   />
                 </div>
                 <div>
-                  <h5>Or Login With</h5>
+                  <h5>Or</h5>
                 </div>
                 <div>
                   <Box
@@ -84,12 +118,9 @@ export default function Login() {
                 </div>
               </div>
             </form>
-            <div className="login-with-google">
-              <img src={GoogleIcon} alt="Google" />
-            </div>
-            <div className="guest">
-              <strong>Continue As Guest User</strong>
-            </div>
+            {!localStorage.getItem("user") && (
+              <div className="login-with-google" id="login-with-google"></div>
+            )}
           </Grid>
         </Grid>
       </Container>

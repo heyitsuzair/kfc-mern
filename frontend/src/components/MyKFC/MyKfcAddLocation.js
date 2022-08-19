@@ -9,12 +9,14 @@ export default function MyKfcAddLocation({
   displaySections,
   setDisplaySections,
 }) {
+  // handle when clicked on cancel button
   const handleCancel = () => {
     setDisplaySections({
       first: "none",
       second: "flex",
     });
   };
+  // handle when clicked on done button
   const handleDone = () => {
     if (tagIndex === null) {
       toast.warning("Please Select A Tag");

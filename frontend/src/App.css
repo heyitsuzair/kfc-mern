@@ -93,14 +93,11 @@ body {
   color: var(--color-red);
 }
 .header .regLogBtn {
-  background-color: var(--color-red);
+  background-color: var(--color-red) !important;
   padding: 15px 15px;
   font-size: 0.875rem;
   border-radius: 8px;
   font-family: "Poppins";
-}
-.header .regLogBtn:hover {
-  background-color: var(--color-red);
 }
 #bucket-btn {
   border: 2px solid white;
@@ -112,6 +109,18 @@ body {
 .header .sel-loc {
   display: flex;
   align-items: center;
+}
+/* Signout Btn Component */
+.signout-btn {
+  background-color: var(--color-red) !important;
+  font-family: "Poppins" !important;
+}
+.menu-item {
+  gap: 0.5rem;
+  margin: 0 3rem;
+}
+.menu-item svg {
+  color: var(--color-red);
 }
 /* Map Component */
 .map-h2 {
@@ -406,7 +415,7 @@ body {
   border-radius: 5px;
 }
 #login-btn {
-  background-color: var(--color-red);
+  background-color: var(--light-brown);
   font-weight: 600;
   border-radius: 10px;
   padding: 1rem 0;
@@ -429,14 +438,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .login .login-with-google {
-  background-color: white;
-  width: 3vw;
   display: flex;
   justify-content: center;
-  border-radius: 100%;
-  padding: 1rem 0.5rem;
-  margin: 2rem auto;
+  margin: 1rem 0;
 }
 .login .guest {
   cursor: pointer;
