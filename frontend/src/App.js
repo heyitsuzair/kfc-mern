@@ -26,6 +26,7 @@ function App() {
               pauseOnHover={true}
               draggable={true}
               theme="dark"
+              toastClassName="toast-custom"
             />
             <TopBar />
             <Router>

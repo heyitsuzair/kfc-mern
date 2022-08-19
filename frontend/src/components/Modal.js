@@ -2,7 +2,6 @@ import React from "react";
 import { LocationSearching, ArrowDropDown } from "@mui/icons-material";
 import { Modal, Typography, Box, Button } from "@mui/material";
 import Map from "./Map";
-import { useState } from "react";
 import AutoComplete from "./AutoComplete";
 import { useContext } from "react";
 import locationContext from "../context/locationContext";
@@ -20,17 +19,16 @@ const style = {
 };
 export default function ModalFunc() {
   const context = useContext(locationContext);
-  const { getLocation, latitude, longitude } = context;
-  const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_MAP_API_KEY;
+  const { getLocation } = context;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [zoom, setZoom] = useState(10);
+
   // handle the location when clicked on select current location
   const handleClick = () => {
     getLocation();
-    setZoom(13);
   };
+
   return (
     <div>
       <div className="sel-loc" onClick={handleOpen}>
@@ -53,18 +51,9 @@ export default function ModalFunc() {
             Select Location
           </Typography>
 
-          <Map
-            longitude={longitude}
-            api={GOOGLE_MAPS_API_KEY}
-            latitude={latitude}
-            zoom={zoom}
-          />
+          <Map />
 
-          <AutoComplete
-            api={GOOGLE_MAPS_API_KEY}
-            setZoom={setZoom}
-            style={{ width: "100%" }}
-          />
+          <AutoComplete style={{ width: "100%" }} />
           <Box
             sx={{ display: "flex", marginTop: "1rem", gap: ".5rem" }}
             className="modal-search-loc"

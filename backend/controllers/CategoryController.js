@@ -16,7 +16,7 @@ module.exports.addCategory = async (req, res) => {
 module.exports.getCat = async (req, res) => {
   try {
     const getCategories = await cat.find();
-    res.status(200).json({ error: false, getCategories });
+    return res.status(200).json({ error: false, getCategories });
   } catch (error) {
     console.error(error);
   }

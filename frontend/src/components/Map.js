@@ -1,40 +1,54 @@
-import React, { useEffect } from "react";
-import GoogleMapReact from "google-map-react";
-import { toast } from "react-toastify";
-import { LocationOn } from "@mui/icons-material";
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import React, { useContext } from "react";
+import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import locationContext from "../context/locationContext";
 
-export default function Map({ api, zoom, longitude, latitude }) {
-  const defaultProps = {
-    center: {
-      lat: latitude,
-      lng: longitude,
-    },
-    zoom: zoom,
+const containerStyle = {
+  width: "100%",
+  height: "400px",
+};
+
+export default function Map() {
+  const context = useContext(locationContext);
+  const { longitude, latitude } = context;
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY,
+  });
+  const center = {
+    lat: latitude,
+    lng: longitude,
   };
+  //eslint-disable-next-line
+  const [map, setMap] = React.useState(null);
 
-  useEffect(() => {
-    //check whether location is allowed or not
-    if (longitude === 69.3451 && latitude === 30.3753) {
-      toast.error("Please Allow Location From Browser");
-    }
-  }, [longitude, latitude]);
+  const onLoad = React.useCallback(
+    function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+      setMap(map);
+    },
+    //eslint-disable-next-line
+    []
+  );
 
-  return (
-    // Important! Always set the container height explicitly
-    <div style={{ height: "50vh", width: "100%", marginTop: "1rem" }}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: api }}
-        center={defaultProps.center}
-        zoom={defaultProps.zoom}
-        yesIWantToUseGoogleMapApiInternals
-      >
-        <AnyReactComponent
-          lat={latitude}
-          lng={longitude}
-          text={<LocationOn color="error" />}
-        />
-      </GoogleMapReact>
-    </div>
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null);
+  }, []);
+
+  return isLoaded ? (
+    <GoogleMap
+      mapContainerStyle={containerStyle}
+      center={center}
+      zoom={12}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+    >
+      {/* Child components, such as markers, info windows, etc. */}
+      <>
+        <Marker position={{ lat: latitude, lng: longitude }} />
+      </>
+    </GoogleMap>
+  ) : (
+    <></>
   );
 }

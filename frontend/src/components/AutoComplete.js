@@ -22,11 +22,8 @@ export default class AutoComplete extends React.Component {
     geocodeByAddress(address)
       .then((results) => getLatLng(results[0]))
       .then((latLng) => {
-        console.log(latLng.lng);
-        console.log(latLng.lat);
         this.context.setLongitude(latLng.lng);
         this.context.setLatitude(latLng.lat);
-        this.props.setZoom(13);
       })
       .catch((error) => console.error("Error", error));
   };

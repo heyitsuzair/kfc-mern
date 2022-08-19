@@ -36,7 +36,10 @@ body {
   color: white !important;
   font-weight: 600 !important;
 }
-
+/* Toast */
+.toast-custom {
+  font-family: "Poppins" !important;
+}
 /* Top Bar Component */
 .top-bar {
   display: flex;
@@ -451,7 +454,7 @@ body {
   border-radius: 8px 8px 0px 0px;
   border-bottom: 1px solid white;
   outline: none;
-  width: 59vw;
+  width: 94%;
   font-family: "Poppins";
   margin: 1rem 0;
 }
@@ -520,6 +523,19 @@ body {
 }
 .fav-card .fav-img {
   text-align: center;
+}
+/* Tags Component */
+.tags {
+  border-color: var(--color-red) !important;
+  height: 30px !important;
+  margin-right: 12px !important;
+  border-radius: 50px !important;
+  margin-bottom: 10px !important;
+  padding-top: 8px !important;
+  gap: 0.3rem;
+}
+.tags .MuiButton-containedPrimary {
+  color: white !important;
 }
 /* Media Queries */
 @media (max-width: 909px) {
@@ -635,5 +651,9 @@ body {
 @media (max-width: 385px) {
   .footer-box-cont {
     display: none;
+  }
+  .tags {
+    font-size: 10px !important;
+    padding: 5px 10px !important;
   }
 }

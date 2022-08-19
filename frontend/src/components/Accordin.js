@@ -1,27 +1,26 @@
 import * as React from "react";
-import { useContext } from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import { Grid } from "@mui/material";
+import { useState } from "react";
 import {
-  ExpandMore,
-  HomeOutlined,
-  Delete,
-  Edit,
-  AddCircle,
-} from "@mui/icons-material";
+  Grid,
+  AccordionDetails,
+  AccordionSummary,
+  Accordion,
+} from "@mui/material";
+import { ExpandMore, AddCircle } from "@mui/icons-material";
 import Map from "./Map";
-import locationContext from "../context/locationContext";
-import { useEffect } from "react";
+
+import MyKfcLocations from "./MyKFC/MyKfcLocations";
+import MyKfcAddLocation from "./MyKFC/MyKfcAddLocation";
 
 export default function SimpleAccordion() {
-  const context = useContext(locationContext);
-  const { getLocation, latitude, longitude } = context;
-  const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_MAP_API_KEY;
-  useEffect(() => {
-    getLocation();
-  }, [getLocation]);
+  const [displaySections, setDisplaySections] = useState({
+    first: "none",
+    second: "flex",
+  });
+
+  const clickSelecDifLoc = () => {
+    setDisplaySections({ first: "flex", second: "none" });
+  };
 
   return (
     <div style={{ marginTop: "2rem" }}>
@@ -65,16 +64,25 @@ export default function SimpleAccordion() {
           <h3>My Addresses</h3>
         </AccordionSummary>
         <AccordionDetails>
-          <Map
-            longitude={longitude === 69.3451 ? 74.3587 : longitude}
-            api={GOOGLE_MAPS_API_KEY}
-            latitude={latitude === 30.3753 ? 31.5204 : latitude}
-            zoom={13}
-          />
-          <Grid container marginTop={2}>
+          <Grid
+            container
+            marginTop={2}
+            columnSpacing={{ md: 2 }}
+            rowSpacing={{ xs: 1 }}
+          >
+            <Grid item md={12} xs={12} sm={12}>
+              <Map />
+            </Grid>
+            {/* Add User Location To Database */}
+            <MyKfcAddLocation
+              displaySections={displaySections}
+              setDisplaySections={setDisplaySections}
+            />
+            {/* Add User Location To Database */}
+
             <Grid
               item
-              display="flex"
+              display={displaySections.second}
               gap={2}
               flexDirection="row"
               justifyContent="space-between"
@@ -82,34 +90,13 @@ export default function SimpleAccordion() {
               sm={12}
               xs={12}
             >
-              <div className="address-icon">
-                <HomeOutlined />
-              </div>
-              <div className="address">
-                <h3>Home</h3>
-                <span style={{ fontFamily: "Poppins" }}>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Cupiditate autem nam nisi impedit eligendi et est
-                  reprehenderit eveniet porro ipsam, corrupti illum sint modi
-                  fugit, eum quasi officia voluptates doloribus quaerat vero
-                  aperiam iure. Amet at non ducimus voluptatem ipsum neque
-                  praesentium vitae ex ab?{" "}
-                </span>
-              </div>
-              <div className="edit-address">
-                <div className="del-add">
-                  <Delete />
-                  Remove
-                </div>
-                <div className="edit-add">
-                  <Edit />
-                  Edit
-                </div>
-              </div>
+              {/* User current locations available in database */}
+              <MyKfcLocations />
+              {/* User current locations available in database */}
             </Grid>
             <Grid
               item
-              display="flex"
+              display={displaySections.second}
               gap={2}
               flexDirection="row"
               justifyContent="flex-start"
@@ -121,7 +108,7 @@ export default function SimpleAccordion() {
               <div className="address-icon">
                 <AddCircle />
               </div>
-              <div className="select-dif-loc">
+              <div className="select-dif-loc" onClick={clickSelecDifLoc}>
                 <span>Select A Different Location</span>
               </div>
             </Grid>
