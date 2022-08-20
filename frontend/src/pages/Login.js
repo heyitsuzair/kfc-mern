@@ -13,6 +13,13 @@ export default function Login() {
   const { setUser } = context;
   const handleCallBackResponse = (response) => {
     const userObj = jwt_decode(response.credential);
+    delete userObj.aud;
+    delete userObj.azp;
+    delete userObj.jti;
+    delete userObj.sub;
+    delete userObj.exp;
+    delete userObj.iat;
+    delete userObj.nbf;
     setUser(userObj);
     localStorage.setItem("user", JSON.stringify(userObj));
     navigate("/");

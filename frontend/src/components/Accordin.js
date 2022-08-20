@@ -22,6 +22,8 @@ export default function SimpleAccordion() {
     setDisplaySections({ first: "flex", second: "none" });
   };
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div style={{ marginTop: "2rem" }}>
       <Accordion
@@ -42,8 +44,8 @@ export default function SimpleAccordion() {
           <h3>Personal Info</h3>
         </AccordionSummary>
         <AccordionDetails>
-          <h3>Gender</h3>
-          <span style={{ fontFamily: "Poppins" }}>Male</span>
+          <h3>Email</h3>
+          <span style={{ fontFamily: "Poppins" }}>{user.email}</span>
         </AccordionDetails>
       </Accordion>
       <Accordion
