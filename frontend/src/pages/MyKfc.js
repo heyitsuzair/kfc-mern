@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
 import Accordin from "../components/Accordin";
@@ -10,6 +10,7 @@ export default function MyKfc() {
   document.title = "My KFC";
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!localStorage.getItem("user")) {
@@ -41,11 +42,11 @@ export default function MyKfc() {
           <Grid item xs={12} md={12} sm={12}>
             <Accordin />
           </Grid>
-          <Grid item xs={12} md={12} sm={12}>
+          <Grid item xs={12} md={12} sm={12} marginTop="2rem">
             <PastOrders />
           </Grid>
           <Grid item xs={12} md={12} sm={12}>
-            <Favourites />
+            <Favourites setLoading={setLoading} />
           </Grid>
         </div>
       </div>

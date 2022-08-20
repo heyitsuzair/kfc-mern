@@ -19,14 +19,19 @@ export default function SimpleAccordion() {
     first: "none",
     second: "flex",
   });
+  const [value, setValue] = useState("");
+  const [locations, setLocations] = useState([]);
+  const [tagIndex, setTagIndex] = useState(null);
+  const [locationState, setLocationState] = useState("");
 
   const clickSelecDifLoc = () => {
     setDisplaySections({ first: "flex", second: "none" });
+    setValue("");
+    setLocationState("Add");
+    setTagIndex(null);
   };
 
   const user = JSON.parse(localStorage.getItem("user"));
-
-  const [locations, setLocations] = useState([]);
 
   // get all locations of logged in user
   const getLocations = async () => {
@@ -102,6 +107,11 @@ export default function SimpleAccordion() {
               setDisplaySections={setDisplaySections}
               setLocations={setLocations}
               locations={locations}
+              value={value}
+              setValue={setValue}
+              tagIndex={tagIndex}
+              setTagIndex={setTagIndex}
+              locationState={locationState}
             />
             {/* Add User Location To Database */}
 
@@ -119,6 +129,10 @@ export default function SimpleAccordion() {
               <MyKfcLocations
                 setLocations={setLocations}
                 locations={locations}
+                setDisplaySections={setDisplaySections}
+                setValue={setValue}
+                setTagIndex={setTagIndex}
+                setLocationState={setLocationState}
               />
               {/* User current locations available in database */}
             </Grid>

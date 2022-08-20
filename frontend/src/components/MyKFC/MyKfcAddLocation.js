@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import AutoComplete from "../AutoComplete";
 import { TextField, Grid, Button } from "@mui/material";
@@ -13,11 +13,16 @@ export default function MyKfcAddLocation({
   setDisplaySections,
   setLocations,
   locations,
+  value,
+  setValue,
+  tagIndex,
+  setTagIndex,
+  locationState,
 }) {
   const context = useContext(locationContext);
   const { getLocation, longitude, latitude } = context;
   const user = JSON.parse(localStorage.getItem("user"));
-  const [value, setValue] = useState("");
+
   // handle when clicked on cancel button
   const handleCancel = () => {
     getLocation();
@@ -35,33 +40,37 @@ export default function MyKfcAddLocation({
       toast.warning("Please Type House No.");
       return;
     }
-    await axios
-      .post("http://localhost:5000/api/location/addLocation", {
-        lat: latitude,
-        lng: longitude,
-        email: user.email,
-        tag: tagIndex,
-        street: value,
-      })
-      .then((res) => {
-        if (res.data.error === false) {
-          setDisplaySections({
-            first: "none",
-            second: "flex",
-          });
-          setLocations(
-            locations.concat({
-              lat: latitude,
-              lng: longitude,
-              email: user.email,
-              tag: tagIndex,
-              street: value,
-            })
-          );
-          setValue("");
-          setTagIndex(null);
-        }
-      });
+    if (locationState === "Add") {
+      await axios
+        .post("http://localhost:5000/api/location/addLocation", {
+          lat: latitude,
+          lng: longitude,
+          email: user.email,
+          tag: tagIndex,
+          street: value,
+        })
+        .then((res) => {
+          if (res.data.error === false) {
+            setDisplaySections({
+              first: "none",
+              second: "flex",
+            });
+            setLocations(
+              locations.concat({
+                lat: latitude,
+                lng: longitude,
+                email: user.email,
+                tag: tagIndex,
+                street: value,
+              })
+            );
+            setValue("");
+            setTagIndex(null);
+          }
+        });
+    } else {
+      console.log("edit");
+    }
   };
 
   const handleChange = (e) => {
@@ -78,10 +87,11 @@ export default function MyKfcAddLocation({
       tag: "Partner",
     },
   ];
-  const [tagIndex, setTagIndex] = useState(null);
+
   const handleClick = (index) => {
     setTagIndex(index);
   };
+
   return (
     <>
       <Grid item md={6} xs={12} sm={12} display={displaySections.first}>
