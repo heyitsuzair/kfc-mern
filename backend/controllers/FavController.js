@@ -14,6 +14,15 @@ module.exports.addFav = async (req, res) => {
 };
 module.exports.getFavs = async (req, res) => {
   try {
+    const { email } = req.params;
+
+    const getFav = await fav.find({ email: email });
+
+    if (getFav) {
+      return res.status(200).json({ error: false, getFav });
+    } else {
+      return res.status(200).json({ error: true });
+    }
   } catch (error) {
     console.error(error);
   }
