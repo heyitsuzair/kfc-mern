@@ -12,5 +12,9 @@ const locationSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  tag: {
+    type: String,
+    required: true,
+  },
 });
 module.exports = mongoose.model("locations", locationSchema);

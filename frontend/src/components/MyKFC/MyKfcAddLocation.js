@@ -6,6 +6,7 @@ import Tags from "../Tags";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
+import axios from "axios";
 
 export default function MyKfcAddLocation({
   displaySections,
@@ -13,6 +14,8 @@ export default function MyKfcAddLocation({
 }) {
   const context = useContext(locationContext);
   const { getLocation, longitude, latitude } = context;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [value, setValue] = useState("");
   // handle when clicked on cancel button
   const handleCancel = () => {
     getLocation();
@@ -22,11 +25,33 @@ export default function MyKfcAddLocation({
     });
   };
   // handle when clicked on done button
-  const handleDone = () => {
+  const handleDone = async () => {
     if (tagIndex === null) {
       toast.warning("Please Select A Tag");
       return;
+    } else if (value === "") {
+      toast.warning("Please Type House No.");
+      return;
     }
+    await axios
+      .post("http://localhost:5000/api/location/addLocation", {
+        lat: latitude,
+        lng: longitude,
+        email: user.email,
+        tag: tagIndex,
+      })
+      .then((res) => {
+        if (res.data.error === false) {
+          setDisplaySections({
+            first: "none",
+            second: "flex",
+          });
+        }
+      });
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
   const tags = [
     {
@@ -59,6 +84,7 @@ export default function MyKfcAddLocation({
             id="filled-basic"
             label="House / Street No."
             variant="filled"
+            required
             sx={{
               backgroundColor: "rgb(52, 52, 52)",
               borderTopLeftRadius: "8px",
@@ -73,6 +99,9 @@ export default function MyKfcAddLocation({
               className: "floatingLabel",
             }}
             color="error"
+            name="field"
+            value={value}
+            onChange={(e) => handleChange(e)}
           />
         </div>
       </Grid>
