@@ -21,6 +21,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
   // check the time if it is midnight or not
   const checkMidnight = () => {
     if (catName === "Midnight") {
+      // check if it is before or after 2 am
       hour < 2 ? setLink(`/product/${id}`) : setLink("");
       hour < 2 ? setBtn(false) : setBtn(true);
     } else {
@@ -37,6 +38,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
           const checkFav = res.data.getFav.filter((fav) => {
             return fav.prod_id === id;
           });
+          // check if checkFav returns an array or not, if it returns an array, set this card favourite icon as true else set it to false
           checkFav.length > 0 ? setIsFav(true) : setIsFav(false);
         });
     } catch (error) {
@@ -44,9 +46,21 @@ export default function Card({ src, title, desc, price, id, catName }) {
     }
   };
   // handle when clicked on bordered heart
-  const handleAddFav = (e, id) => {
-    setIsFav(true);
+  const handleAddFav = async (e, id) => {
     e.preventDefault();
+    try {
+      // adding the product to favourites of logged in user
+      await axios
+        .post("http://localhost:5000/api/fav/addFav", {
+          prod_id: id,
+          email: getUser.email,
+        })
+        .then((res) => {
+          setIsFav(true);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // handle when clicked on filled heart
