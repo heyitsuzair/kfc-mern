@@ -3,39 +3,51 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Favorite, AddCircle } from "@mui/icons-material";
-import img from "../images/topsel1.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function BasicCard() {
+export default function BasicCard({
+  src,
+  title,
+  desc,
+  price,
+  id,
+  handleRemoveFav,
+}) {
   return (
-    <Card
-      sx={{ minWidth: 275, backgroundColor: "#1c1816", borderRadius: "10px" }}
-    >
-      <CardContent className="fav-card">
-        <div className="fav-icon">
-          <Favorite sx={{ color: "#e4002b" }} />
-        </div>
-
-        <div className="fav-img">
-          <img src={img} width={100} alt="Favourite" />
-        </div>
-        <Typography
-          variant="h6"
-          sx={{ mb: 1.5, fontWeight: "700" }}
-          color="white"
-        >
-          Krunch Burger
-        </Typography>
-        <Typography variant="body2" sx={{ color: "white" }}>
-          Lorem ipsum dolor sit voluptas212221
-        </Typography>
-        <div className="fav-price">
-          <span>Rs 220</span>
-          <div className="add-fav-to-bucket">
-            <AddCircle sx={{ color: "#e4002b" }} />
-            <span className="add-fav">Add</span>
+    <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
+      <Card
+        sx={{ minWidth: 350, backgroundColor: "#1c1816", borderRadius: "10px" }}
+      >
+        <CardContent className="fav-card">
+          <div className="fav-icon" onClick={(e) => handleRemoveFav(e, id)}>
+            <Favorite
+              sx={{ color: "#e4002b", "&:hover": { cursor: "pointer" } }}
+            />
           </div>
-        </div>
-      </CardContent>
-    </Card>
+
+          <div className="fav-img">
+            <img src={src} width={100} alt="Favourite" />
+          </div>
+          <Typography
+            variant="h6"
+            sx={{ mb: 1.5, fontWeight: "700" }}
+            color="white"
+          >
+            {title}
+          </Typography>
+          <Typography variant="body2" sx={{ color: "white" }}>
+            {desc.substring(0, 20)} ...
+          </Typography>
+          <div className="fav-price">
+            <span>Rs {price}</span>
+            <div className="add-fav-to-bucket">
+              <AddCircle sx={{ color: "#e4002b" }} />
+              <span className="add-fav">Add</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }

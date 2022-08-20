@@ -5,7 +5,9 @@ import Accordin from "../components/Accordin";
 import PastOrders from "../components/PastOrders";
 import Favourites from "../components/Favourites";
 import { useNavigate } from "react-router-dom";
+
 export default function MyKfc() {
+  document.title = "My KFC";
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -14,6 +16,7 @@ export default function MyKfc() {
       navigate("/login");
       return;
     }
+
     //eslint-disable-next-line
   }, []);
 

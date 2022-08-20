@@ -36,7 +36,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
         .get("http://localhost:5000/api/fav/getFavs/" + getUser.email)
         .then((res) => {
           const checkFav = res.data.getFav.filter((fav) => {
-            return fav.prod_id === id;
+            return fav.prod_id._id === id;
           });
           // check if checkFav returns an array or not, if it returns an array, set this card favourite icon as true else set it to false
           checkFav.length > 0 ? setIsFav(true) : setIsFav(false);
@@ -56,7 +56,9 @@ export default function Card({ src, title, desc, price, id, catName }) {
           email: getUser.email,
         })
         .then((res) => {
-          setIsFav(true);
+          if (res.data.error === false) {
+            setIsFav(true);
+          }
         });
     } catch (error) {
       console.log(error);
@@ -64,9 +66,23 @@ export default function Card({ src, title, desc, price, id, catName }) {
   };
 
   // handle when clicked on filled heart
-  const handleRemoveFav = (e, id) => {
-    setIsFav(false);
+  const handleRemoveFav = async (e, id) => {
     e.preventDefault();
+    try {
+      // removing the product from favourites of logged in user
+      await axios
+        .post("http://localhost:5000/api/fav/delFav", {
+          prod_id: id,
+          email: getUser.email,
+        })
+        .then((res) => {
+          if (res.data.error === false) {
+            setIsFav(false);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
