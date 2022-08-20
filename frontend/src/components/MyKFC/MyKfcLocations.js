@@ -9,6 +9,7 @@ export default function MyKfcLocations({
   setValue,
   setTagIndex,
   setLocationState,
+  setLocationId,
 }) {
   return (
     <div className="my-locations">
@@ -23,6 +24,8 @@ export default function MyKfcLocations({
               setValue={setValue}
               setTagIndex={setTagIndex}
               setLocationState={setLocationState}
+              setLocationId={setLocationId}
+              index={index}
             />
           </div>
         );

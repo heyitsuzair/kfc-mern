@@ -23,6 +23,7 @@ export default function SimpleAccordion() {
   const [locations, setLocations] = useState([]);
   const [tagIndex, setTagIndex] = useState(null);
   const [locationState, setLocationState] = useState("");
+  const [locationId, setLocationId] = useState(null);
 
   const clickSelecDifLoc = () => {
     setDisplaySections({ first: "flex", second: "none" });
@@ -112,6 +113,7 @@ export default function SimpleAccordion() {
               tagIndex={tagIndex}
               setTagIndex={setTagIndex}
               locationState={locationState}
+              locationId={locationId}
             />
             {/* Add User Location To Database */}
 
@@ -133,6 +135,7 @@ export default function SimpleAccordion() {
                 setValue={setValue}
                 setTagIndex={setTagIndex}
                 setLocationState={setLocationState}
+                setLocationId={setLocationId}
               />
               {/* User current locations available in database */}
             </Grid>

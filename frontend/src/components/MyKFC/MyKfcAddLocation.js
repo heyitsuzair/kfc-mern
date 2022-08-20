@@ -18,6 +18,7 @@ export default function MyKfcAddLocation({
   tagIndex,
   setTagIndex,
   locationState,
+  locationId,
 }) {
   const context = useContext(locationContext);
   const { getLocation, longitude, latitude } = context;
@@ -69,10 +70,34 @@ export default function MyKfcAddLocation({
           }
         });
     } else {
-      console.log("edit");
+      await axios
+        .post("http://localhost:5000/api/location/editLocation", {
+          id: locationId,
+          lat: latitude,
+          lng: longitude,
+          tag: tagIndex,
+          street: value,
+        })
+        .then((res) => {
+          if (res.data.error === false) {
+            setDisplaySections({
+              first: "none",
+              second: "flex",
+            });
+            setValue("");
+            setTagIndex(null);
+            // edit the location info realtime so it doesnot requires to refresh browser
+            const setLocation = locations.filter((loc) => {
+              return loc._id === locationId;
+            });
+            setLocation[0].lat = latitude;
+            setLocation[0].lng = longitude;
+          }
+        });
     }
   };
 
+  // handle when house number value changes
   const handleChange = (e) => {
     setValue(e.target.value);
   };
@@ -88,6 +113,7 @@ export default function MyKfcAddLocation({
     },
   ];
 
+  // handle when clicked on any tag
   const handleClick = (index) => {
     setTagIndex(index);
   };

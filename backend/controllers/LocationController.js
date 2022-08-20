@@ -35,3 +35,19 @@ module.exports.delLocation = async (req, res) => {
     console.error(error);
   }
 };
+module.exports.editLocation = async (req, res) => {
+  try {
+    const { id, lng, lat, tag, street } = req.body;
+
+    const editedLocation = await location.findByIdAndUpdate(id, {
+      lng,
+      lat,
+      tag,
+      street,
+    });
+
+    return res.status(200).json({ error: false });
+  } catch (error) {
+    console.error(error);
+  }
+};

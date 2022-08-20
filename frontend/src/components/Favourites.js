@@ -1,23 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid } from "@mui/material";
 import FavouritesCard from "./FavouritesCard";
 import axios from "axios";
-import { useEffect } from "react";
-export default function Favourites() {
+export default function Favourites({ favs, setFavs }) {
   const user = JSON.parse(localStorage.getItem("user"));
-  const [favs, setFavs] = useState([]);
-  // get all favourites of logged in user
-  const getFavs = async () => {
-    try {
-      await axios
-        .get("http://localhost:5000/api/fav/getFavs/" + user.email)
-        .then((res) => {
-          setFavs(res.data.getFav);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   // handle when clicked on filled heart
   const handleRemoveFav = async (e, id) => {
@@ -42,10 +28,6 @@ export default function Favourites() {
     }
   };
 
-  useEffect(() => {
-    getFavs();
-    //eslint-disable-next-line
-  }, []);
   return (
     <div className="favourites">
       <h1>Favourites</h1>

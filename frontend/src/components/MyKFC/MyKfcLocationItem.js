@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   HomeOutlined,
   Delete,
@@ -7,6 +7,7 @@ import {
   BusinessCenterOutlined,
 } from "@mui/icons-material";
 import axios from "axios";
+import locationContext from "../../context/locationContext";
 
 export default function MyKfcLocationItem({
   location,
@@ -16,8 +17,11 @@ export default function MyKfcLocationItem({
   setValue,
   setTagIndex,
   setLocationState,
+  setLocationId,
 }) {
   const [address, setAddress] = useState("");
+  const context = useContext(locationContext);
+  const { setLongitude, setLatitude } = context;
   // handle when clicked on delete buttom
   const handleDelete = async (id) => {
     try {
@@ -40,7 +44,11 @@ export default function MyKfcLocationItem({
     setDisplaySections({ first: "flex", second: "none" });
     setValue(location.street);
     setTagIndex(parseInt(location.tag));
+    // Set the state to update data in MyKFCAddLocaton Component Instead Of Adding Location, It will Edit Data. Location State is available in Accordin Component
     setLocationState("edit");
+    setLocationId(id);
+    setLongitude(location.lng);
+    setLatitude(location.lat);
   };
   // get address of locations
   const getAddress = async (lat, lng) => {
@@ -55,8 +63,7 @@ export default function MyKfcLocationItem({
   };
   useEffect(() => {
     getAddress(location.lat, location.lng);
-    //eslint-disable-next-line
-  }, []);
+  }, [location.lat, location.lng]);
   return (
     <>
       <div className="address-icon">
