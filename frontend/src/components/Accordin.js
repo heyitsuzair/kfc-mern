@@ -116,7 +116,10 @@ export default function SimpleAccordion() {
               xs={12}
             >
               {/* User current locations available in database */}
-              <MyKfcLocations locations={locations} />
+              <MyKfcLocations
+                setLocations={setLocations}
+                locations={locations}
+              />
               {/* User current locations available in database */}
             </Grid>
             <Grid

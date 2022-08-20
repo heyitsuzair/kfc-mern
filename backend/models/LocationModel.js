@@ -16,5 +16,9 @@ const locationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  street: {
+    type: String,
+    required: true,
+  },
 });
 module.exports = mongoose.model("locations", locationSchema);

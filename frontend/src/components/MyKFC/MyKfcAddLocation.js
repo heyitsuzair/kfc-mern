@@ -41,6 +41,7 @@ export default function MyKfcAddLocation({
         lng: longitude,
         email: user.email,
         tag: tagIndex,
+        street: value,
       })
       .then((res) => {
         if (res.data.error === false) {
@@ -54,8 +55,11 @@ export default function MyKfcAddLocation({
               lng: longitude,
               email: user.email,
               tag: tagIndex,
+              street: value,
             })
           );
+          setValue("");
+          setTagIndex(null);
         }
       });
   };

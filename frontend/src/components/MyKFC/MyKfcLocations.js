@@ -6,10 +6,20 @@ import {
   Apartment,
   BusinessCenterOutlined,
 } from "@mui/icons-material";
+import axios from "axios";
 
-export default function MyKfcLocations({ locations }) {
+export default function MyKfcLocations({ locations, setLocations }) {
   const handleDelete = async (id) => {
-    console.log(id);
+    await axios
+      .post("http://localhost:5000/api/location/delLocation/" + id)
+      .then((res) => {
+        if (res.data.error === false) {
+          const newLocations = locations.filter((location) => {
+            return location._id !== id;
+          });
+          setLocations(newLocations);
+        }
+      });
   };
   return (
     <div className="my-locations">
@@ -25,17 +35,14 @@ export default function MyKfcLocations({ locations }) {
               <h3>{location.tag === "0" ? "Home" : ""}</h3>
               <h3>{location.tag === "1" ? "Office" : ""}</h3>
               <h3>{location.tag === "2" ? "Partner" : ""}</h3>
-              <span style={{ fontFamily: "Poppins" }}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Cupiditate autem nam nisi impedit eligendi et est reprehenderit
-                eveniet porro ipsam, corrupti illum sint modi fugit, eum quasi
-                officia voluptates doloribus quaerat vero aperiam iure. Amet at
-                non ducimus voluptatem ipsum neque praesentium vitae ex ab?{" "}
-              </span>
+              <span style={{ fontFamily: "Poppins" }}>{location.street}</span>
             </div>
             <div className="edit-address">
-              <div className="del-add">
-                <Delete onClick={() => handleDelete(location._id)} />
+              <div
+                className="del-add"
+                onClick={() => handleDelete(location._id)}
+              >
+                <Delete />
                 Remove
               </div>
               <div className="edit-add">
