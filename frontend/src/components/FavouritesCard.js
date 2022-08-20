@@ -4,7 +4,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Favorite, AddCircle } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 export default function BasicCard({
   src,

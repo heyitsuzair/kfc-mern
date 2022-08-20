@@ -4,13 +4,18 @@ import AutoComplete from "../AutoComplete";
 import { TextField, Grid, Button } from "@mui/material";
 import Tags from "../Tags";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import locationContext from "../../context/locationContext";
 
 export default function MyKfcAddLocation({
   displaySections,
   setDisplaySections,
 }) {
+  const context = useContext(locationContext);
+  const { getLocation, longitude, latitude } = context;
   // handle when clicked on cancel button
   const handleCancel = () => {
+    getLocation();
     setDisplaySections({
       first: "none",
       second: "flex",
