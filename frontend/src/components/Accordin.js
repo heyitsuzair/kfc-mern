@@ -11,6 +11,8 @@ import Map from "./Map";
 
 import MyKfcLocations from "./MyKFC/MyKfcLocations";
 import MyKfcAddLocation from "./MyKFC/MyKfcAddLocation";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function SimpleAccordion() {
   const [displaySections, setDisplaySections] = useState({
@@ -23,6 +25,25 @@ export default function SimpleAccordion() {
   };
 
   const user = JSON.parse(localStorage.getItem("user"));
+
+  const [locations, setLocations] = useState([]);
+
+  // get all locations of logged in user
+  const getLocations = async () => {
+    try {
+      await axios
+        .get("http://localhost:5000/api/location/getLocations/" + user.email)
+        .then((res) => {
+          setLocations(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getLocations();
+    //eslint-disable-next-line
+  }, [locations]);
 
   return (
     <div style={{ marginTop: "2rem" }}>
@@ -79,6 +100,8 @@ export default function SimpleAccordion() {
             <MyKfcAddLocation
               displaySections={displaySections}
               setDisplaySections={setDisplaySections}
+              setLocations={setLocations}
+              locations={locations}
             />
             {/* Add User Location To Database */}
 
@@ -93,7 +116,7 @@ export default function SimpleAccordion() {
               xs={12}
             >
               {/* User current locations available in database */}
-              <MyKfcLocations />
+              <MyKfcLocations locations={locations} />
               {/* User current locations available in database */}
             </Grid>
             <Grid

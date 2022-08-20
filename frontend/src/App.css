@@ -493,6 +493,17 @@ body {
 .select-dif-loc {
   color: var(--color-red);
 }
+/* My Kfc Locations Component */
+.my-locations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.my-locations-item {
+  display: flex;
+  gap: 1rem;
+}
 /* Past Order Component */
 .view-all {
   color: var(--color-red);

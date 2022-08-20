@@ -11,6 +11,8 @@ import axios from "axios";
 export default function MyKfcAddLocation({
   displaySections,
   setDisplaySections,
+  setLocations,
+  locations,
 }) {
   const context = useContext(locationContext);
   const { getLocation, longitude, latitude } = context;
@@ -46,6 +48,14 @@ export default function MyKfcAddLocation({
             first: "none",
             second: "flex",
           });
+          setLocations(
+            locations.concat({
+              lat: latitude,
+              lng: longitude,
+              email: user.email,
+              tag: tagIndex,
+            })
+          );
         }
       });
   };
@@ -62,9 +72,6 @@ export default function MyKfcAddLocation({
     },
     {
       tag: "Partner",
-    },
-    {
-      tag: "Other",
     },
   ];
   const [tagIndex, setTagIndex] = useState(null);
