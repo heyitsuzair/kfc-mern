@@ -9,6 +9,7 @@ const productRoutes = require("./routes/ProductsRoute");
 const catRoutes = require("./routes/CategoryRoute");
 const addonRoutes = require("./routes/AddonRoute");
 const softdrinkRoutes = require("./routes/SoftdrinkRoute");
+const favRoutes = require("./routes/FavRoutes");
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
@@ -19,6 +20,7 @@ app.use("/api/product", productRoutes);
 app.use("/api/cat", catRoutes);
 app.use("/api/addon", addonRoutes);
 app.use("/api/softdrink", softdrinkRoutes);
+app.use("/api/fav", favRoutes);
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

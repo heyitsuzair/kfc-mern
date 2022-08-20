@@ -17,7 +17,7 @@ module.exports.addProduct = async (req, res) => {
       prodImg: img_url,
     });
 
-    res.status(200).json({ error: false, product: addProd });
+    return res.status(200).json({ error: false, product: addProd });
   } catch (error) {
     console.log(error);
   }
@@ -30,7 +30,7 @@ module.exports.getCatProds = async (req, res) => {
         catId: id,
       })
       .populate({ path: "catId" });
-    res.status(200).json({ error: false, getCatProducts });
+    return res.status(200).json({ error: false, getCatProducts });
   } catch (error) {
     console.error(error);
   }
@@ -39,7 +39,7 @@ module.exports.getProdDetail = async (req, res) => {
   try {
     const { id } = req.params;
     const getDetail = await product.findById(id);
-    res.status(200).json(getDetail);
+    return res.status(200).json(getDetail);
   } catch (error) {
     console.error(error);
   }
@@ -61,7 +61,7 @@ module.exports.updateProduct = async (req, res) => {
         catId,
         prodImg: img_url,
       });
-      res.status(200).json({ error: false, product: updateProd });
+      return res.status(200).json({ error: false, product: updateProd });
     } else {
       const updateProd = await product.findByIdAndUpdate(id, {
         name,
@@ -69,7 +69,7 @@ module.exports.updateProduct = async (req, res) => {
         price,
         catId,
       });
-      res.status(200).json({ error: false, product: updateProd });
+      return res.status(200).json({ error: false, product: updateProd });
     }
   } catch (error) {
     console.error(error);
