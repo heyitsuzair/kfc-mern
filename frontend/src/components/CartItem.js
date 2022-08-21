@@ -23,7 +23,7 @@ export default function CartItem() {
     if (condition === "+") {
       setQuantity(quantity + 1);
     } else {
-      return quantity < 1 ? true : setQuantity(quantity - 1);
+      return quantity === 1 ? true : setQuantity(quantity - 1);
     }
   };
 

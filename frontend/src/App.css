@@ -572,7 +572,6 @@ body {
 .tags .MuiButton-containedPrimary {
   color: white !important;
 }
-
 /* Cart Item Component */
 .cart-item {
   background-color: var(--dark-brown);
@@ -599,6 +598,61 @@ body {
 .cart-item .addon-item {
   padding: 20px 0;
 }
+/* Stepper Component */
+.stepper {
+  margin: 2rem 0;
+}
+.stepper span {
+  color: white !important;
+  font-family: "Poppins" !important;
+  font-weight: bold !important;
+}
+.stepper .Mui-completed path {
+  color: var(--color-red) !important;
+  padding: 1rem 1rem !important;
+}
+.stepper .Mui-active circle {
+  color: var(--color-red) !important;
+  padding: 1rem 1rem !important;
+}
+.stepper .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root circle {
+  color: var(--color-red) !important;
+  padding: 1rem 1rem !important;
+}
+.stepper .css-z7uhs0-MuiStepConnector-line {
+  border-color: var(--color-red);
+}
+.stepper .Mui-disabled {
+  opacity: 0.5;
+}
+/* Cart Product Item */
+.cart {
+  margin: 2rem 0;
+}
+.cart-prod-item {
+  background-color: var(--dark-brown);
+  border-radius: 8px;
+  padding: 1rem 1rem;
+}
+/* Proceed To Checkout Component */
+.proceed-to-checkout {
+  background-color: var(--dark-brown);
+  border-radius: 8px;
+  padding: 1rem 1rem;
+  text-align: center;
+}
+.proceed-to-checkout button {
+  background-color: var(--color-red) !important;
+  border-radius: 8px;
+  font-family: "Poppins";
+  width: 100%;
+  padding: 1rem 0;
+}
+.proceed-to-checkout .subtotal-parent {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
@@ -611,6 +665,9 @@ body {
   }
   .login {
     max-width: 700px !important;
+  }
+  .proceed-to-checkout {
+    margin-top: 1rem;
   }
 }
 @media (min-width: 768px) {
@@ -708,6 +765,9 @@ body {
 
   .add-ons {
     margin-top: 6rem;
+  }
+  .cart-prod-item {
+    padding: 1rem 0.1rem;
   }
 }
 @media (max-width: 385px) {

@@ -16,6 +16,7 @@ import OrderHistory from "./pages/OrderHistory";
 import CategoryPage from "./pages/CategoryPage";
 import AddonState from "./context/addonState";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 function App() {
   return (
     <>
@@ -42,6 +43,7 @@ function App() {
                   <Route path="/orderHistory" element={<OrderHistory />} />
                   <Route path="/cat/:id" element={<CategoryPage />} />
                   <Route path="/cart" element={<Cart />} />
+                  <Route path="/delivery" element={<Checkout />} />
                 </Routes>
                 <Footer />
               </Router>
