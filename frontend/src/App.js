@@ -15,6 +15,7 @@ import MyKfc from "./pages/MyKfc";
 import OrderHistory from "./pages/OrderHistory";
 import CategoryPage from "./pages/CategoryPage";
 import AddonState from "./context/addonState";
+import Cart from "./pages/Cart";
 function App() {
   return (
     <>
@@ -40,6 +41,7 @@ function App() {
                   <Route path="/myKfc" element={<MyKfc />} />
                   <Route path="/orderHistory" element={<OrderHistory />} />
                   <Route path="/cat/:id" element={<CategoryPage />} />
+                  <Route path="/cart" element={<Cart />} />
                 </Routes>
                 <Footer />
               </Router>

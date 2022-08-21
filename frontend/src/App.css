@@ -187,6 +187,24 @@ body {
   border-right: 1px solid var(--light-brown);
   padding: 0 1rem;
 }
+.view-cart-btn {
+  background-color: var(--color-red) !important;
+  font-family: "Poppins" !important;
+  border-radius: 8px !important;
+  width: 97%;
+  padding: 1rem 0 !important;
+}
+.cart-btn {
+  position: sticky;
+  width: 100%;
+  top: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  padding: 2rem 0 !important;
+  text-align: center;
+}
 /* Deals Component */
 .deal-container {
   display: grid;
@@ -364,11 +382,10 @@ body {
 }
 .addon-item {
   background-color: var(--dark-brown);
-  border: 1px solid #707070;
   padding: 20px 20px;
   margin-bottom: 1rem;
   border-radius: 12px;
-  height: 70vh;
+  height: 70%;
 }
 .addon-item .addon-info {
   display: flex;
@@ -555,6 +572,33 @@ body {
 .tags .MuiButton-containedPrimary {
   color: white !important;
 }
+
+/* Cart Item Component */
+.cart-item {
+  background-color: var(--dark-brown);
+  margin: 1rem 0 !important;
+  border-radius: 10px;
+  padding: 0.1rem 1rem;
+  margin-bottom: 1rem !important;
+}
+.cart-item .cart-item-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.cart-item-hr {
+  margin-bottom: 5rem;
+  height: 1px;
+  background-color: var(--light-brown);
+  border: none;
+}
+.collapse {
+  width: 100%;
+}
+.cart-item .addon-item {
+  padding: 20px 0;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
@@ -567,6 +611,11 @@ body {
   }
   .login {
     max-width: 700px !important;
+  }
+}
+@media (min-width: 768px) {
+  .drawer-main {
+    width: 420px;
   }
 }
 @media (max-width: 768px) {
@@ -626,9 +675,6 @@ body {
   .product-info-inner .info .addcartp {
     font-size: 14px;
   }
-  .addon-item {
-    height: 40vh;
-  }
   .login #gif {
     width: 10rem;
   }
@@ -659,9 +705,7 @@ body {
   .addons-container {
     margin: 2rem 0;
   }
-  .addon-item {
-    height: 50vh;
-  }
+
   .add-ons {
     margin-top: 6rem;
   }

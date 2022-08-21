@@ -1,8 +1,8 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import { Close, ShoppingCartOutlined } from "@mui/icons-material";
+import { Box, Drawer, Button, Grid } from "@mui/material";
+import { Close } from "@mui/icons-material";
+import CartItem from "./CartItem";
+import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -21,50 +21,58 @@ export default function TemporaryDrawer() {
   };
 
   const list = (anchor) => (
-    <Box
-      sx={{ width: window.innerWidth < 769 ? 550 : 420 }}
-      role="presentation"
-    >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-          justifyContent: "space-between",
-        }}
-      >
-        <div>
-          <Button
-            sx={{
-              border: "2px solid white",
-              color: "white",
-              fontWeight: "bolder",
-              height: "40px",
-              marginRight: "1rem",
-              transform: "rotateX(45)",
-              "&:hover": {
-                border: "2px solid white",
-                cursor: "pointer",
-              },
-            }}
-            variant="outlined"
-          >
-            0
-          </Button>
-          <strong> Your Bucket</strong>
-        </div>
-        <div>
-          <strong>
-            <Close
+    <>
+      <Box className="drawer-main" role="presentation">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <Button
               sx={{
-                cursor: "pointer",
+                border: "2px solid red",
+                color: "white",
+                fontWeight: "bolder",
+                height: "40px",
+                marginRight: "1rem",
+                transform: "rotateX(45)",
+                backgroundColor: "#e4002b !important",
+                "&:hover": {
+                  cursor: "pointer",
+                },
               }}
-              onClick={toggleDrawer("right", false)}
-            />
-          </strong>
-        </div>
-      </Box>
-      <Box
+              variant="outlined"
+            >
+              0
+            </Button>
+            <strong> Your Bucket</strong>
+          </div>
+          <div>
+            <strong
+              style={{ display: "flex", alignItems: "center", gap: ".5rem" }}
+            >
+              <h3>Rs 220</h3>
+              <Close
+                sx={{
+                  cursor: "pointer",
+                }}
+                onClick={toggleDrawer("right", false)}
+              />
+            </strong>
+          </div>
+        </Box>
+        <Box>
+          <Grid container>
+            <CartItem />
+            <CartItem />
+          </Grid>
+        </Box>
+
+        {/* <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -81,8 +89,9 @@ export default function TemporaryDrawer() {
           }}
         />
         <strong>You haven’t added any items in cart yet</strong>
+      </Box> */}
       </Box>
-    </Box>
+    </>
   );
 
   return (
@@ -105,6 +114,7 @@ export default function TemporaryDrawer() {
               backgroundColor: "black",
               color: "white",
               padding: "1rem 1rem",
+              justifyContent: "space-between",
             },
           }}
           BackdropProps={{
@@ -112,8 +122,21 @@ export default function TemporaryDrawer() {
               backgroundColor: "#ffffff4a",
             },
           }}
+          className="drawer-cart"
         >
           <div>{list("right")}</div>
+
+          <div className="cart-btn">
+            <Link
+              to="/cart"
+              style={{ textDecoration: "none" }}
+              onClick={toggleDrawer("right", false)}
+            >
+              <Button variant="contained" className="view-cart-btn">
+                View Cart
+              </Button>
+            </Link>
+          </div>
         </Drawer>
       </React.Fragment>
     </div>
