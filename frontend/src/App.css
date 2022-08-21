@@ -653,6 +653,20 @@ body {
   justify-content: space-between;
   margin: 0.6rem 0;
 }
+/* Checkout Page */
+.checkout-item {
+  background-color: var(--dark-brown);
+  padding: 1rem 1rem;
+  border-radius: 8px;
+}
+/* Order Summary Component */
+.order-summary .order-item {
+  display: flex;
+  flex-direction: column;
+}
+.order-summary .order-item span {
+  color: #979797;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
