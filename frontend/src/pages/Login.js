@@ -11,6 +11,7 @@ export default function Login() {
   const navigate = useNavigate();
   const context = useContext(userContext);
   const { setUser } = context;
+  // handle callback response recieved from google
   const handleCallBackResponse = (response) => {
     const userObj = jwt_decode(response.credential);
     delete userObj.aud;

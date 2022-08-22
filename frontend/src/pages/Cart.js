@@ -3,7 +3,13 @@ import CartProdItem from "../components/cart/CartProdItem";
 import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
 import ProceedToCheckout from "../components/cart/ProceedToCheckout";
+import { useEffect } from "react";
+
 export default function Cart() {
+  useEffect(() => {
+    window.scroll(0, 0);
+    //eslint-disable-next-line
+  }, []);
   return (
     <Container>
       <div className="cart">

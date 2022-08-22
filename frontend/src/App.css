@@ -675,6 +675,18 @@ body {
   color: var(--color-red);
   font-weight: bold;
 }
+/* Order Total Component */
+.order-total .total {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.order-total .order-items strong {
+  color: #ff8100;
+}
+.order-total .subtotal {
+  color: var(--color-red);
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {

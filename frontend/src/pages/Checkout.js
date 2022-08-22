@@ -6,6 +6,9 @@ import OrderSummary from "../components/checkout/OrderSummary";
 import { useEffect } from "react";
 import locationContext from "../context/locationContext";
 import PaymentMethod from "../components/checkout/PaymentMethod";
+import PhoneNumber from "../components/checkout/PhoneNumber";
+import ConfirmOrder from "../components/checkout/ConfirmOrder";
+import OrderTotal from "../components/checkout/OrderTotal";
 export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;
@@ -24,15 +27,30 @@ export default function Cart() {
             md={7}
             sm={12}
             xs={12}
-            columnSpacing={{ xs: 0, sm: 0, md: 3 }}
-            gap={{ md: 3 }}
+            columnSpacing={{ xs: 3, sm: 3, md: 3 }}
+            gap={{ md: 3, sm: 3, xs: 3 }}
           >
             <DeliveryDetails />
             <PaymentMethod />
+            <PhoneNumber />
           </Grid>
-          <Grid item md={4} sm={12} xs={12}>
+          <Grid
+            item
+            md={4}
+            sm={12}
+            xs={12}
+            display="flex"
+            flexDirection="column"
+            gap={{ md: 4, sm: 4, xs: 3 }}
+          >
             <Grid item className="checkout-item">
               <OrderSummary />
+            </Grid>
+            <Grid item className="checkout-item">
+              <OrderTotal />
+            </Grid>
+            <Grid item>
+              <ConfirmOrder />
             </Grid>
           </Grid>
         </Grid>
