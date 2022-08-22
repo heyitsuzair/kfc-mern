@@ -34,7 +34,7 @@ export default function TemporaryDrawer() {
           <div>
             <Button
               sx={{
-                border: "2px solid red",
+                border: "2px solid #e4002b !important",
                 color: "white",
                 fontWeight: "bolder",
                 height: "40px",

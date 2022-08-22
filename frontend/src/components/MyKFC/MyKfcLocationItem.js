@@ -70,7 +70,9 @@ export default function MyKfcLocationItem({ location, index }) {
   };
   // handle when clicked on radio button
   const handleRadioClick = (index) => {
-    setRadioValue({ value: address, index: index });
+    setLongitude(location.lng);
+    setLatitude(location.lat);
+    setRadioValue({ value: location.street + "," + address, index: index });
   };
 
   useEffect(() => {

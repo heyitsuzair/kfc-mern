@@ -11,11 +11,14 @@ export default function LocationState({ children }) {
   });
   const [value, setValue] = useState("");
   const [locations, setLocations] = useState([]);
+  // handle tag index to make on active on add location component
   const [tagIndex, setTagIndex] = useState(null);
   const [locationState, setLocationState] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
   const [locationId, setLocationId] = useState(null);
+  // handle radios values for checout
   const [radioValue, setRadioValue] = useState({ value: "", index: "" });
+
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       setLongitude(position.coords.longitude);
@@ -35,6 +38,7 @@ export default function LocationState({ children }) {
       console.log(error);
     }
   };
+
   return (
     <locationContext.Provider
       value={{

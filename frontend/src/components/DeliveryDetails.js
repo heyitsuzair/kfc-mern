@@ -4,7 +4,7 @@ import MyKfcLocations from "./MyKFC/MyKfcLocations";
 
 export default function DeliveryDetails() {
   return (
-    <div>
+    <div className="checkout-item">
       <div className="delivery-head" style={{ marginBottom: "1rem" }}>
         <strong>Delivery Details</strong>
       </div>
