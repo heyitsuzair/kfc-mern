@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Stepper from "../components/Stepper";
 import { Container, Grid } from "@mui/material";
 import DeliveryDetails from "../components/DeliveryDetails";
 import OrderSummary from "../components/OrderSummary";
+import { useEffect } from "react";
+import locationContext from "../context/locationContext";
 export default function Cart() {
+  const context = useContext(locationContext);
+  const { getLocations } = context;
+  useEffect(() => {
+    getLocations();
+  }, []);
   return (
     <Container>
       <div className="cart">

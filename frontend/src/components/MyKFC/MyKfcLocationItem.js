@@ -8,20 +8,27 @@ import {
 } from "@mui/icons-material";
 import axios from "axios";
 import locationContext from "../../context/locationContext";
+import { useLocation } from "react-router-dom";
+import RadioBtn from "../RadioBtn";
 
-export default function MyKfcLocationItem({
-  location,
-  setLocations,
-  locations,
-  setDisplaySections,
-  setValue,
-  setTagIndex,
-  setLocationState,
-  setLocationId,
-}) {
+export default function MyKfcLocationItem({ location, index }) {
   const [address, setAddress] = useState("");
+  const url = useLocation();
+
   const context = useContext(locationContext);
-  const { setLongitude, setLatitude } = context;
+  const {
+    setLongitude,
+    setLatitude,
+    setLocations,
+    locations,
+    setDisplaySections,
+    setValue,
+    setTagIndex,
+    setLocationState,
+    setLocationId,
+    radioValue,
+    setRadioValue,
+  } = context;
   // handle when clicked on delete buttom
   const handleDelete = async (id) => {
     try {
@@ -61,16 +68,29 @@ export default function MyKfcLocationItem({
         setAddress(res.data.results[1].formatted_address);
       });
   };
+  // handle when clicked on radio button
+  const handleRadioClick = (index) => {
+    setRadioValue({ value: address, index: index });
+  };
+
   useEffect(() => {
     getAddress(location.lat, location.lng);
   }, [location.lat, location.lng]);
   return (
     <>
-      <div className="address-icon">
-        {location.tag === "0" ? <HomeOutlined /> : ""}
-        {location.tag === "1" ? <BusinessCenterOutlined /> : ""}
-        {location.tag === "2" ? <Apartment /> : ""}
-      </div>
+      {url.pathname === "/delivery" ? (
+        <RadioBtn
+          value={radioValue}
+          index={index}
+          handleClick={handleRadioClick}
+        />
+      ) : (
+        <div className="address-icon">
+          {location.tag === "0" ? <HomeOutlined /> : ""}
+          {location.tag === "1" ? <BusinessCenterOutlined /> : ""}
+          {location.tag === "2" ? <Apartment /> : ""}
+        </div>
+      )}
       <div className="address">
         <h3>{location.tag === "0" ? "Home" : ""}</h3>
         <h3>{location.tag === "1" ? "Office" : ""}</h3>
@@ -79,16 +99,20 @@ export default function MyKfcLocationItem({
           {location.street}, {address.length < 1 ? "Not Available" : address}
         </span>
       </div>
-      <div className="edit-address">
-        <div className="del-add" onClick={() => handleDelete(location._id)}>
-          <Delete />
-          Remove
+      {url.pathname === "/delivery" ? (
+        ""
+      ) : (
+        <div className="edit-address">
+          <div className="del-add" onClick={() => handleDelete(location._id)}>
+            <Delete />
+            Remove
+          </div>
+          <div className="edit-add" onClick={() => handleEdit(location._id)}>
+            <Edit />
+            Edit
+          </div>
         </div>
-        <div className="edit-add" onClick={() => handleEdit(location._id)}>
-          <Edit />
-          Edit
-        </div>
-      </div>
+      )}
     </>
   );
 }

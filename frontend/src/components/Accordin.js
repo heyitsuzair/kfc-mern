@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import {
   Grid,
   AccordionDetails,
@@ -8,22 +7,24 @@ import {
 } from "@mui/material";
 import { ExpandMore, AddCircle } from "@mui/icons-material";
 import Map from "./Map";
-
 import MyKfcLocations from "./MyKFC/MyKfcLocations";
 import MyKfcAddLocation from "./MyKFC/MyKfcAddLocation";
 import { useEffect } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import locationContext from "../context/locationContext";
 
 export default function SimpleAccordion() {
-  const [displaySections, setDisplaySections] = useState({
-    first: "none",
-    second: "flex",
-  });
-  const [value, setValue] = useState("");
-  const [locations, setLocations] = useState([]);
-  const [tagIndex, setTagIndex] = useState(null);
-  const [locationState, setLocationState] = useState("");
-  const [locationId, setLocationId] = useState(null);
+  const context = useContext(locationContext);
+  const {
+    getLocations,
+    setValue,
+    setDisplaySections,
+    setTagIndex,
+    setLocationState,
+    displaySections,
+    locations,
+  } = context;
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const clickSelecDifLoc = () => {
     setDisplaySections({ first: "flex", second: "none" });
@@ -32,20 +33,6 @@ export default function SimpleAccordion() {
     setTagIndex(null);
   };
 
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  // get all locations of logged in user
-  const getLocations = async () => {
-    try {
-      await axios
-        .get("http://localhost:5000/api/location/getLocations/" + user.email)
-        .then((res) => {
-          setLocations(res.data);
-        });
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
     getLocations();
     //eslint-disable-next-line
@@ -103,18 +90,7 @@ export default function SimpleAccordion() {
               <Map />
             </Grid>
             {/* Add User Location To Database */}
-            <MyKfcAddLocation
-              displaySections={displaySections}
-              setDisplaySections={setDisplaySections}
-              setLocations={setLocations}
-              locations={locations}
-              value={value}
-              setValue={setValue}
-              tagIndex={tagIndex}
-              setTagIndex={setTagIndex}
-              locationState={locationState}
-              locationId={locationId}
-            />
+            <MyKfcAddLocation />
             {/* Add User Location To Database */}
 
             <Grid
@@ -128,15 +104,7 @@ export default function SimpleAccordion() {
               xs={12}
             >
               {/* User current locations available in database */}
-              <MyKfcLocations
-                setLocations={setLocations}
-                locations={locations}
-                setDisplaySections={setDisplaySections}
-                setValue={setValue}
-                setTagIndex={setTagIndex}
-                setLocationState={setLocationState}
-                setLocationId={setLocationId}
-              />
+              <MyKfcLocations />
               {/* User current locations available in database */}
             </Grid>
             <Grid

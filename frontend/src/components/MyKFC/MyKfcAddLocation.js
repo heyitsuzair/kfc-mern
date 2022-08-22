@@ -8,20 +8,23 @@ import { useContext } from "react";
 import locationContext from "../../context/locationContext";
 import axios from "axios";
 
-export default function MyKfcAddLocation({
-  displaySections,
-  setDisplaySections,
-  setLocations,
-  locations,
-  value,
-  setValue,
-  tagIndex,
-  setTagIndex,
-  locationState,
-  locationId,
-}) {
+export default function MyKfcAddLocation() {
   const context = useContext(locationContext);
-  const { getLocation, longitude, latitude } = context;
+  const {
+    getLocation,
+    longitude,
+    latitude,
+    displaySections,
+    setDisplaySections,
+    setLocations,
+    locations,
+    value,
+    setValue,
+    tagIndex,
+    setTagIndex,
+    locationState,
+    locationId,
+  } = context;
   const user = JSON.parse(localStorage.getItem("user"));
 
   // handle when clicked on cancel button

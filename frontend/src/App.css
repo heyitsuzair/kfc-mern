@@ -667,6 +667,14 @@ body {
 .order-summary .order-item span {
   color: #979797;
 }
+/* Delivering Details Component */
+.deliver-to {
+  margin: 1rem 0;
+}
+.deliver-to p {
+  color: var(--color-red);
+  font-weight: bold;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
