@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box, Drawer, Button, Grid } from "@mui/material";
 import { Close } from "@mui/icons-material";
-import CartItem from "./CartItem";
+import CartItem from "../cart/CartItem";
 import { Link } from "react-router-dom";
 
 export default function TemporaryDrawer() {

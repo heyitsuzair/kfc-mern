@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import { PersonOutline, ExitToApp } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
-import userContext from "../context/userContext";
+import userContext from "../../context/userContext";
 import { useContext } from "react";
 
 export default function AccountMenu() {

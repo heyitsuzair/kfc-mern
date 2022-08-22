@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import paymentContext from "../context/paymentContext";
-import RadioBtn from "./RadioBtn";
+import paymentContext from "../../context/paymentContext";
+import RadioBtn from "../commons/RadioBtn";
 export default function PaymentMethAvailable() {
   const context = useContext(paymentContext);
   const { setPaymentMethod, paymentMethod } = context;

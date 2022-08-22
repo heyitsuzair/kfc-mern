@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from "react";
 
 import Hero from "../components/Hero";
 import Container from "@mui/material/Container";
-import DealSection from "../components/DealSection";
+import DealSection from "../components/deals/DealSection";
 
 import TopSelling from "../components/TopSelling";
 import HeroSkeleton from "../components/HeroSkeleton";
-import DealSkeleton from "../components/DealSkeleton";
+import DealSkeleton from "../components/deals/DealSkeleton";
 import dealContext from "../context/dealContext";
 export default function Home() {
   const context = useContext(dealContext);

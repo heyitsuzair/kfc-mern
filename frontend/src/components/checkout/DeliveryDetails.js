@@ -1,6 +1,6 @@
 import React from "react";
-import Map from "./Map";
-import MyKfcLocations from "./MyKFC/MyKfcLocations";
+import Map from "../commons/Map";
+import MyKfcLocations from "../MyKFC/MyKfcLocations";
 
 export default function DeliveryDetails() {
   return (

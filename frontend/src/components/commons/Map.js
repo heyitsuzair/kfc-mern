@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
-import locationContext from "../context/locationContext";
+import locationContext from "../../context/locationContext";
 
 const containerStyle = {
   width: "100%",

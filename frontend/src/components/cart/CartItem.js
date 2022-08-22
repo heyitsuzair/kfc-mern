@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import img from "../images/topsel1.png";
+import img from "../../images/topsel1.png";
 import {
   KeyboardArrowDown,
   Add,
@@ -7,9 +7,9 @@ import {
   KeyboardArrowUp,
 } from "@mui/icons-material";
 import { Collapse, Box, Grid } from "@mui/material";
-import AddonCard from "./AddonCard";
+import AddonCard from "../commons/AddonCard";
 import { useContext } from "react";
-import addonContext from "../context/addonContext";
+import addonContext from "../../context/addonContext";
 
 export default function CartItem() {
   const context = useContext(addonContext);

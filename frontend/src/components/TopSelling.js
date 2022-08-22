@@ -6,7 +6,7 @@ import topsel1 from "../images/topsel1.png";
 import topsel2 from "../images/topsel2.png";
 import topsel3 from "../images/topsel3.png";
 import topsel4 from "../images/topsel4.png";
-import Card from "./Card";
+import Card from "./commons/Card";
 
 export default function TopSelling() {
   return (

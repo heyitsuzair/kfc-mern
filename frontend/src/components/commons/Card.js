@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import { useState } from "react";
 import { useEffect } from "react";
-import userContext from "../context/userContext";
+import userContext from "../../context/userContext";
 import axios from "axios";
 
 export default function Card({ src, title, desc, price, id, catName }) {

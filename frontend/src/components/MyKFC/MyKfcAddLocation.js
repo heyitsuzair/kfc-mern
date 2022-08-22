@@ -1,8 +1,8 @@
 import React from "react";
 
-import AutoComplete from "../AutoComplete";
+import AutoComplete from "../commons/AutoComplete";
 import { TextField, Grid, Button } from "@mui/material";
-import Tags from "../Tags";
+import Tags from "../commons/Tags";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";

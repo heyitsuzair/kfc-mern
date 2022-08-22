@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import { DeleteOutlined, Add, Remove } from "@mui/icons-material";
-import img from "../images/topsel1.png";
+import img from "../../images/topsel1.png";
 export default function CartProdItem() {
   const [quantity, setQuantity] = useState(1);
   // handle when clicked on plus or minus icon

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import dealContext from "../context/dealContext";
+import dealContext from "../../context/dealContext";
 
 import DealsCard from "./DealsCard";
 

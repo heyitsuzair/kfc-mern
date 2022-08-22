@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
-import addonContext from "../context/addonContext";
+import addonContext from "../../context/addonContext";
 
 export default function AddonItem({ addon, index }) {
   const context = useContext(addonContext);

@@ -5,15 +5,15 @@ import { Button } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import ellipse from "../images/bg-ellipse.png";
-import AddonCard from "../components/AddonCard";
+import AddonCard from "../components/commons/AddonCard";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-import DealSection from "../components/DealSection";
+import DealSection from "../components/deals/DealSection";
 import ProductPageSkeleton from "../components/ProductPageSkeleton";
 import { useContext } from "react";
 import dealContext from "../context/dealContext";
-import DealSkeleton from "../components/DealSkeleton";
+import DealSkeleton from "../components/deals/DealSkeleton";
 import addonContext from "../context/addonContext";
 
 export default function Product() {

@@ -4,7 +4,7 @@ import { Modal, Typography, Box, Button } from "@mui/material";
 import Map from "./Map";
 import AutoComplete from "./AutoComplete";
 import { useContext } from "react";
-import locationContext from "../context/locationContext";
+import locationContext from "../../context/locationContext";
 const style = {
   position: "absolute",
   top: "50%",

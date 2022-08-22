@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import Stepper from "../components/Stepper";
+import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
-import DeliveryDetails from "../components/DeliveryDetails";
-import OrderSummary from "../components/OrderSummary";
+import DeliveryDetails from "../components/checkout/DeliveryDetails";
+import OrderSummary from "../components/checkout/OrderSummary";
 import { useEffect } from "react";
 import locationContext from "../context/locationContext";
-import PaymentMethod from "../components/PaymentMethod";
+import PaymentMethod from "../components/checkout/PaymentMethod";
 export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;

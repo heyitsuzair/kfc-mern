@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import locationContext from "../../context/locationContext";
 import { useLocation } from "react-router-dom";
-import RadioBtn from "../RadioBtn";
+import RadioBtn from "../commons/RadioBtn";
 
 export default function MyKfcLocationItem({ location, index }) {
   const [address, setAddress] = useState("");

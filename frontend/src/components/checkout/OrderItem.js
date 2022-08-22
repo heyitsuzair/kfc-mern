@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import img from "../images/topsel1.png";
+import img from "../../images/topsel1.png";
 
 export default function OrderItem() {
   return (

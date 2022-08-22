@@ -1,8 +1,8 @@
 import React from "react";
-import CartProdItem from "../components/CartProdItem";
-import Stepper from "../components/Stepper";
+import CartProdItem from "../components/cart/CartProdItem";
+import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
-import ProceedToCheckout from "../components/ProceedToCheckout";
+import ProceedToCheckout from "../components/cart/ProceedToCheckout";
 export default function Cart() {
   return (
     <Container>

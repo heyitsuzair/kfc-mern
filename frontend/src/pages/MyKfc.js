@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import Grid from "@mui/material/Grid";
-import Accordin from "../components/Accordin";
-import PastOrders from "../components/PastOrders";
-import Favourites from "../components/Favourites";
+import Accordin from "../components/MyKFC/Accordin";
+import PastOrders from "../components/MyKFC/PastOrders";
+import Favourites from "../components/MyKFC/Favourites";
 import { useNavigate } from "react-router-dom";
-import MyKFCSkeleton from "../components/MyKFCSkeleton";
+import MyKFCSkeleton from "../components/MyKFC/MyKFCSkeleton";
 import axios from "axios";
 export default function MyKfc() {
   document.title = "My KFC";

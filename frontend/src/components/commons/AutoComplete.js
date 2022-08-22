@@ -3,7 +3,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from "react-places-autocomplete";
-import locationContext from "../context/locationContext";
+import locationContext from "../../context/locationContext";
 
 export default class AutoComplete extends React.Component {
   static contextType = locationContext;

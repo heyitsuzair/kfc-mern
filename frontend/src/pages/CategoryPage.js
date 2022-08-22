@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Card from "../components/Card";
+import Card from "../components/commons/Card";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import DealSection from "../components/DealSection";
-import CategoryPageSkeleton from "../components/CatergoryPageSkeleton";
+import DealSection from "../components/deals/DealSection";
+import CategoryPageSkeleton from "../components/deals/CatergoryPageSkeleton";
 export default function CategoryPage() {
   const { id } = useParams();
 

@@ -6,12 +6,12 @@ import {
   Accordion,
 } from "@mui/material";
 import { ExpandMore, AddCircle } from "@mui/icons-material";
-import Map from "./Map";
-import MyKfcLocations from "./MyKFC/MyKfcLocations";
-import MyKfcAddLocation from "./MyKFC/MyKfcAddLocation";
+import Map from "../commons/Map";
+import MyKfcLocations from "../MyKFC/MyKfcLocations";
+import MyKfcAddLocation from "../MyKFC/MyKfcAddLocation";
 import { useEffect } from "react";
 import { useContext } from "react";
-import locationContext from "../context/locationContext";
+import locationContext from "../../context/locationContext";
 
 export default function SimpleAccordion() {
   const context = useContext(locationContext);

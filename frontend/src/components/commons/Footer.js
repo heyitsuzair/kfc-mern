@@ -1,11 +1,11 @@
 import React from "react";
 import { Container } from "@mui/system";
 import { Grid, Box } from "@mui/material";
-import logo from "../images/KFC-Logo-Red.png";
+import logo from "../../images/KFC-Logo-Red.png";
 import { YouTube, Instagram, Facebook } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import appStore from "../images/app-store.png";
-import googleStore from "../images/google-store.png";
+import appStore from "../../images/app-store.png";
+import googleStore from "../../images/google-store.png";
 
 export default function Footer() {
   return (
