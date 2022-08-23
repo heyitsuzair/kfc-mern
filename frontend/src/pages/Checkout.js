@@ -14,7 +14,8 @@ export default function Cart() {
   const { getLocations } = context;
   useEffect(() => {
     getLocations();
-  }, [getLocations]);
+    // eslint-disable-next-line
+  }, []);
   return (
     <Container>
       <div className="cart">
