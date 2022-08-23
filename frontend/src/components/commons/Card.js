@@ -8,14 +8,25 @@ import { useState } from "react";
 import { useEffect } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
+import cartContext from "../../context/cartContext";
 
 export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
+
+  // use below state to make button disable to check if it is midnight deal or not
   const [btn, setBtn] = useState(null);
+
+  // use below state to make link disable to check if it is midnight deal or not
   const [link, setLink] = useState("");
   const context = useContext(userContext);
   const { user } = context;
+  // use below state to mark or unmark product as favourite
   const [isFav, setIsFav] = useState(false);
+
+  // use below context for cart modification
+  const cartCont = useContext(cartContext);
+  const { addToCart } = cartCont;
+  // get logged in user
   const getUser = JSON.parse(localStorage.getItem("user"));
 
   // check the time if it is midnight or not
@@ -86,6 +97,12 @@ export default function Card({ src, title, desc, price, id, catName }) {
     }
   };
 
+  // handle When clicked on add to bucket button
+  const handleAddToCart = (id, e) => {
+    e.preventDefault();
+    addToCart(id, 1, getUser.email);
+  };
+
   useEffect(() => {
     if (localStorage.getItem("user")) {
       getFavs();
@@ -128,7 +145,12 @@ export default function Card({ src, title, desc, price, id, catName }) {
           <strong>
             <Add className="plus-icon" />
           </strong>
-          <Button variant="contained" className="add-to-bucket" disabled={btn}>
+          <Button
+            variant="contained"
+            className="add-to-bucket"
+            disabled={btn}
+            onClick={(e) => handleAddToCart(id, e)}
+          >
             <strong>Add To Bucket</strong>
           </Button>
         </div>
