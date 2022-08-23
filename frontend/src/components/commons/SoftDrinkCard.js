@@ -2,14 +2,14 @@ import { Grid } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
-import AddonItem from "./AddonItem";
-import addonContext from "../../context/addonContext";
+import SoftDrinkItem from "./SoftDrinkItem";
+import softDrinkContext from "../../context/softDrinkContext";
 
 export default function AddonCard({ title }) {
   const [show, setShow] = useState("none");
   // use follow context to get all addons
-  const context = useContext(addonContext);
-  const { getAllAddons, addons } = context;
+  const context = useContext(softDrinkContext);
+  const { getAllSoftDrinks, softDrinks } = context;
   const [text, setText] = useState({
     text: "View More (3)",
     icon: <KeyboardArrowDown />,
@@ -29,7 +29,7 @@ export default function AddonCard({ title }) {
   };
 
   useEffect(() => {
-    getAllAddons();
+    getAllSoftDrinks();
     //eslint-disable-next-line
   }, []);
 
@@ -40,17 +40,17 @@ export default function AddonCard({ title }) {
         <span className="optional">Optional</span>
       </div>
       <div className="addon-item">
-        {addons.slice(0, 2).map((addon, index) => {
+        {softDrinks.slice(0, 2).map((softDrink, index) => {
           return (
             <div className="addon-info" key={index}>
-              <AddonItem addon={addon} index={index} />
+              <SoftDrinkItem softDrink={softDrink} index={index} />
             </div>
           );
         })}
-        {addons.slice(2, 5).map((addon, index) => {
+        {softDrinks.slice(2, 5).map((softDrink, index) => {
           return (
             <div className="addon-info" key={index} style={{ display: show }}>
-              <AddonItem addon={addon} index={index} />
+              <SoftDrinkItem softDrink={softDrink} index={index} />
             </div>
           );
         })}

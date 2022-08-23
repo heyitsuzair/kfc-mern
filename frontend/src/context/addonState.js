@@ -6,7 +6,6 @@ export default function LocationState({ children }) {
   const [loading, setLoading] = useState(true);
   const [addons, setAddons] = useState([]);
   const [addonQuantity, setAddonQuantity] = useState([]);
-  const [softdrinks, setSoftdrinks] = useState([]);
   const getAllAddons = async () => {
     try {
       await axios
@@ -18,26 +17,16 @@ export default function LocationState({ children }) {
       console.error(error);
     }
   };
-  const getAllSoftdrinks = async () => {
-    try {
-      await axios
-        .get("http://localhost:5000/api/softdrink/getSoftdrinks")
-        .then((res) => setSoftdrinks(res.data));
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+
   return (
     <addonContext.Provider
       value={{
         loading,
         getAllAddons,
         addons,
-        getAllSoftdrinks,
-        softdrinks,
         setAddonQuantity,
         addonQuantity,
+        setLoading,
       }}
     >
       {children}

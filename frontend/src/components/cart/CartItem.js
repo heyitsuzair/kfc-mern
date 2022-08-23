@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import img from "../../images/topsel1.png";
 import {
   KeyboardArrowDown,
@@ -8,12 +8,9 @@ import {
 } from "@mui/icons-material";
 import { Collapse, Box, Grid } from "@mui/material";
 import AddonCard from "../commons/AddonCard";
-import { useContext } from "react";
-import addonContext from "../../context/addonContext";
+import SoftDrinkCard from "../commons/SoftDrinkCard";
 
 export default function CartItem() {
-  const context = useContext(addonContext);
-  const { addons, softdrinks, getAllAddons, getAllSoftdrinks } = context;
   const [quantity, setQuantity] = useState(1);
   const [open, setOpen] = useState(false);
   const [icon, setIcon] = useState("Down");
@@ -32,13 +29,6 @@ export default function CartItem() {
     open === true ? setOpen(false) : setOpen(true);
     icon === "Down" ? setIcon("Up") : setIcon("Down");
   };
-
-  useEffect(() => {
-    getAllAddons();
-    getAllSoftdrinks();
-
-    //eslint-disable-next-line
-  }, []);
 
   return (
     <>
@@ -112,11 +102,11 @@ export default function CartItem() {
                 flexDirection="column"
               >
                 <Grid item sm={12} xs={12} md={12} marginBottom={5}>
-                  <AddonCard title="Add Ons" addons={addons} />
+                  <AddonCard title="Add Ons" />
                 </Grid>
                 <hr className="cart-item-hr" />
                 <Grid item sm={12} xs={12} md={12} marginBottom={5}>
-                  <AddonCard title="Add a Soft Drink" addons={softdrinks} />
+                  <SoftDrinkCard title="Add a Soft Drink" />
                 </Grid>
               </Grid>
             </Box>

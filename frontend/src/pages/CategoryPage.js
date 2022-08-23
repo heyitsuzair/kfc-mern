@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import DealSection from "../components/deals/DealSection";
 import CategoryPageSkeleton from "../components/deals/CatergoryPageSkeleton";
+
 export default function CategoryPage() {
   const { id } = useParams();
 
@@ -33,6 +34,7 @@ export default function CategoryPage() {
     <>
       <Container>
         <DealSection />
+
         <div className="cat-container">
           {loading ? (
             <CategoryPageSkeleton />

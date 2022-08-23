@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
 import cartContext from "../../context/cartContext";
+import { toast } from "react-toastify";
 
 export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
@@ -100,6 +101,10 @@ export default function Card({ src, title, desc, price, id, catName }) {
   // handle When clicked on add to bucket button
   const handleAddToCart = (id, e) => {
     e.preventDefault();
+    if (!localStorage.getItem("user") && user === "") {
+      toast.error("You Must Login To Add To Bucket");
+      return;
+    }
     addToCart(id, 1, getUser.email);
   };
 
