@@ -3,8 +3,22 @@ import { Box, Drawer, Button, Grid } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import CartItem from "../cart/CartItem";
 import { Link } from "react-router-dom";
+import { useEffect, useContext } from "react";
+import cartContext from "../../context/cartContext";
+import userContext from "../../context/userContext";
 
 export default function TemporaryDrawer() {
+  // use the follow context to get cart info
+  const context = useContext(cartContext);
+  const { getCartInfo, cart } = context;
+
+  // get user state information
+  const user_context = useContext(userContext);
+  const { user } = user_context;
+
+  // get logged in user info
+  const getUser = JSON.parse(localStorage.getItem("user"));
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -33,21 +47,27 @@ export default function TemporaryDrawer() {
         >
           <div>
             <Button
-              sx={{
-                border: "2px solid #e4002b !important",
-                color: "white",
-                fontWeight: "bolder",
-                height: "40px",
-                marginRight: "1rem",
-                transform: "rotateX(45)",
-                backgroundColor: "#e4002b !important",
-                "&:hover": {
-                  cursor: "pointer",
-                },
-              }}
+              id="bucket-btn"
               variant="outlined"
+              sx={{
+                bgcolor:
+                  !localStorage.getItem("user") && user === ""
+                    ? ""
+                    : cart.totalItems > 0
+                    ? "#e4002b !important"
+                    : "",
+                borderColor:
+                  !localStorage.getItem("user") && user === ""
+                    ? ""
+                    : cart.totalItems > 0
+                    ? "#e4002b !important"
+                    : "",
+                marginRight: "1rem",
+              }}
             >
-              0
+              {!localStorage.getItem("user") && user === ""
+                ? "0"
+                : cart.totalItems}
             </Button>
             <strong> Your Bucket</strong>
           </div>
@@ -94,6 +114,14 @@ export default function TemporaryDrawer() {
     </>
   );
 
+  useEffect(() => {
+    if (!localStorage.getItem("user") || user === null) {
+      return;
+    }
+    getCartInfo(getUser.email);
+    // eslint-disable-next-line
+  }, [user]);
+
   return (
     <div className="drawer">
       <React.Fragment key={"right"}>
@@ -101,8 +129,22 @@ export default function TemporaryDrawer() {
           onClick={toggleDrawer("right", true)}
           id="bucket-btn"
           variant="outlined"
+          sx={{
+            bgcolor:
+              localStorage.getItem("user") === "" && user === ""
+                ? ""
+                : cart.totalItems > 0
+                ? "#e4002b !important"
+                : "",
+            borderColor:
+              localStorage.getItem("user") === "" && user === ""
+                ? ""
+                : cart.totalItems > 0
+                ? "#e4002b !important"
+                : "",
+          }}
         >
-          0
+          {!localStorage.getItem("user") && user === "" ? "0" : cart.totalItems}
         </Button>
 
         <Drawer

@@ -14,7 +14,7 @@ export default function LocationState({ children }) {
   // handle tag index to make on active on add location component
   const [tagIndex, setTagIndex] = useState(null);
   const [locationState, setLocationState] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
+
   const [locationId, setLocationId] = useState(null);
   // handle radios values for checout
   const [radioValue, setRadioValue] = useState({ value: "", index: "" });
@@ -27,10 +27,10 @@ export default function LocationState({ children }) {
   };
 
   // get all locations of logged in user
-  const getLocations = async () => {
+  const getLocations = async (email) => {
     try {
       await axios
-        .get("http://localhost:5000/api/location/getLocations/" + user.email)
+        .get("http://localhost:5000/api/location/getLocations/" + email)
         .then((res) => {
           setLocations(res.data);
         });

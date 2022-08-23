@@ -12,9 +12,12 @@ import MyKfcAddLocation from "../MyKFC/MyKfcAddLocation";
 import { useEffect } from "react";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
+import userContext from "../../context/userContext";
 
 export default function SimpleAccordion() {
   const context = useContext(locationContext);
+  const user_context = useContext(userContext);
+  const { user } = user_context;
   const {
     getLocations,
     setValue,
@@ -24,7 +27,7 @@ export default function SimpleAccordion() {
     displaySections,
     locations,
   } = context;
-  const user = JSON.parse(localStorage.getItem("user"));
+  const getUser = JSON.parse(localStorage.getItem("user"));
 
   const clickSelecDifLoc = () => {
     setDisplaySections({ first: "flex", second: "none" });
@@ -34,9 +37,9 @@ export default function SimpleAccordion() {
   };
 
   useEffect(() => {
-    getLocations();
+    getLocations(getUser.email);
     //eslint-disable-next-line
-  }, [locations]);
+  }, [locations, user]);
 
   return (
     <div style={{ marginTop: "2rem" }}>
@@ -59,7 +62,7 @@ export default function SimpleAccordion() {
         </AccordionSummary>
         <AccordionDetails>
           <h3>Email</h3>
-          <span style={{ fontFamily: "Poppins" }}>{user.email}</span>
+          <span style={{ fontFamily: "Poppins" }}>{getUser.email}</span>
         </AccordionDetails>
       </Accordion>
       <Accordion

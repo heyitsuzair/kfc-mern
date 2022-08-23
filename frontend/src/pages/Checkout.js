@@ -12,8 +12,9 @@ import OrderTotal from "../components/checkout/OrderTotal";
 export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;
+  const getUser = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    getLocations();
+    getLocations(getUser.email);
     // eslint-disable-next-line
   }, []);
   return (

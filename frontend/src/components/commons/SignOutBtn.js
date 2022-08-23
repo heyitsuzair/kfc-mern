@@ -42,7 +42,7 @@ export default function AccountMenu() {
             aria-expanded={open ? "true" : undefined}
           >
             <Avatar sx={{ width: 62, height: 62 }} className="signout-btn">
-              {user.name.substring(0, 1)}
+              {user === null ? "" : user.name.substring(0, 1)}
             </Avatar>
           </IconButton>
         </Tooltip>
