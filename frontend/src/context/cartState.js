@@ -19,6 +19,9 @@ export default function LocationState({ children }) {
         .then((res) => {
           if (res.data.error === false) {
             toast.success("Product Added To Cart!");
+
+            setCart(cart.items.concat(res.data.add));
+            cart.totalItems += 1;
           }
         });
     } catch (error) {

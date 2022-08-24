@@ -42,6 +42,15 @@ export default function HeroSkeleton() {
           {/* Only SVG shapes */}
           <rect x="0" y="17" rx="5" ry="5" width="190" height="250" />
         </ContentLoader>
+        <ContentLoader
+          viewBox="0 0 200 300"
+          backgroundColor="#1c1816"
+          foregroundColor="#d3d3d3"
+          foregroundOpacity={0.1}
+        >
+          {/* Only SVG shapes */}
+          <rect x="0" y="17" rx="5" ry="5" width="190" height="250" />
+        </ContentLoader>
       </div>
     </>
   );

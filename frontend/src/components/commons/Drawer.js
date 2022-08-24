@@ -120,7 +120,7 @@ export default function TemporaryDrawer() {
     }
     getCartInfo(getUser.email);
     // eslint-disable-next-line
-  }, [user]);
+  }, [user, cart]);
 
   return (
     <div className="drawer">

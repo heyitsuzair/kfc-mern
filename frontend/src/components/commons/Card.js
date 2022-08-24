@@ -134,12 +134,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
             ))}
         </div>
         <div className="card-img">
-          <img
-            className="top-sel-img"
-            width={100}
-            src={src}
-            alt="Top Selling"
-          />
+          <img className="top-sel-img" src={src} alt="Top Selling" />
         </div>
         <h4>{title}</h4>
         <h5>{desc.substring(0, 50)} ...</h5>
@@ -148,7 +143,10 @@ export default function Card({ src, title, desc, price, id, catName }) {
             <strong>Rs {price}</strong>
           </h2>
           <strong>
-            <Add className="plus-icon" />
+            <Add
+              className="plus-icon"
+              onClick={(e) => handleAddToCart(id, e)}
+            />
           </strong>
           <Button
             variant="contained"

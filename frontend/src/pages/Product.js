@@ -84,7 +84,7 @@ export default function Product() {
     window.scroll(0, 0);
     //eslint-disable-next-line
   }, []);
-  document.title = detail.name;
+  document.title = detail.name === undefined ? "Loading..." : detail.name;
   return (
     <div className="product">
       <Container>

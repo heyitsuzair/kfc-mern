@@ -110,6 +110,10 @@ body {
   display: flex;
   align-items: center;
 }
+/* Hero Component */
+.banner-img {
+  border-radius: 5px;
+}
 /* Signout Btn Component */
 .signout-btn {
   background-color: var(--color-red) !important;
@@ -267,6 +271,7 @@ body {
 }
 .grid-item h5 {
   color: #d4d4d4;
+  height: 2vh;
 }
 .grid-item .card-footer {
   display: flex;
@@ -275,8 +280,11 @@ body {
 }
 .grid-item .card-footer .add-to-bucket {
   background-color: var(--color-red);
-  padding: 0.9rem 0.9rem;
-  border-radius: 10px;
+  padding: 0.5rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  font-family: "Poppins";
 }
 .grid-item .card-footer .add-to-bucket.Mui-disabled {
   background-color: rgba(255, 255, 255, 0.12) !important;
@@ -287,7 +295,7 @@ body {
 .top-sel-img {
   margin: auto;
   padding: 4rem 0;
-  width: 270px;
+  width: 100%;
 }
 .plus-icon {
   display: none !important;
@@ -559,6 +567,7 @@ body {
 .fav-card .fav-img {
   text-align: center;
 }
+
 /* Tags Component */
 .tags {
   border-color: var(--color-red) !important;
@@ -773,6 +782,9 @@ body {
   .grid-item h5 {
     margin-bottom: 1rem;
     margin-top: 2rem;
+  }
+  .add-to-fav {
+    margin: 1rem 0;
   }
 }
 @media (max-width: 464px) {

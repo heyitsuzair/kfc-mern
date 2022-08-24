@@ -10,7 +10,7 @@ export default function HeroSkeleton() {
         foregroundOpacity={0.1}
       >
         {/* Only SVG shapes */}
-        <rect x="0" y="17" rx="4" ry="4" width="200" height="70" />
+        <rect x="0" y="17" rx="4" ry="4" width="200" height="60" />
       </ContentLoader>
     </>
   );

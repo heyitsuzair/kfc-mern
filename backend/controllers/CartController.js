@@ -11,7 +11,7 @@ module.exports.addToCart = async (req, res) => {
       softDrinks,
     });
     if (add) {
-      return res.status(200).json({ error: false });
+      return res.status(200).json({ error: false, add });
     }
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ module.exports.getCartInfo = async (req, res) => {
     const totalItems = await cart.find({ email }).count();
 
     // get all items available in cart
-    const items = await cart.find({ email });
+    const items = await cart.find({ email }).populate("prod_id");
 
     return res.status(200).json({ totalItems, items });
   } catch (error) {

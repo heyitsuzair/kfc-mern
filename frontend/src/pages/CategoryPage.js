@@ -46,21 +46,22 @@ export default function CategoryPage() {
                   <Grid
                     className="grid"
                     container
-                    gridTemplateColumns={{ xs: 4, sm: 12, md: 4 }}
-                    columnGap={{ xs: 1, sm: 1, md: 4 }}
+                    columnGap={{ xs: 0, sm: 4, md: 3 }}
                     gap={1}
                   >
                     {products.map((prod, index) => {
                       return (
-                        <Card
-                          key={index}
-                          title={prod.name}
-                          desc={prod.desc}
-                          price={prod.price}
-                          src={prod.prodImg}
-                          id={prod._id}
-                          catName={prod.catId.name}
-                        />
+                        <Grid key={index} item md={2.8} sm={5} xs={12}>
+                          <Card
+                            key={index}
+                            title={prod.name}
+                            desc={prod.desc}
+                            price={prod.price}
+                            src={prod.prodImg}
+                            id={prod._id}
+                            catName={prod.catId.name}
+                          />
+                        </Grid>
                       );
                     })}
                   </Grid>
