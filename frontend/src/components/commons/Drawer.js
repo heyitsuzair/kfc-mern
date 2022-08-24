@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import cartContext from "../../context/cartContext";
 import userContext from "../../context/userContext";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 export default function TemporaryDrawer() {
   // use the follow context to get cart info
@@ -37,14 +38,7 @@ export default function TemporaryDrawer() {
   const list = (anchor) => (
     <>
       <Box className="drawer-main" role="presentation">
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className="drawer-header">
           <div>
             <Button
               id="bucket-btn"
@@ -73,9 +67,13 @@ export default function TemporaryDrawer() {
           </div>
           <div>
             <strong
-              style={{ display: "flex", alignItems: "center", gap: ".5rem" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: ".5rem",
+              }}
             >
-              <h3>Rs 220</h3>
+              {cart.totalItems > 0 ? <h3>Rs 220</h3> : ""}
               <Close
                 sx={{
                   cursor: "pointer",
@@ -84,32 +82,45 @@ export default function TemporaryDrawer() {
               />
             </strong>
           </div>
-        </Box>
-        <Box>
-          <Grid container>
-            <CartItem />
-            <CartItem />
-          </Grid>
-        </Box>
-
-        {/* <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "80vh",
-        }}
-      >
-        <ShoppingCartOutlined
-          sx={{
-            fontSize: 80,
-            color: "gray",
-          }}
-        />
-        <strong>You haven’t added any items in cart yet</strong>
-      </Box> */}
+        </div>
+        {cart.totalItems > 0 ? (
+          <>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+                justifyContent: "space-between",
+              }}
+            ></Box>
+            <Box>
+              <Grid container>
+                {cart.items.map((item) => {
+                  return <CartItem item={item} />;
+                })}
+              </Grid>
+            </Box>
+          </>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "80vh",
+            }}
+          >
+            <ShoppingCartOutlined
+              sx={{
+                fontSize: 80,
+                color: "gray",
+              }}
+            />
+            <strong>You haven’t added any items in cart yet</strong>
+          </Box>
+        )}
       </Box>
     </>
   );
@@ -119,7 +130,7 @@ export default function TemporaryDrawer() {
       return;
     }
     getCartInfo(getUser.email);
-    // eslint-disable-next-line
+    //eslint-disable-next-line
   }, [user, cart]);
 
   return (
@@ -168,17 +179,21 @@ export default function TemporaryDrawer() {
         >
           <div>{list("right")}</div>
 
-          <div className="cart-btn">
-            <Link
-              to="/cart"
-              style={{ textDecoration: "none" }}
-              onClick={toggleDrawer("right", false)}
-            >
-              <Button variant="contained" className="view-cart-btn">
-                View Cart
-              </Button>
-            </Link>
-          </div>
+          {cart.totalItems > 0 ? (
+            <div className="cart-btn">
+              <Link
+                to="/cart"
+                style={{ textDecoration: "none" }}
+                onClick={toggleDrawer("right", false)}
+              >
+                <Button variant="contained" className="view-cart-btn">
+                  View Cart
+                </Button>
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </Drawer>
       </React.Fragment>
     </div>

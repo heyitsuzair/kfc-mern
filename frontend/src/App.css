@@ -209,6 +209,11 @@ body {
   padding: 2rem 0 !important;
   text-align: center;
 }
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 /* Deals Component */
 .deal-container {
   display: grid;
