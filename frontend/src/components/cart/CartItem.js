@@ -1,6 +1,14 @@
-import React from "react";
-import { Add, Remove, DeleteOutline } from "@mui/icons-material";
-import { Grid } from "@mui/material";
+import React, { useState } from "react";
+import {
+  Add,
+  Remove,
+  DeleteOutline,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+} from "@mui/icons-material";
+import SoftDrinkCard from "../commons/SoftDrinkCard";
+import AddonCard from "../commons/AddonCard";
+import { Grid, Collapse, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import {
   delCartItem,
@@ -10,6 +18,9 @@ import {
 export default function CartItem({ item }) {
   const dispatch = useDispatch();
 
+  const [open, setOpen] = useState(false);
+  const [icon, setIcon] = useState("Down");
+
   // handle when clicked on plus or minus icon
   const handleQuantity = (condition) => {
     if (condition === "+") {
@@ -18,10 +29,16 @@ export default function CartItem({ item }) {
       dispatch(decreaseItemQuantity(item.product.id));
     }
   };
+  //handle when clicked on arrow icon
+  const handleArrowClick = () => {
+    open === true ? setOpen(false) : setOpen(true);
+    icon === "Down" ? setIcon("Up") : setIcon("Down");
+  };
   //  handle when clicked on delete button
   const removeFromCart = async () => {
     dispatch(delCartItem({ id: item.product.id, price: item.product.price }));
   };
+
   return (
     <>
       <Grid
@@ -70,12 +87,41 @@ export default function CartItem({ item }) {
               alignItems: "flex-end",
             }}
           >
-            <strong>Rs {item.product.price * item.quantity}</strong>
-            <DeleteOutline
-              sx={{ color: "#e4002b", "&:hover": { cursor: "pointer" } }}
-              onClick={removeFromCart}
-            />
+            {icon === "Down" ? (
+              <KeyboardArrowDown
+                sx={{ color: "#e4002b", "&:hover": { cursor: "pointer" } }}
+                onClick={handleArrowClick}
+              />
+            ) : (
+              <KeyboardArrowUp
+                sx={{ color: "#e4002b", "&:hover": { cursor: "pointer" } }}
+                onClick={handleArrowClick}
+              />
+            )}
           </div>
+        </div>
+        <div className="collapse">
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box>
+              <Grid
+                container
+                columnSpacing={{ xs: 0, sm: 0, md: 0 }}
+                display="flex"
+                flexDirection="column"
+              >
+                <Grid item sm={12} xs={12} md={12} marginBottom={5}>
+                  <AddonCard title="Add Ons" prod_id={item.prod_id} />
+                </Grid>
+                <hr className="cart-item-hr" />
+                <Grid item sm={12} xs={12} md={12} marginBottom={5}>
+                  <SoftDrinkCard
+                    title="Add a Soft Drink"
+                    prod_id={item.prod_id}
+                  />
+                </Grid>
+              </Grid>
+            </Box>
+          </Collapse>
         </div>
       </Grid>
     </>
