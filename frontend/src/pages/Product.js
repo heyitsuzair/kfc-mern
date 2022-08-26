@@ -21,9 +21,10 @@ import SoftDrinkCard from "../components/commons/SoftDrinkCard";
 import softDrinkContext from "../context/softDrinkContext";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addToCart,
+  updateCartItem,
   increaseItemQuantity,
   decreaseItemQuantity,
-  addToCart,
 } from "../redux/cart/cartSlice";
 
 export default function Product() {
@@ -69,10 +70,13 @@ export default function Product() {
   const handleClick = (condition) => {
     if (condition === "+") {
       setQuantity(quantity + 1);
-      // dispatch(increaseItemQuantity(id));
+      dispatch(increaseItemQuantity(id));
     } else {
+      if (quantity === 0) {
+        return;
+      }
       setQuantity(quantity - 1);
-      // dispatch(decreaseItemQuantity(id));
+      dispatch(decreaseItemQuantity(id));
     }
   };
 
@@ -84,21 +88,39 @@ export default function Product() {
       toast.error("You Must Login To Add To Bucket");
       return;
     }
-    dispatch(
-      addToCart({
-        product: {
-          price: detail.price,
-          title: detail.name,
-          id,
-          src: detail.prodImg,
-        },
-        quantity: quantity,
-        email: getUser.email,
-        addons: [],
-        softDrinks: [],
-        prod_id: id,
-      })
-    );
+    if (text === "Save") {
+      dispatch(
+        updateCartItem({
+          product: {
+            price: detail.price,
+            title: detail.name,
+            id,
+            src: detail.prodImg,
+          },
+          quantity: quantity,
+          email: getUser.email,
+          addons: addonQuantity,
+          softDrinks: softDrinksQuantity,
+          prod_id: id,
+        })
+      );
+    } else {
+      dispatch(
+        addToCart({
+          product: {
+            price: detail.price,
+            title: detail.name,
+            id,
+            src: detail.prodImg,
+          },
+          quantity: quantity,
+          email: getUser.email,
+          addons: addonQuantity,
+          softDrinks: softDrinksQuantity,
+          prod_id: id,
+        })
+      );
+    }
   };
   // check if it exist in localStorage or not
 
@@ -109,6 +131,9 @@ export default function Product() {
     if (filter.length > 0) {
       setText("Save");
       setQuantity(filter[0].quantity);
+    } else {
+      setText("Add To Bucket");
+      setQuantity(1);
     }
   };
 
@@ -210,10 +235,10 @@ export default function Product() {
                 columnSpacing={{ xs: 3, sm: 3, md: 3 }}
               >
                 <Grid item sm={6} xs={12} md={4}>
-                  <AddonCard title="Add Ons" />
+                  <AddonCard title="Add Ons" prod_id={id} />
                 </Grid>
                 <Grid item sm={6} xs={12} md={4}>
-                  <SoftDrinkCard title="Add a Soft Drink" />
+                  <SoftDrinkCard title="Add a Soft Drink" prod_id={id} />
                 </Grid>
               </Grid>
             </Box>

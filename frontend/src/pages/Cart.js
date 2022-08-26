@@ -4,21 +4,20 @@ import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
 import ProceedToCheckout from "../components/cart/ProceedToCheckout";
 import { useEffect } from "react";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Cart() {
+  const { cartItems } = useSelector((store) => store.cart);
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     window.scroll(0, 0);
-    // if (cart.length === 0) {
-    //   navigate("/");
-    //   return;
-    // }
-    // getCartInfo(user.email);
+    if (cartItems.length === 0) {
+      navigate("/");
+      return;
+    }
     //eslint-disable-next-line
-  }, []);
+  }, [cartItems]);
   return (
     <Container>
       <div className="cart">

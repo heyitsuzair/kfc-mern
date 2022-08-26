@@ -5,25 +5,25 @@ import { useState } from "react";
 import SoftDrinkItem from "./SoftDrinkItem";
 import softDrinkContext from "../../context/softDrinkContext";
 
-export default function AddonCard({ title }) {
+export default function AddonCard({ title, prod_id }) {
   const [show, setShow] = useState("none");
   // use follow context to get all addons
   const context = useContext(softDrinkContext);
   const { getAllSoftDrinks, softDrinks } = context;
   const [text, setText] = useState({
-    text: "View More (3)",
+    text: "View More (1)",
     icon: <KeyboardArrowDown />,
   });
   // handle click on view more and less more
   const handleClick = () => {
     show === "none" ? setShow("flex") : setShow("none");
-    text.text === "View More (3)"
+    text.text === "View More (1)"
       ? setText({
           text: "View Less",
           icon: <KeyboardArrowUp />,
         })
       : setText({
-          text: "View More (3)",
+          text: "View More (1)",
           icon: <KeyboardArrowDown />,
         });
   };
@@ -40,17 +40,25 @@ export default function AddonCard({ title }) {
         <span className="optional">Optional</span>
       </div>
       <div className="addon-item">
-        {softDrinks.slice(0, 2).map((softDrink, index) => {
+        {softDrinks.slice(0, 4).map((softDrink, index) => {
           return (
             <div className="addon-info" key={index}>
-              <SoftDrinkItem softDrink={softDrink} index={index} />
+              <SoftDrinkItem
+                softDrink={softDrink}
+                index={index}
+                prod_id={prod_id}
+              />
             </div>
           );
         })}
-        {softDrinks.slice(2, 5).map((softDrink, index) => {
+        {softDrinks.slice(4, 5).map((softDrink, index) => {
           return (
             <div className="addon-info" key={index} style={{ display: show }}>
-              <SoftDrinkItem softDrink={softDrink} index={index} />
+              <SoftDrinkItem
+                softDrink={softDrink}
+                index={index}
+                prod_id={prod_id}
+              />
             </div>
           );
         })}

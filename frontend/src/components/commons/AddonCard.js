@@ -5,7 +5,7 @@ import { useState } from "react";
 import AddonItem from "./AddonItem";
 import addonContext from "../../context/addonContext";
 
-export default function AddonCard({ title }) {
+export default function AddonCard({ title, prod_id }) {
   const [show, setShow] = useState("none");
   // use follow context to get all addons
   const context = useContext(addonContext);
@@ -43,14 +43,14 @@ export default function AddonCard({ title }) {
         {addons.slice(0, 2).map((addon, index) => {
           return (
             <div className="addon-info" key={index}>
-              <AddonItem addon={addon} index={index} />
+              <AddonItem addon={addon} index={index} prod_id={prod_id} />
             </div>
           );
         })}
         {addons.slice(2, 5).map((addon, index) => {
           return (
             <div className="addon-info" key={index} style={{ display: show }}>
-              <AddonItem addon={addon} index={index} />
+              <AddonItem addon={addon} index={index} prod_id={prod_id} />
             </div>
           );
         })}

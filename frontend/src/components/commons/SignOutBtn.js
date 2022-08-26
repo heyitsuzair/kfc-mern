@@ -27,7 +27,7 @@ export default function AccountMenu() {
     // set the user to null
     setUser(null);
     // clear the localStorage
-    localStorage.clear();
+    localStorage.removeItem("user");
     // navigate to login
     navigate("/login");
     // set the cart state to its initial value
