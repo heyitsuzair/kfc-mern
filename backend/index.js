@@ -11,7 +11,6 @@ const addonRoutes = require("./routes/AddonRoute");
 const softdrinkRoutes = require("./routes/SoftdrinkRoute");
 const favRoutes = require("./routes/FavRoutes");
 const locationRoutes = require("./routes/LocationRoute");
-const cartRoutes = require("./routes/CartRoute");
 
 app.use(cors());
 app.use(express.json({ limit: "50mb" }));
@@ -24,7 +23,6 @@ app.use("/api/addon", addonRoutes);
 app.use("/api/softdrink", softdrinkRoutes);
 app.use("/api/fav", favRoutes);
 app.use("/api/location", locationRoutes);
-app.use("/api/cart", cartRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL, {

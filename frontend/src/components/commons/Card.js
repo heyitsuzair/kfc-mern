@@ -8,11 +8,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
-import cartContext from "../../context/cartContext";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux/es/exports";
+import { addToCart } from "../../redux/cart/cartSlice";
 
 export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
+  const dispatch = useDispatch();
 
   // use below state to make button disable to check if it is midnight deal or not
   const [btn, setBtn] = useState(null);
@@ -24,9 +26,6 @@ export default function Card({ src, title, desc, price, id, catName }) {
   // use below state to mark or unmark product as favourite
   const [isFav, setIsFav] = useState(false);
 
-  // use below context for cart modification
-  const cartCont = useContext(cartContext);
-  const { addToCart } = cartCont;
   // get logged in user
   const getUser = JSON.parse(localStorage.getItem("user"));
 
@@ -105,7 +104,16 @@ export default function Card({ src, title, desc, price, id, catName }) {
       toast.error("You Must Login To Add To Bucket");
       return;
     }
-    addToCart(id, 1, getUser.email);
+    dispatch(
+      addToCart({
+        product: { price, title, id, src },
+        quantity: 1,
+        email: getUser.email,
+        addons: [],
+        softDrinks: [],
+        prod_id: id,
+      })
+    );
   };
 
   useEffect(() => {
@@ -143,10 +151,14 @@ export default function Card({ src, title, desc, price, id, catName }) {
             <strong>Rs {price}</strong>
           </h2>
           <strong>
-            <Add
-              className="plus-icon"
-              onClick={(e) => handleAddToCart(id, e)}
-            />
+            {btn === false ? (
+              <Add
+                className="plus-icon"
+                onClick={(e) => handleAddToCart(id, e)}
+              />
+            ) : (
+              ""
+            )}
           </strong>
           <Button
             variant="contained"

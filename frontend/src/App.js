@@ -18,52 +18,56 @@ import AddonState from "./context/addonState";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import PaymentState from "./context/paymentState";
-import CartState from "./context/cartState";
 import SoftDrinkState from "./context/softDrinkState";
+import { store, persistor } from "./store";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 function App() {
   return (
     <>
-      <LocationState>
-        <DealState>
-          <AddonState>
-            <UserState>
-              <PaymentState>
-                <CartState>
-                  <SoftDrinkState>
-                    <ToastContainer
-                      autoClose={3000}
-                      position="top-right"
-                      pauseOnHover={true}
-                      draggable={true}
-                      theme="dark"
-                      toastClassName="toast-custom"
-                    />
-                    <TopBar />
-                    <Router>
-                      <Header />
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/product/:id" element={<Product />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/myKfc" element={<MyKfc />} />
-                        <Route
-                          path="/orderHistory"
-                          element={<OrderHistory />}
-                        />
-                        <Route path="/cat/:id" element={<CategoryPage />} />
-                        <Route path="/cart" element={<Cart />} />
-                        <Route path="/delivery" element={<Checkout />} />
-                      </Routes>
-                      <Footer />
-                    </Router>
-                  </SoftDrinkState>
-                </CartState>
-              </PaymentState>
-            </UserState>
-          </AddonState>
-        </DealState>
-      </LocationState>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <LocationState>
+            <DealState>
+              <AddonState>
+                <UserState>
+                  <PaymentState>
+                    <SoftDrinkState>
+                      <ToastContainer
+                        autoClose={3000}
+                        position="top-right"
+                        pauseOnHover={true}
+                        draggable={true}
+                        theme="dark"
+                        toastClassName="toast-custom"
+                      />
+                      <TopBar />
+                      <Router>
+                        <Header />
+                        <Routes>
+                          <Route path="/" element={<Home />} />
+                          <Route path="/product/:id" element={<Product />} />
+                          <Route path="/login" element={<Login />} />
+                          <Route path="/myKfc" element={<MyKfc />} />
+                          <Route
+                            path="/orderHistory"
+                            element={<OrderHistory />}
+                          />
+                          <Route path="/cat/:id" element={<CategoryPage />} />
+                          <Route path="/cart" element={<Cart />} />
+                          <Route path="/delivery" element={<Checkout />} />
+                        </Routes>
+                        <Footer />
+                      </Router>
+                    </SoftDrinkState>
+                  </PaymentState>
+                </UserState>
+              </AddonState>
+            </DealState>
+          </LocationState>
+        </PersistGate>
+      </Provider>
     </>
   );
 }

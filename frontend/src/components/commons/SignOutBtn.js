@@ -14,6 +14,7 @@ export default function AccountMenu() {
   const context = useContext(userContext);
   const { setUser } = context;
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -23,9 +24,14 @@ export default function AccountMenu() {
     setAnchorEl(null);
   };
   const handleSignout = () => {
+    // set the user to null
     setUser(null);
-    localStorage.removeItem("user");
+    // clear the localStorage
+    localStorage.clear();
+    // navigate to login
     navigate("/login");
+    // set the cart state to its initial value
+    // setCart([]);
   };
   const user = JSON.parse(localStorage.getItem("user"));
 

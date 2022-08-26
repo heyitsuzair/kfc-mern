@@ -4,10 +4,19 @@ import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
 import ProceedToCheckout from "../components/cart/ProceedToCheckout";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     window.scroll(0, 0);
+    // if (cart.length === 0) {
+    //   navigate("/");
+    //   return;
+    // }
+    // getCartInfo(user.email);
     //eslint-disable-next-line
   }, []);
   return (

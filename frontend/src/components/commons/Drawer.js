@@ -4,21 +4,16 @@ import { Close } from "@mui/icons-material";
 import CartItem from "../cart/CartItem";
 import { Link } from "react-router-dom";
 import { useEffect, useContext } from "react";
-import cartContext from "../../context/cartContext";
 import userContext from "../../context/userContext";
 import { ShoppingCartOutlined } from "@mui/icons-material";
+import { useSelector } from "react-redux";
 
 export default function TemporaryDrawer() {
-  // use the follow context to get cart info
-  const context = useContext(cartContext);
-  const { getCartInfo, cart } = context;
+  const { cartItems, totalItems, amount } = useSelector((state) => state.cart);
 
   // get user state information
   const user_context = useContext(userContext);
   const { user } = user_context;
-
-  // get logged in user info
-  const getUser = JSON.parse(localStorage.getItem("user"));
 
   const [state, setState] = React.useState({
     right: false,
@@ -41,27 +36,15 @@ export default function TemporaryDrawer() {
         <div className="drawer-header">
           <div>
             <Button
+              onClick={toggleDrawer("right", true)}
               id="bucket-btn"
               variant="outlined"
               sx={{
-                bgcolor:
-                  !localStorage.getItem("user") && user === ""
-                    ? ""
-                    : cart.totalItems > 0
-                    ? "#e4002b !important"
-                    : "",
-                borderColor:
-                  !localStorage.getItem("user") && user === ""
-                    ? ""
-                    : cart.totalItems > 0
-                    ? "#e4002b !important"
-                    : "",
-                marginRight: "1rem",
+                bgcolor: totalItems >= 1 ? "#e4002b !important" : "",
+                borderColor: totalItems >= 1 ? "#e4002b !important" : "",
               }}
             >
-              {!localStorage.getItem("user") && user === ""
-                ? "0"
-                : cart.totalItems}
+              {totalItems}
             </Button>
             <strong> Your Bucket</strong>
           </div>
@@ -73,7 +56,7 @@ export default function TemporaryDrawer() {
                 gap: ".5rem",
               }}
             >
-              {cart.totalItems > 0 ? <h3>Rs 220</h3> : ""}
+              {totalItems >= 1 ? <h3>Rs {amount}</h3> : ""}
               <Close
                 sx={{
                   cursor: "pointer",
@@ -83,7 +66,7 @@ export default function TemporaryDrawer() {
             </strong>
           </div>
         </div>
-        {cart.totalItems > 0 ? (
+        {totalItems >= 1 ? (
           <>
             <Box
               sx={{
@@ -95,8 +78,8 @@ export default function TemporaryDrawer() {
             ></Box>
             <Box>
               <Grid container>
-                {cart.items.map((item) => {
-                  return <CartItem item={item} />;
+                {cartItems.map((item, index) => {
+                  return <CartItem key={index} item={item} />;
                 })}
               </Grid>
             </Box>
@@ -129,9 +112,7 @@ export default function TemporaryDrawer() {
     if (!localStorage.getItem("user") || user === null) {
       return;
     }
-    getCartInfo(getUser.email);
-    //eslint-disable-next-line
-  }, [user, cart]);
+  }, [user]);
 
   return (
     <div className="drawer">
@@ -141,21 +122,11 @@ export default function TemporaryDrawer() {
           id="bucket-btn"
           variant="outlined"
           sx={{
-            bgcolor:
-              localStorage.getItem("user") === "" && user === ""
-                ? ""
-                : cart.totalItems > 0
-                ? "#e4002b !important"
-                : "",
-            borderColor:
-              localStorage.getItem("user") === "" && user === ""
-                ? ""
-                : cart.totalItems > 0
-                ? "#e4002b !important"
-                : "",
+            bgcolor: totalItems >= 1 ? "#e4002b !important" : "",
+            borderColor: totalItems >= 1 ? "#e4002b !important" : "",
           }}
         >
-          {!localStorage.getItem("user") && user === "" ? "0" : cart.totalItems}
+          {totalItems}
         </Button>
 
         <Drawer
@@ -178,8 +149,7 @@ export default function TemporaryDrawer() {
           className="drawer-cart"
         >
           <div>{list("right")}</div>
-
-          {cart.totalItems > 0 ? (
+          {totalItems >= 1 ? (
             <div className="cart-btn">
               <Link
                 to="/cart"

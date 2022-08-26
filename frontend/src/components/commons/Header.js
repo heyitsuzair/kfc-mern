@@ -20,7 +20,7 @@ export default function Header() {
 
   useEffect(() => {
     getLocation();
-
+    // getCartInfo();
     //eslint-disable-next-line
   }, [user, localStorage.getItem("user")]);
 

@@ -17,13 +17,23 @@ import DealSkeleton from "../components/deals/DealSkeleton";
 import addonContext from "../context/addonContext";
 import userContext from "../context/userContext";
 import { toast } from "react-toastify";
-import cartContext from "../context/cartContext";
 import SoftDrinkCard from "../components/commons/SoftDrinkCard";
 import softDrinkContext from "../context/softDrinkContext";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  addToCart,
+} from "../redux/cart/cartSlice";
 
 export default function Product() {
+  const { cartItems } = useSelector((store) => store.cart);
   const context = useContext(dealContext);
   const { getCats } = context;
+  const dispatch = useDispatch();
+
+  // add to bucket text
+  const [text, setText] = useState("Add To Bucket");
 
   // use follow context to get loading and addons to add in cart
   const addon_context = useContext(addonContext);
@@ -37,10 +47,6 @@ export default function Product() {
   const [detail, setDetail] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-
-  // use the following context to add to bucket
-  const cartCont = useContext(cartContext);
-  const { addToCart } = cartCont;
 
   // get user info and check whether it is null or not. If It is null. Dont Allow Add To Bucket
   const userCont = useContext(userContext);
@@ -61,29 +67,57 @@ export default function Product() {
   };
   //handle when clicked on red button + or -
   const handleClick = (condition) => {
-    const newValue = condition === "+" ? quantity + 1 : quantity - 1;
-    setQuantity(newValue);
+    if (condition === "+") {
+      setQuantity(quantity + 1);
+      // dispatch(increaseItemQuantity(id));
+    } else {
+      setQuantity(quantity - 1);
+      // dispatch(decreaseItemQuantity(id));
+    }
   };
 
-  // get logged in user detail
   const getUser = JSON.parse(localStorage.getItem("user"));
 
   // handle When clicked on add to bucket button
-  const handleAddToCart = (id) => {
+  const handleAddToCart = () => {
     if (!localStorage.getItem("user") && user === "") {
       toast.error("You Must Login To Add To Bucket");
       return;
     }
-    addToCart(id, quantity, getUser.email, addonQuantity, softDrinksQuantity);
+    dispatch(
+      addToCart({
+        product: {
+          price: detail.price,
+          title: detail.name,
+          id,
+          src: detail.prodImg,
+        },
+        quantity: quantity,
+        email: getUser.email,
+        addons: [],
+        softDrinks: [],
+        prod_id: id,
+      })
+    );
+  };
+  // check if it exist in localStorage or not
+
+  const checkStorage = (prod_id) => {
+    const filter = cartItems.filter((item) => {
+      return item.prod_id === prod_id;
+    });
+    if (filter.length > 0) {
+      setText("Save");
+      setQuantity(filter[0].quantity);
+    }
   };
 
   useEffect(() => {
     getCats();
     getProdDetail(id);
-
-    window.scroll(0, 0);
+    checkStorage(id);
     //eslint-disable-next-line
-  }, []);
+  }, [id, cartItems]);
   document.title = detail.name === undefined ? "Loading..." : detail.name;
   return (
     <div className="product">
@@ -157,9 +191,9 @@ export default function Product() {
                             <Button
                               variant="contained"
                               className="add-to-bucket"
-                              onClick={() => handleAddToCart(id)}
+                              onClick={() => handleAddToCart()}
                             >
-                              Add To Bucket
+                              {text}
                             </Button>
                           </div>
                         </div>
