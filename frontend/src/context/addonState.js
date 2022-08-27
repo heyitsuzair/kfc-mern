@@ -9,7 +9,7 @@ export default function LocationState({ children }) {
   const getAllAddons = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/addon/getAddons")
+        .get(process.env.REACT_APP_BACKEND + "/api/addon/getAddons")
         .then((res) => {
           setAddons(res.data);
         });

@@ -46,7 +46,7 @@ export default function MyKfcAddLocation() {
     }
     if (locationState === "Add") {
       await axios
-        .post("http://localhost:5000/api/location/addLocation", {
+        .post(process.env.REACT_APP_BACKEND + "/api/location/addLocation", {
           lat: latitude,
           lng: longitude,
           email: user.email,
@@ -74,7 +74,7 @@ export default function MyKfcAddLocation() {
         });
     } else {
       await axios
-        .post("http://localhost:5000/api/location/editLocation", {
+        .post(process.env.REACT_APP_BACKEND + "/api/location/editLocation", {
           id: locationId,
           lat: latitude,
           lng: longitude,

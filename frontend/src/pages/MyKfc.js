@@ -17,7 +17,7 @@ export default function MyKfc() {
   const getFavs = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/fav/getFavs/" + user.email)
+        .get(process.env.REACT_APP_BACKEND + "/api/fav/getFavs/" + user.email)
         .then((res) => {
           setFavs(res.data.getFav);
           setLoading(false);

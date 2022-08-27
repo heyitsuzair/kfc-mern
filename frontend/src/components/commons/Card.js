@@ -44,7 +44,9 @@ export default function Card({ src, title, desc, price, id, catName }) {
   const getFavs = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/fav/getFavs/" + getUser.email)
+        .get(
+          process.env.REACT_APP_BACKEND + "/api/fav/getFavs/" + getUser.email
+        )
         .then((res) => {
           // filter the incoming response and check whether if this card item of product matches with the id of data or not
           const checkFav = res.data.getFav.filter((fav) => {
@@ -63,7 +65,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
     try {
       // adding the product to favourites of logged in user
       await axios
-        .post("http://localhost:5000/api/fav/addFav", {
+        .post(process.env.REACT_APP_BACKEND + "/api/fav/addFav", {
           prod_id: id,
           email: getUser.email,
         })
@@ -83,7 +85,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
     try {
       // removing the product from favourites of logged in user
       await axios
-        .post("http://localhost:5000/api/fav/delFav", {
+        .post(process.env.REACT_APP_BACKEND + "/api/fav/delFav", {
           prod_id: id,
           email: getUser.email,
         })

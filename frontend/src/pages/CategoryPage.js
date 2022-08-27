@@ -25,7 +25,7 @@ export default function CategoryPage() {
   // get all category products
   const getCatProds = async () => {
     await axios
-      .get(`http://localhost:5000/api/product/getCatProds/${id}`)
+      .get(process.env.REACT_APP_BACKEND + `/api/product/getCatProds/${id}`)
       .then((res) => {
         setProducts(res.data.getCatProducts);
         setLoading(false);

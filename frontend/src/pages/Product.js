@@ -57,7 +57,7 @@ export default function Product() {
   const getProdDetail = async (prodId) => {
     try {
       await axios
-        .get(`http://localhost:5000/api/product/getProd/${prodId}`)
+        .get(process.env.REACT_APP_BACKEND + `/api/product/getProd/${prodId}`)
         .then((res) => {
           setDetail(res.data);
           setLoading(false);

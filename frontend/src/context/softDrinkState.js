@@ -8,7 +8,7 @@ export default function LocationState({ children }) {
   const getAllSoftDrinks = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/softdrink/getSoftdrinks")
+        .get(process.env.REACT_APP_BACKEND + "/api/softdrink/getSoftdrinks")
         .then((res) => {
           setSoftDrinks(res.data);
         });

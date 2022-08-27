@@ -11,7 +11,7 @@ export default function Favourites({ favs, setFavs }) {
     try {
       // removing the product from favourites of logged in user
       await axios
-        .post("http://localhost:5000/api/fav/delFav", {
+        .post(process.env.REACT_APP_BACKEND + "/api/fav/delFav", {
           prod_id: id,
           email: user.email,
         })

@@ -30,7 +30,9 @@ export default function LocationState({ children }) {
   const getLocations = async (email) => {
     try {
       await axios
-        .get("http://localhost:5000/api/location/getLocations/" + email)
+        .get(
+          process.env.REACT_APP_BACKEND + "/api/location/getLocations/" + email
+        )
         .then((res) => {
           setLocations(res.data);
         });

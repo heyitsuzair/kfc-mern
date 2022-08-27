@@ -33,7 +33,7 @@ export default function MyKfcLocationItem({ location, index }) {
   const handleDelete = async (id) => {
     try {
       await axios
-        .post("http://localhost:5000/api/location/delLocation/" + id)
+        .post(process.env.REACT_APP_BACKEND + "/api/location/delLocation/" + id)
         .then((res) => {
           if (res.data.error === false) {
             const newLocations = locations.filter((location) => {

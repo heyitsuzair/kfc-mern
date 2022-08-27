@@ -9,15 +9,25 @@ import PaymentMethod from "../components/checkout/PaymentMethod";
 import PhoneNumber from "../components/checkout/PhoneNumber";
 import ConfirmOrder from "../components/checkout/ConfirmOrder";
 import OrderTotal from "../components/checkout/OrderTotal";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;
+  const { cartItems } = useSelector((store) => store.cart);
+
+  const navigate = useNavigate();
 
   const getUser = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
+    if (cartItems.length === 0 || getUser === null) {
+      navigate("/");
+      return;
+    }
     getLocations(getUser.email);
-    // eslint-disable-next-line
-  }, []);
+    //eslint-disable-next-line
+  }, [cartItems]);
+
   return (
     <Container>
       <div className="cart">
