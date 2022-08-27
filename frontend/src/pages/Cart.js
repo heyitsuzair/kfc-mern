@@ -11,7 +11,6 @@ export default function Cart() {
   const { cartItems } = useSelector((store) => store.cart);
   const navigate = useNavigate();
   useEffect(() => {
-    window.scroll(0, 0);
     if (cartItems.length === 0) {
       navigate("/");
       return;
@@ -24,9 +23,9 @@ export default function Cart() {
         <Stepper step={1} />
         <Grid container columnSpacing={{ xs: 0, sm: 0, md: 3 }}>
           <Grid item className="cart-prod-item" md={8} sm={12} xs={12}>
-            <CartProdItem />
-            <CartProdItem />
-            <CartProdItem />
+            {cartItems.map((item, index) => {
+              return <CartProdItem key={index} item={item} />;
+            })}
           </Grid>
           <Grid item md={4} sm={12} xs={12}>
             <ProceedToCheckout />

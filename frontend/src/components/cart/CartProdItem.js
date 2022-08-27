@@ -1,31 +1,44 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
 import { DeleteOutlined, Add, Remove, Edit } from "@mui/icons-material";
-import img from "../../images/topsel1.png";
-export default function CartProdItem() {
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  delCartItem,
+} from "../../redux/cart/cartSlice";
+export default function CartProdItem({ item }) {
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   // handle when clicked on plus or minus icon
   const handleQuantity = (condition) => {
     if (condition === "+") {
       setQuantity(quantity + 1);
+      dispatch(increaseItemQuantity(item.prod_id));
     } else {
+      dispatch(decreaseItemQuantity(item.prod_id));
       return quantity === 1 ? true : setQuantity(quantity - 1);
     }
   };
-
+  //  handle when clicked on delete button
+  const removeFromCart = async () => {
+    dispatch(delCartItem({ id: item.prod_id, price: item.product.price }));
+  };
   return (
     <div style={{ margin: "1rem 0" }} className="cart-prod-item">
       <Grid container>
         <Grid
           item
-          md={3}
+          md={5}
           xs={3}
           sm={6}
           textAlign="center"
           display="flex"
           alignItems="center"
+          gap={{ md: 2, sm: 2, xs: 2 }}
         >
-          <img src={img} width={100} alt="" />
+          <img src={item.product.src} width={100} alt="" />
           <Grid
             item
             display="flex"
@@ -34,8 +47,8 @@ export default function CartProdItem() {
             gap={1}
             textAlign="left"
           >
-            <strong>Krunch Burger</strong>
-            <span>Rs 220</span>
+            <strong>{item.product.title}</strong>
+            <span>Rs {item.product.price}</span>
             <div className="cart-prod-item-quan" style={{ display: "flex" }}>
               <Remove
                 sx={{
@@ -47,7 +60,7 @@ export default function CartProdItem() {
                 onClick={() => handleQuantity("-")}
               />
               <span style={{ width: "1rem", textAlign: "center" }}>
-                {quantity}
+                {item.quantity}
               </span>
               <Add
                 sx={{
@@ -63,7 +76,7 @@ export default function CartProdItem() {
         </Grid>
         <Grid
           item
-          md={6}
+          md={4}
           sm={2}
           xs={5}
           textAlign="center"
@@ -77,9 +90,21 @@ export default function CartProdItem() {
             flexDirection="column"
             alignItems="flex-start"
           >
-            <h4>Drinks</h4>
-            <span>Mirinda</span>
-            <span>x1</span>
+            {item.softDrinks.length > 0 ? (
+              <>
+                <h4>Drinks</h4>
+                {item.softDrinks.map((drink) => {
+                  return (
+                    <>
+                      <span>{drink.softDrink.name}</span>
+                      <span>x{drink.quantity}</span>
+                    </>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </Grid>
         </Grid>
 
@@ -93,10 +118,25 @@ export default function CartProdItem() {
           justifyContent="center"
           flexDirection="column"
         >
-          <h3 className="cart-item-price">Rs 220</h3>
+          <h3 className="cart-item-price">
+            Rs {item.quantity * item.product.price}
+          </h3>
           <div className="cart-item-icons">
-            <Edit sx={{ color: "#e4002b" }} />
-            <DeleteOutlined sx={{ color: "#e4002b" }} />
+            <Link
+              to={`/product/${item.prod_id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Edit sx={{ color: "#e4002b" }} />
+            </Link>
+            <DeleteOutlined
+              onClick={() => removeFromCart()}
+              sx={{
+                color: "#e4002b",
+                "&:hover": {
+                  cursor: "pointer",
+                },
+              }}
+            />
           </div>
         </Grid>
       </Grid>
