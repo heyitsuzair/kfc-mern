@@ -4,10 +4,8 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
 import AddonItem from "./AddonItem";
 import addonContext from "../../context/addonContext";
-import { useSelector } from "react-redux";
 
 export default function AddonCard({ title, prod_id }) {
-  const { cartItems } = useSelector((store) => store.cart);
   const [show, setShow] = useState("none");
   // use follow context to get all addons
   const context = useContext(addonContext);

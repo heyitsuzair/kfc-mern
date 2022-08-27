@@ -108,12 +108,18 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         <span>{softDrink.name}</span>
         <span className="addon-price">Rs {softDrink.price}</span>
       </div>
-      <div className="addon-add" style={{ display: "flex", width: "7vw" }}>
+      <div
+        className="addon-add"
+        style={{ display: "flex", width: "15vw", justifyContent: "center" }}
+      >
         <span onClick={(e) => handleAdd(e, softDrink)} ref={ref}>
           + Add
         </span>
       </div>
-      <div className="addon-quantity" style={{ display: "none", width: "7vw" }}>
+      <div
+        className="addon-quantity"
+        style={{ display: "none", width: "15vw", justifyContent: "center" }}
+      >
         <Remove onClick={(e) => handleQuantity("-", e, softDrink)} />
         <span>{quantity.quantity}</span>
         <Add onClick={(e) => handleQuantity("+", e, softDrink)} />

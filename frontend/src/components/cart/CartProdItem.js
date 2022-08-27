@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid } from "@mui/material";
-import { DeleteOutlined, Add, Remove } from "@mui/icons-material";
+import { DeleteOutlined, Add, Remove, Edit } from "@mui/icons-material";
 import img from "../../images/topsel1.png";
 export default function CartProdItem() {
   const [quantity, setQuantity] = useState(1);
@@ -14,13 +14,13 @@ export default function CartProdItem() {
   };
 
   return (
-    <div style={{ margin: "1rem 0" }}>
+    <div style={{ margin: "1rem 0" }} className="cart-prod-item">
       <Grid container>
         <Grid
           item
-          md={6}
-          xs={6}
-          sm={7}
+          md={3}
+          xs={3}
+          sm={6}
           textAlign="center"
           display="flex"
           alignItems="center"
@@ -32,6 +32,7 @@ export default function CartProdItem() {
             flexDirection="column"
             alignItems="flex-start"
             gap={1}
+            textAlign="left"
           >
             <strong>Krunch Burger</strong>
             <span>Rs 220</span>
@@ -45,7 +46,9 @@ export default function CartProdItem() {
                 }}
                 onClick={() => handleQuantity("-")}
               />
-              <span style={{ width: "1rem" }}>{quantity}</span>
+              <span style={{ width: "1rem", textAlign: "center" }}>
+                {quantity}
+              </span>
               <Add
                 sx={{
                   color: "#e4002b",
@@ -58,16 +61,15 @@ export default function CartProdItem() {
             </div>
           </Grid>
         </Grid>
-
         <Grid
           item
-          md={3}
+          md={6}
           sm={2}
-          xs={3}
+          xs={5}
           textAlign="center"
           display="flex"
           alignItems="center"
-          justifyContent="center"
+          justifyContent="flex-end"
         >
           <Grid
             item
@@ -80,9 +82,12 @@ export default function CartProdItem() {
             <span>x1</span>
           </Grid>
         </Grid>
+
         <Grid
           item
           md={3}
+          xs={3}
+          sm={3}
           display="flex"
           alignItems="flex-end"
           justifyContent="center"
@@ -90,6 +95,7 @@ export default function CartProdItem() {
         >
           <h3 className="cart-item-price">Rs 220</h3>
           <div className="cart-item-icons">
+            <Edit sx={{ color: "#e4002b" }} />
             <DeleteOutlined sx={{ color: "#e4002b" }} />
           </div>
         </Grid>

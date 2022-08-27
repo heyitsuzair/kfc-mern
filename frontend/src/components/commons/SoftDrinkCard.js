@@ -34,7 +34,7 @@ export default function AddonCard({ title, prod_id }) {
   }, []);
 
   return (
-    <Grid className="addons-container">
+    <Grid className="addons-container softDrink-container">
       <div className="add-ons">
         <h3>{title}</h3>
         <span className="optional">Optional</span>

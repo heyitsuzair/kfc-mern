@@ -404,7 +404,7 @@ body {
 }
 .addon-item .addon-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   margin: 1rem 0;
 }
@@ -436,7 +436,7 @@ body {
   cursor: pointer;
 }
 .addon-item .addon-quantity span {
-  width: 2vw;
+  width: 4vw;
   text-align: center;
 }
 /* Login Page */
@@ -793,6 +793,9 @@ body {
   .add-to-fav {
     margin: 1rem 0;
   }
+  .cart-prod-item {
+    font-size: 12px;
+  }
 }
 @media (max-width: 464px) {
   .header .header-inner {
@@ -813,9 +816,11 @@ body {
     margin-left: auto;
   }
   .addons-container {
-    margin: 2rem 0;
+    margin: 6rem 0;
   }
-
+  .softDrink-container {
+    margin-top: 0;
+  }
   .add-ons {
     margin-top: 6rem;
   }
