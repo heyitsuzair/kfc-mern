@@ -38,11 +38,12 @@ export default function Product() {
 
   // use follow context to get loading and addons to add in cart
   const addon_context = useContext(addonContext);
-  const { loading, setLoading, addonQuantity } = addon_context;
+  const { loading, setLoading, addonQuantity, setAddonQuantity } =
+    addon_context;
 
   // use the follow context to get softdrinks to add in cart
   const softDrinks_context = useContext(softDrinkContext);
-  const { softDrinksQuantity } = softDrinks_context;
+  const { softDrinksQuantity, setSoftDrinksQuantity } = softDrinks_context;
 
   // product detail
   const [detail, setDetail] = useState([]);
@@ -141,8 +142,10 @@ export default function Product() {
     getCats();
     getProdDetail(id);
     checkStorage(id);
+
     //eslint-disable-next-line
   }, [id, cartItems]);
+
   document.title = detail.name === undefined ? "Loading..." : detail.name;
   return (
     <div className="product">

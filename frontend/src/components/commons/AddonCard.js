@@ -33,7 +33,7 @@ export default function AddonCard({ title, prod_id }) {
   useEffect(() => {
     getAllAddons();
     //eslint-disable-next-line
-  }, [cartItems]);
+  }, []);
 
   return (
     <Grid className="addons-container">

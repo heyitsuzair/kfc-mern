@@ -21,7 +21,6 @@ const cartSlice = createSlice({
         state.amount += element.quantity * element.addon.price;
       });
       payload.softDrinks.forEach((element) => {
-        console.log(element.quantity * element.softDrink.price);
         state.amount += element.quantity * element.softDrink.price;
       });
 
@@ -96,13 +95,13 @@ const cartSlice = createSlice({
         state.amount += element.quantity * element.addon.price;
       });
       payload.softDrinks.forEach((element) => {
-        console.log(element.quantity * element.softDrink.price);
         state.amount += element.quantity * element.softDrink.price;
       });
 
       state.amount = payload.product.price * payload.quantity + state.amount;
       toast.success("Product Updated!");
     },
+    increaseProdAddon: (state, { payload }) => {},
   },
 });
 export const {
@@ -111,5 +110,6 @@ export const {
   increaseItemQuantity,
   decreaseItemQuantity,
   updateCartItem,
+  increaseProdAddon,
 } = cartSlice.actions;
 export default cartSlice.reducer;

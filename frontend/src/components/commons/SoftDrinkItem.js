@@ -30,9 +30,9 @@ export default function AddonItem({ softDrink, index, prod_id }) {
 
   //handle when clicked on either + or -
   const handleQuantity = (operator, e, softDrink) => {
-    const filteredSoftDrink = softDrinksQuantity.find(
-      (softDrinkCheck) => softDrinkCheck.softDrink._id === softDrink._id
-    );
+    const filteredSoftDrink = softDrinksQuantity.filter((softDrinkCheck) => {
+      return softDrinkCheck.softDrink._id !== softDrink._id;
+    });
     if (operator === "+") {
       const newQuantity = quantity.quantity + 1;
       setQuantity({
@@ -40,7 +40,13 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         quantity: newQuantity,
       });
 
-      filteredSoftDrink.quantity = newQuantity;
+      // adding softdrink again with new value to softdrink quantity
+      setSoftDrinksQuantity(
+        filteredSoftDrink.concat({
+          softDrink: softDrink,
+          quantity: newQuantity,
+        })
+      );
     } else {
       if (quantity.quantity === 0) {
         return;
@@ -51,7 +57,13 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         quantity: newQuantity,
       });
 
-      filteredSoftDrink.quantity = newQuantity;
+      // adding softdrink again with new value to softdrink quantity
+      setSoftDrinksQuantity(
+        filteredSoftDrink.concat({
+          softDrink: softDrink,
+          quantity: newQuantity,
+        })
+      );
     }
   };
 
@@ -70,10 +82,11 @@ export default function AddonItem({ softDrink, index, prod_id }) {
       ref.current.parentElement.style.display = "none";
       ref.current.parentElement.nextSibling.style.display = "flex";
       setQuantity({ softDrink, quantity: checkSoftDrink.quantity });
+
       setSoftDrinksQuantity((softDrinksQuantity) => [
         ...softDrinksQuantity,
         {
-          addon: checkSoftDrink.addon,
+          softDrink: checkSoftDrink.softDrink,
           quantity: checkSoftDrink.quantity,
         },
       ]);

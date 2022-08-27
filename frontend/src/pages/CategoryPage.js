@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -7,12 +7,21 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import DealSection from "../components/deals/DealSection";
 import CategoryPageSkeleton from "../components/deals/CatergoryPageSkeleton";
+import softDrinkContext from "../context/softDrinkContext";
+import addonContext from "../context/addonContext";
 
 export default function CategoryPage() {
   const { id } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+
+  const softDrink_context = useContext(softDrinkContext);
+  const addon_context = useContext(addonContext);
+
+  const { setAddonQuantity } = addon_context;
+  const { setSoftDrinksQuantity } = softDrink_context;
+
   // get all category products
   const getCatProds = async () => {
     await axios
@@ -27,6 +36,8 @@ export default function CategoryPage() {
     setLoading(true);
     getCatProds();
     window.scroll(0, 0);
+    setAddonQuantity([]);
+    setSoftDrinksQuantity([]);
     //eslint-disable-next-line
   }, [id]);
   document.title = products[0] === undefined ? "Deals" : products[0].catId.name;
