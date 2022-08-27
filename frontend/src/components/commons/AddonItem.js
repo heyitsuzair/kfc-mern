@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import addonContext from "../../context/addonContext";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRef } from "react";
 
 export default function AddonItem({ addon, index, prod_id }) {
@@ -27,16 +27,20 @@ export default function AddonItem({ addon, index, prod_id }) {
 
   //handle when clicked on either + or -
   const handleQuantity = (operator, e, addon) => {
-    const filteredAddon = addonQuantity.find(
-      (addonCheck) => addonCheck.addon._id === addon._id
-    );
+    // removing incoming addon from addon quantity
+    const filteredAddon = addonQuantity.filter((addonCheck) => {
+      return addonCheck.addon._id !== addon._id;
+    });
     if (operator === "+") {
       const newQuantity = quantity.quantity + 1;
       setQuantity({
         addon: addon,
         quantity: newQuantity,
       });
-      filteredAddon.quantity = newQuantity;
+      // adding addon again with new value to addon quantity
+      setAddonQuantity(
+        filteredAddon.concat({ addon: addon, quantity: newQuantity })
+      );
     } else {
       if (quantity.quantity === 0) {
         return;
@@ -46,28 +50,36 @@ export default function AddonItem({ addon, index, prod_id }) {
         addon: addon,
         quantity: newQuantity,
       });
-      filteredAddon.quantity = newQuantity;
+      setAddonQuantity(
+        filteredAddon.concat({ addon: addon, quantity: newQuantity })
+      );
     }
   };
 
   const checkAddon = (prod_id) => {
     const checkFilter = cartItems.find((item) => item.prod_id === prod_id);
-    // check if product not exist in cart items then return it
+    // check if product not exist in cart items then return it else set the addon value available already in cart
+
     if (checkFilter === undefined) {
       return;
     }
-    const checkAddon = checkFilter.addons.find(
+    const checkAddonInner = checkFilter.addons.find(
       (item) => item.addon._id === addon._id
     );
-    if (checkAddon === undefined) {
+
+    if (checkAddonInner === undefined) {
       return;
     } else {
       ref.current.parentElement.style.display = "none";
       ref.current.parentElement.nextSibling.style.display = "flex";
-      setQuantity({ addon, quantity: checkAddon.quantity });
-      setAddonQuantity(
-        addonQuantity.concat({ addon: addon, quantity: checkAddon.quantity })
-      );
+      setQuantity({ addon, quantity: checkAddonInner.quantity });
+      setAddonQuantity((addonQuantity) => [
+        ...addonQuantity,
+        {
+          addon: checkAddonInner.addon,
+          quantity: checkAddonInner.quantity,
+        },
+      ]);
     }
   };
 
@@ -75,7 +87,7 @@ export default function AddonItem({ addon, index, prod_id }) {
     //check if addon is with product or not
     checkAddon(prod_id);
     //eslint-disable-next-line
-  }, []);
+  }, [prod_id]);
 
   return (
     <>

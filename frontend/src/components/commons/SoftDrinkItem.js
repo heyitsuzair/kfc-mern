@@ -21,7 +21,10 @@ export default function AddonItem({ softDrink, index, prod_id }) {
       quantity: 1,
     });
     setSoftDrinksQuantity(
-      softDrinksQuantity.concat({ softDrink: softDrink, quantity: 1 })
+      softDrinksQuantity.concat({
+        softDrink: softDrink,
+        quantity: 1,
+      })
     );
   };
 
@@ -36,6 +39,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         softDrink: softDrink,
         quantity: newQuantity,
       });
+
       filteredSoftDrink.quantity = newQuantity;
     } else {
       if (quantity.quantity === 0) {
@@ -46,6 +50,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         softDrink: softDrink,
         quantity: newQuantity,
       });
+
       filteredSoftDrink.quantity = newQuantity;
     }
   };
@@ -65,12 +70,13 @@ export default function AddonItem({ softDrink, index, prod_id }) {
       ref.current.parentElement.style.display = "none";
       ref.current.parentElement.nextSibling.style.display = "flex";
       setQuantity({ softDrink, quantity: checkSoftDrink.quantity });
-      setSoftDrinksQuantity(
-        softDrinksQuantity.concat({
-          softDrink: softDrink,
+      setSoftDrinksQuantity((softDrinksQuantity) => [
+        ...softDrinksQuantity,
+        {
+          addon: checkSoftDrink.addon,
           quantity: checkSoftDrink.quantity,
-        })
-      );
+        },
+      ]);
     }
   };
 
@@ -78,7 +84,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
     //check if addon is with product or not
     checkSoftDrink(prod_id);
     //eslint-disable-next-line
-  }, []);
+  }, [prod_id]);
 
   return (
     <>

@@ -16,6 +16,15 @@ const cartSlice = createSlice({
       // add item to cart
       state.cartItems = state.cartItems.concat(payload);
       state.totalItems += 1;
+      // console.log(payload);
+      payload.addons.forEach((element) => {
+        state.amount += element.quantity * element.addon.price;
+      });
+      payload.softDrinks.forEach((element) => {
+        console.log(element.quantity * element.softDrink.price);
+        state.amount += element.quantity * element.softDrink.price;
+      });
+
       state.amount = payload.product.price * payload.quantity + state.amount;
       toast.success("Product Added To Cart!");
     },
@@ -24,9 +33,18 @@ const cartSlice = createSlice({
       const find = state.cartItems.find(
         (item) => item.product.id === payload.id
       );
+
       const filter = state.cartItems.filter((item) => {
         return item.product.id !== payload.id;
       });
+      find.addons.forEach((element) => {
+        state.amount -= element.quantity * element.addon.price;
+      });
+      find.softDrinks.forEach((element) => {
+        console.log(element.quantity * element.softDrink.price);
+        state.amount -= element.quantity * element.softDrink.price;
+      });
+
       state.amount -= find.quantity * payload.price;
       state.cartItems = filter;
       state.totalItems -= 1;
@@ -52,13 +70,38 @@ const cartSlice = createSlice({
       state.amount -= findItem.product.price;
     },
     updateCartItem: (state, { payload }) => {
-      const filterItem = state.cartItems.find(
-        (item) => item.prod_id === payload.prod_id
+      // del item from cart
+      const find = state.cartItems.find(
+        (item) => item.product.id === payload.prod_id
       );
-      filterItem.quantity = payload.quantity;
+      find.addons.forEach((element) => {
+        state.amount -= element.quantity * element.addon.price;
+      });
+      find.softDrinks.forEach((element) => {
+        state.amount -= element.quantity * element.softDrink.price;
+      });
+      const filter = state.cartItems.filter((item) => {
+        return item.product.id !== payload.prod_id;
+      });
+
+      state.amount -= find.quantity * payload.product.price;
+      state.cartItems = filter;
+      state.totalItems -= 1;
+      // del item from cart
+      // add item to cart
+      state.cartItems = state.cartItems.concat(payload);
+      state.totalItems += 1;
+      // console.log(payload);
+      payload.addons.forEach((element) => {
+        state.amount += element.quantity * element.addon.price;
+      });
+      payload.softDrinks.forEach((element) => {
+        console.log(element.quantity * element.softDrink.price);
+        state.amount += element.quantity * element.softDrink.price;
+      });
+
+      state.amount = payload.product.price * payload.quantity + state.amount;
       toast.success("Product Updated!");
-      filterItem.addons = payload.addons;
-      filterItem.softDrinks = payload.softDrinks;
     },
   },
 });

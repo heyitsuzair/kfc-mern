@@ -35,7 +35,7 @@ export default function CartItem({ item }) {
     } else {
       dispatch(decreaseItemQuantity(item.product.id));
 
-      if (item.quantity === 1 || item.quantity === 2) {
+      if (item.quantity === 1 || item.quantity === 0) {
         ref.current.style.display = "none";
         setIsDelete(true);
         return;
@@ -53,7 +53,7 @@ export default function CartItem({ item }) {
   };
 
   useEffect(() => {
-    if (item.quantity === 1 || item.quantity === 2) {
+    if (item.quantity === 1 || item.quantity === 0) {
       ref.current.style.display = "none";
       setIsDelete(true);
       return;
