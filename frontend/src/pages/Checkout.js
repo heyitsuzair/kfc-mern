@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Stepper from "../components/commons/Stepper";
 import { Container, Grid } from "@mui/material";
 import DeliveryDetails from "../components/checkout/DeliveryDetails";
@@ -15,6 +15,8 @@ export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;
   const { cartItems } = useSelector((store) => store.cart);
+
+  const [phoneValue, setPhoneValue] = useState("");
 
   const navigate = useNavigate();
 
@@ -45,7 +47,10 @@ export default function Cart() {
           >
             <DeliveryDetails />
             <PaymentMethod />
-            <PhoneNumber />
+            <PhoneNumber
+              phoneValue={phoneValue}
+              setPhoneValue={setPhoneValue}
+            />
           </Grid>
           <Grid
             item
@@ -63,7 +68,7 @@ export default function Cart() {
               <OrderTotal />
             </Grid>
             <Grid item>
-              <ConfirmOrder />
+              <ConfirmOrder phoneValue={phoneValue} />
             </Grid>
           </Grid>
         </Grid>

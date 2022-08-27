@@ -23,6 +23,10 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
+/* Toastify Customisation */
+.Toastify__toast-container {
+  width: 29vw !important;
+}
 /* Mui Customisations */
 .floatingLabel {
   color: #d4d4d4 !important;

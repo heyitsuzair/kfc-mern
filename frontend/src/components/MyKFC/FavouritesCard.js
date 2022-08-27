@@ -39,7 +39,7 @@ export default function BasicCard({
   useEffect(() => {
     // check if item already available in card than show edit button instead of add
     const find = cartItems.find((item) => item.prod_id === id);
-    console.log(find);
+
     if (find !== undefined) {
       setEdit(true);
     } else {

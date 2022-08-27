@@ -93,12 +93,12 @@ export default function CartProdItem({ item }) {
             {item.softDrinks.length > 0 ? (
               <>
                 <h4>Drinks</h4>
-                {item.softDrinks.map((drink) => {
+                {item.softDrinks.map((drink, index) => {
                   return (
-                    <>
+                    <div key={index}>
                       <span>{drink.softDrink.name}</span>
                       <span>x{drink.quantity}</span>
-                    </>
+                    </div>
                   );
                 })}
               </>

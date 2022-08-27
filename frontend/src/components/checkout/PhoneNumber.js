@@ -1,11 +1,9 @@
 import React from "react";
 import { TextField } from "@mui/material";
-import { useState } from "react";
 
-export default function PhoneNumber() {
-  const [value, setValue] = useState("");
+export default function PhoneNumber({ phoneValue, setPhoneValue }) {
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setPhoneValue(e.target.value);
   };
   return (
     <div className="checkout-item">
@@ -24,7 +22,7 @@ export default function PhoneNumber() {
           id="filled-basic"
           label="Phone Number"
           variant="filled"
-          value={value}
+          value={phoneValue}
           onChange={(e) => handleChange(e)}
           required={true}
           type={"tel"}

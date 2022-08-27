@@ -2,7 +2,6 @@ import React from "react";
 import { Grid } from "@mui/material";
 
 export default function OrderItem({ item }) {
-  console.log(item);
   return (
     <Grid
       item
