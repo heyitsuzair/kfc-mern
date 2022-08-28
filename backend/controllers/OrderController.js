@@ -14,6 +14,10 @@ module.exports.addOrder = async (req, res) => {
       phone_no,
     } = req.body;
 
+    const delivery = await stripe.prices.retrieve(
+      "price_1LbrIYBs8YauYzzxy8lYutfN"
+    );
+
     if (payment_method === "Credit/Debit Card") {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -23,13 +27,14 @@ module.exports.addOrder = async (req, res) => {
             price_data: {
               currency: "pkr",
               product_data: {
-                name: "KFC Payment",
+                name: item.product.title,
+                images: [item.product.src],
               },
-              unit_amount: amount + 50 + "00",
+              unit_amount: item.product.price * item.quantity + "00",
             },
 
             description: `${item.product.title} x ${item.quantity}`,
-            quantity: 1,
+            quantity: item.quantity,
           };
         }),
         success_url: "http://localhost:3000/success",

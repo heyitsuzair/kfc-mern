@@ -49,11 +49,15 @@ export default function ConfirmOrder({ phoneValue }) {
 
     const getUser = JSON.parse(localStorage.getItem("user"));
 
+    //add delivery charges in amount
+
+    let total = amount + 50;
+
     // call the api and save the order in mongodb
     const data = {
       product: cartItems,
       email: getUser.email,
-      amount,
+      amount: total,
       totalItems,
       payment_method: paymentMethod.value,
       address: radioValue.value,
@@ -64,10 +68,12 @@ export default function ConfirmOrder({ phoneValue }) {
     await axios
       .post(process.env.REACT_APP_BACKEND + "/api/order/addOrder", data)
       .then((res) => {
+        console.log(res.data);
         if (res.data.error === false) {
           if (res.data.url) {
             localStorage.setItem("payment", JSON.stringify(res.data.data));
             window.open(res.data.url, "_self");
+            return;
           }
           dispatch(clearCart());
           toast.success("Order Placed!");
