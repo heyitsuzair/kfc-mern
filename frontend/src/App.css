@@ -23,10 +23,7 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-/* Toastify Customisation */
-.Toastify__toast-container {
-  width: 29vw !important;
-}
+
 /* Mui Customisations */
 .floatingLabel {
   color: #d4d4d4 !important;
@@ -549,7 +546,7 @@ body {
 /* Order History Component */
 .order-history {
   background-color: var(--dark-brown);
-  padding: 1rem 2rem;
+  padding: 1rem 0rem;
   text-align: center;
   border-radius: 10px;
   margin: 2rem 0;
@@ -799,6 +796,12 @@ body {
   }
   .cart-prod-item {
     font-size: 12px;
+  }
+  .edit-icon {
+    display: none !important;
+  }
+  .order-history {
+    font-size: 10px;
   }
 }
 @media (max-width: 464px) {

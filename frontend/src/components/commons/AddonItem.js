@@ -43,7 +43,6 @@ export default function AddonItem({ addon, index, prod_id }) {
       setAddonQuantity(
         filteredAddon.concat({ addon: addon, quantity: newQuantity })
       );
-      dispatch(increaseProdAddon({ prod_id, addon }));
     } else {
       if (quantity.quantity === 0) {
         return;

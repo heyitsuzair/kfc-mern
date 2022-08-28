@@ -101,7 +101,11 @@ const cartSlice = createSlice({
       state.amount = payload.product.price * payload.quantity + state.amount;
       toast.success("Product Updated!");
     },
-    increaseProdAddon: (state, { payload }) => {},
+    clearCart: (state, action) => {
+      state.cartItems = [];
+      state.totalItems = 0;
+      state.amount = 0;
+    },
   },
 });
 export const {
@@ -110,6 +114,6 @@ export const {
   increaseItemQuantity,
   decreaseItemQuantity,
   updateCartItem,
-  increaseProdAddon,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

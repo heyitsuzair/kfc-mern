@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Grid } from "@mui/material";
 import { Button } from "@mui/material";
-import { Add } from "@mui/icons-material";
+import { Add, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { FavoriteBorder, Favorite } from "@mui/icons-material";
 import { useState } from "react";
@@ -9,12 +9,16 @@ import { useEffect } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
 import { addToCart } from "../../redux/cart/cartSlice";
 
 export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
   const dispatch = useDispatch();
+
+  const [addIcon, setAddIcon] = useState();
+
+  const { cartItems } = useSelector((store) => store.cart);
 
   // use below state to make button disable to check if it is midnight deal or not
   const [btn, setBtn] = useState(null);
@@ -106,6 +110,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
       toast.error("You Must Login To Add Item To Bucket!");
       return;
     }
+
     dispatch(
       addToCart({
         product: { price, title, id, src },
@@ -123,8 +128,15 @@ export default function Card({ src, title, desc, price, id, catName }) {
       getFavs();
     }
     checkMidnight();
+    // check if product is already available in cart, if it is available show warning else add to cart
+    const find = cartItems.find((item) => item.prod_id === id);
+    if (find === undefined) {
+      setAddIcon(true);
+    } else {
+      setAddIcon(false);
+    }
     //eslint-disable-next-line
-  }, [user]);
+  }, [user, cartItems]);
 
   return (
     <Grid className="grid-item" item>
@@ -153,23 +165,32 @@ export default function Card({ src, title, desc, price, id, catName }) {
             <strong>Rs {price}</strong>
           </h2>
           <strong>
-            {btn === false ? (
-              <Add
-                className="plus-icon"
-                onClick={(e) => handleAddToCart(id, e)}
-              />
+            {addIcon === true ? (
+              btn === false ? (
+                <Add
+                  className="plus-icon"
+                  onClick={(e) => handleAddToCart(id, e)}
+                />
+              ) : (
+                ""
+              )
             ) : (
-              ""
+              <Edit className="plus-icon" sx={{ color: "#e4002b" }} />
             )}
           </strong>
-          <Button
-            variant="contained"
-            className="add-to-bucket"
-            disabled={btn}
-            onClick={(e) => handleAddToCart(id, e)}
-          >
-            <strong>Add To Bucket</strong>
-          </Button>
+
+          {addIcon === true ? (
+            <Button
+              variant="contained"
+              className="add-to-bucket"
+              disabled={btn}
+              onClick={(e) => handleAddToCart(id, e)}
+            >
+              <strong>Add To Bucket</strong>
+            </Button>
+          ) : (
+            <Edit className="edit-icon" sx={{ color: "#e4002b" }} />
+          )}
         </div>
       </Link>
     </Grid>

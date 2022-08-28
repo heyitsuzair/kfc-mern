@@ -5,8 +5,15 @@ import { useContext } from "react";
 import locationContext from "../../context/locationContext";
 import { toast } from "react-toastify";
 import paymentContext from "../../context/paymentContext";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { clearCart } from "../../redux/cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function ConfirmOrder({ phoneValue }) {
+  const dispatch = useDispatch();
+
+  const { cartItems, totalItems, amount } = useSelector((store) => store.cart);
   const navigate = useNavigate();
 
   // get logged in user locations and check whether it is added or not
@@ -22,7 +29,7 @@ export default function ConfirmOrder({ phoneValue }) {
     navigate("/cart");
   };
   // handle when clicked on confirm order
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (locations.length < 1) {
       toast.error("Please Add Location To Continue!");
       return;
@@ -39,6 +46,33 @@ export default function ConfirmOrder({ phoneValue }) {
       toast.error("Phone Number Must Contain 11 Digits!");
       return;
     }
+
+    const getUser = JSON.parse(localStorage.getItem("user"));
+
+    const payment_status =
+      paymentMethod.value === "COD" ? "Pending" : "Completed";
+
+    // call the api and save the order in mongodb
+    const data = {
+      product: cartItems,
+      email: getUser.email,
+      paymentStatus: payment_status,
+      amount,
+      totalItems,
+      payment_method: paymentMethod.value,
+      address: radioValue.value,
+      phone_no: phoneValue,
+    };
+
+    // calling api
+    await axios
+      .post(process.env.REACT_APP_BACKEND + "/api/order/addOrder", data)
+      .then((res) => {
+        if (res.data.error === false) {
+          dispatch(clearCart());
+          toast.success("Order Placed!");
+        }
+      });
   };
 
   return (
