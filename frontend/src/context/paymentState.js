@@ -6,8 +6,14 @@ export default function LocationState({ children }) {
     value: "",
     index: "",
   });
+
   return (
-    <paymentContext.Provider value={{ paymentMethod, setPaymentMethod }}>
+    <paymentContext.Provider
+      value={{
+        paymentMethod,
+        setPaymentMethod,
+      }}
+    >
       {children}
     </paymentContext.Provider>
   );

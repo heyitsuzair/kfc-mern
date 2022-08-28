@@ -22,6 +22,8 @@ import SoftDrinkState from "./context/softDrinkState";
 import { store, persistor } from "./store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import Success from "./pages/Success";
+import Fail from "./pages/Fail";
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
                         <Header />
                         <Routes>
                           <Route path="/" element={<Home />} />
+                          <Route path="/success" element={<Success />} />
+                          <Route path="/fail" element={<Fail />} />
                           <Route path="/product/:id" element={<Product />} />
                           <Route path="/login" element={<Login />} />
                           <Route path="/myKfc" element={<MyKfc />} />

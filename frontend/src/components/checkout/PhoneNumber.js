@@ -6,7 +6,7 @@ export default function PhoneNumber({ phoneValue, setPhoneValue }) {
     setPhoneValue(e.target.value);
   };
   return (
-    <div className="checkout-item">
+    <div className="checkout-item" style={{ marginBottom: "2rem" }}>
       <div
         className="delivery-head"
         style={{

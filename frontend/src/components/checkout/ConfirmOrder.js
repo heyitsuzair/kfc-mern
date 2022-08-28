@@ -49,26 +49,26 @@ export default function ConfirmOrder({ phoneValue }) {
 
     const getUser = JSON.parse(localStorage.getItem("user"));
 
-    const payment_status =
-      paymentMethod.value === "COD" ? "Pending" : "Completed";
-
     // call the api and save the order in mongodb
     const data = {
       product: cartItems,
       email: getUser.email,
-      paymentStatus: payment_status,
       amount,
       totalItems,
       payment_method: paymentMethod.value,
       address: radioValue.value,
       phone_no: phoneValue,
     };
-
+    toast.warning("Please Wait....");
     // calling api
     await axios
       .post(process.env.REACT_APP_BACKEND + "/api/order/addOrder", data)
       .then((res) => {
         if (res.data.error === false) {
+          if (res.data.url) {
+            localStorage.setItem("payment", JSON.stringify(res.data.data));
+            window.open(res.data.url, "_self");
+          }
           dispatch(clearCart());
           toast.success("Order Placed!");
         }
