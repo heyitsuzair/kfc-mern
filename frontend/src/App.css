@@ -704,6 +704,17 @@ body {
 .order-total .subtotal {
   color: var(--color-red);
 }
+/* Card Detail */
+.card-detail {
+  margin: 1rem 0;
+}
+.card-detail .card-detail-inner {
+  margin: 1rem 0;
+}
+.card-detail .card-detail-content {
+  display: flex;
+  gap: 0.5rem;
+}
 /* Media Queries */
 @media (max-width: 909px) {
   .header .regLogBtn {
