@@ -20,7 +20,6 @@ module.exports.addOrder = async (req, res) => {
         payment_method_types: ["card"],
         mode: "payment",
         line_items: stripeData.map((item) => {
-          console.log(item.price * item.quantity);
           return {
             price_data: {
               currency: "pkr",

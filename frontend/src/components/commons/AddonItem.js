@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Add, Remove } from "@mui/icons-material";
 import addonContext from "../../context/addonContext";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRef } from "react";
-import { increaseProdAddon } from "../../redux/cart/cartSlice";
 
 export default function AddonItem({ addon, index, prod_id }) {
-  const dispatch = useDispatch();
   const ref = useRef();
   const { cartItems } = useSelector((store) => store.cart);
   const context = useContext(addonContext);
