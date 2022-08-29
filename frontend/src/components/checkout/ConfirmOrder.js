@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { clearCart } from "../../redux/cart/cartSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function ConfirmOrder({ phoneValue }) {
   const dispatch = useDispatch();
@@ -24,12 +26,15 @@ export default function ConfirmOrder({ phoneValue }) {
   const payment_context = useContext(paymentContext);
   const { paymentMethod } = payment_context;
 
+  // use the below state for stripe payment data
+  const [stripeData, setStripeData] = useState([]);
+
   // handle when clicked on back
   const handleBack = () => {
     navigate("/cart");
   };
   // handle when clicked on confirm order
-  const handleConfirm = async () => {
+  const handleConfirm = async (stripeData) => {
     if (locations.length < 1) {
       toast.error("Please Add Location To Continue!");
       return;
@@ -59,6 +64,7 @@ export default function ConfirmOrder({ phoneValue }) {
       email: getUser.email,
       amount: total,
       totalItems,
+      stripeData,
       payment_method: paymentMethod.value,
       address: radioValue.value,
       phone_no: phoneValue,
@@ -80,6 +86,52 @@ export default function ConfirmOrder({ phoneValue }) {
         }
       });
   };
+  useEffect(() => {
+    // custom object for stripe payment
+    cartItems.forEach((cart, index) => {
+      setStripeData((stripeData) => [
+        ...stripeData,
+        {
+          title: cart.product.title,
+          src: cart.product.src,
+          price: cart.product.price,
+          quantity: cart.quantity,
+        },
+      ]);
+      cart.addons.forEach((addon) => {
+        setStripeData((stripeData) => [
+          ...stripeData,
+          {
+            title: addon.addon.name,
+            src: addon.addon.pic,
+            price: addon.addon.price,
+            quantity: addon.quantity,
+          },
+        ]);
+      });
+      cart.softDrinks.forEach((soft) => {
+        setStripeData((stripeData) => [
+          ...stripeData,
+          {
+            title: soft.softDrink.name,
+            src: soft.softDrink.pic,
+            price: soft.softDrink.price,
+            quantity: soft.quantity,
+          },
+        ]);
+      });
+    });
+    setStripeData((stripeData) => [
+      ...stripeData,
+      {
+        title: "Delivery Charges",
+        src: "https://res.cloudinary.com/digaxe3sc/image/upload/v1661757053/kfc-clone/1_gpe30o.png",
+        price: 50,
+        quantity: 1,
+      },
+    ]);
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -105,7 +157,7 @@ export default function ConfirmOrder({ phoneValue }) {
           margin: "0 1rem",
         }}
         variant="contained"
-        onClick={handleConfirm}
+        onClick={() => handleConfirm(stripeData)}
       >
         Confirm Order
       </Button>

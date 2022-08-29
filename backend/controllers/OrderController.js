@@ -12,28 +12,26 @@ module.exports.addOrder = async (req, res) => {
       payment_method,
       address,
       phone_no,
+      stripeData,
     } = req.body;
-
-    const delivery = await stripe.prices.retrieve(
-      "price_1LbrIYBs8YauYzzxy8lYutfN"
-    );
 
     if (payment_method === "Credit/Debit Card") {
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
         mode: "payment",
-        line_items: product.map((item) => {
+        line_items: stripeData.map((item) => {
+          console.log(item.price * item.quantity);
           return {
             price_data: {
               currency: "pkr",
               product_data: {
-                name: item.product.title,
-                images: [item.product.src],
+                name: item.title,
+                images: [item.src],
               },
-              unit_amount: item.product.price * item.quantity + "00",
+              unit_amount: item.price * item.quantity + "00",
             },
 
-            description: `${item.product.title} x ${item.quantity}`,
+            description: `${item.title} x ${item.quantity}`,
             quantity: item.quantity,
           };
         }),

@@ -31,7 +31,7 @@ export default function CartProdItem({ item }) {
         <Grid
           item
           md={5}
-          xs={3}
+          xs={7}
           sm={6}
           textAlign="center"
           display="flex"
@@ -78,11 +78,11 @@ export default function CartProdItem({ item }) {
           item
           md={4}
           sm={2}
-          xs={5}
+          xs={3}
           textAlign="center"
           display="flex"
           alignItems="center"
-          justifyContent="flex-end"
+          justifyContent="flex-start"
         >
           <Grid
             item
@@ -95,9 +95,10 @@ export default function CartProdItem({ item }) {
                 <h4>Drinks</h4>
                 {item.softDrinks.map((drink, index) => {
                   return (
-                    <div key={index}>
-                      <span>{drink.softDrink.name}</span>
-                      <span>x{drink.quantity}</span>
+                    <div key={index} style={{ textAlign: "left" }}>
+                      <span>
+                        {drink.softDrink.name} x {drink.quantity}
+                      </span>
                     </div>
                   );
                 })}
@@ -111,7 +112,7 @@ export default function CartProdItem({ item }) {
         <Grid
           item
           md={3}
-          xs={3}
+          xs={2}
           sm={3}
           display="flex"
           alignItems="flex-end"
