@@ -26,6 +26,10 @@ app.use("/api/fav", favRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/order", orderRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -38,6 +42,6 @@ mongoose
     console.log(error.message);
   });
 
-const server = app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT || 5000, () => {
   console.log("Connected");
 });
