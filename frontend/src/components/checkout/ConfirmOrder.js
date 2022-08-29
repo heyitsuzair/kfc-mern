@@ -52,6 +52,8 @@ export default function ConfirmOrder({ phoneValue }) {
       return;
     }
 
+    toast.warning("Please Wait....");
+
     const getUser = JSON.parse(localStorage.getItem("user"));
 
     //add delivery charges in amount
@@ -69,12 +71,10 @@ export default function ConfirmOrder({ phoneValue }) {
       address: radioValue.value,
       phone_no: phoneValue,
     };
-    toast.warning("Please Wait....");
     // calling api
     await axios
       .post(process.env.REACT_APP_BACKEND + "/api/order/addOrder", data)
       .then((res) => {
-        console.log(res.data);
         if (res.data.error === false) {
           if (res.data.url) {
             localStorage.setItem("payment", JSON.stringify(res.data.data));
@@ -87,6 +87,7 @@ export default function ConfirmOrder({ phoneValue }) {
       });
   };
   useEffect(() => {
+    setStripeData([]);
     // custom object for stripe payment
     cartItems.forEach((cart, index) => {
       setStripeData((stripeData) => [
@@ -131,7 +132,7 @@ export default function ConfirmOrder({ phoneValue }) {
       },
     ]);
     //eslint-disable-next-line
-  }, []);
+  }, [cartItems]);
 
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>

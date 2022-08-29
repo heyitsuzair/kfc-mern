@@ -17,7 +17,7 @@ export default function Success() {
       )
       .then((res) => {
         if (res.data.error === false) {
-          toast.success("Order Placed");
+          toast.success("Order Placed!");
           dispatch(clearCart());
           navigate("/");
           localStorage.removeItem("payment");

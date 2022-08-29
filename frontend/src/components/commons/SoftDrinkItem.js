@@ -48,7 +48,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         })
       );
     } else {
-      if (quantity.quantity === 0) {
+      if (quantity.quantity === 1) {
         return;
       }
       const newQuantity = quantity.quantity - 1;

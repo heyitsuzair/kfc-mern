@@ -44,7 +44,7 @@ export default function AddonItem({ addon, index, prod_id }) {
         filteredAddon.concat({ addon: addon, quantity: newQuantity })
       );
     } else {
-      if (quantity.quantity === 0) {
+      if (quantity.quantity === 1) {
         return;
       }
       const newQuantity = quantity.quantity - 1;

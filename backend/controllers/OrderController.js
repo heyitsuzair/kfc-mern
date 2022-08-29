@@ -32,7 +32,7 @@ module.exports.addOrder = async (req, res) => {
             },
 
             description: `${item.title} x ${item.quantity}`,
-            quantity: item.quantity,
+            quantity: 1,
           };
         }),
         success_url: "http://localhost:3000/success",
@@ -50,7 +50,7 @@ module.exports.addOrder = async (req, res) => {
           payment_method,
           address,
           phone_no,
-          paymentStatus: "pending",
+          paymentStatus: "Pending",
         },
       });
     } else {

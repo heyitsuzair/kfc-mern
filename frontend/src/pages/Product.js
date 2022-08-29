@@ -85,7 +85,7 @@ export default function Product() {
   // handle When clicked on add to bucket button
   const handleAddToCart = () => {
     if ((!localStorage.getItem("user") && user === "") || user === null) {
-      toast.error("You Must Login To Add To Bucket!");
+      toast.error("Please Login To Add!");
       return;
     }
     if (text === "Save") {

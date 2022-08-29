@@ -6,7 +6,7 @@ import Spinner from "../components/commons/Spinner";
 export default function Success() {
   const navigate = useNavigate();
   useEffect(() => {
-    toast.error("Please Complete Payment To Proceed!");
+    toast.error("Payment Incomplete!");
     navigate("/");
     //eslint-disable-next-line
   }, []);

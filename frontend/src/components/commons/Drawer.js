@@ -42,6 +42,7 @@ export default function TemporaryDrawer() {
               sx={{
                 bgcolor: totalItems >= 1 ? "#e4002b !important" : "",
                 borderColor: totalItems >= 1 ? "#e4002b !important" : "",
+                marginRight: "1rem",
               }}
             >
               {totalItems}
