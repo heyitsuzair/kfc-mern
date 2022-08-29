@@ -54,7 +54,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
         .then((res) => {
           // filter the incoming response and check whether if this card item of product matches with the id of data or not
           const checkFav = res.data.getFav.filter((fav) => {
-            return fav.prod_id._id === id;
+            return fav._id === id;
           });
           // check if checkFav returns an array or not, if it returns an array, set this card favourite icon as true else set it to false
           checkFav.length > 0 ? setIsFav(true) : setIsFav(false);

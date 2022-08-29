@@ -27,11 +27,11 @@ module.exports.addOrder = async (req, res) => {
                 name: item.title,
                 images: [item.src],
               },
-              unit_amount: item.price * item.quantity + "00",
+              unit_amount: item.price + "00",
             },
 
             description: `${item.title} x ${item.quantity}`,
-            quantity: 1,
+            quantity: item.quantity,
           };
         }),
         success_url: "http://localhost:3000/success",

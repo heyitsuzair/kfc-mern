@@ -81,7 +81,7 @@ export default function Footer() {
               <strong>Location</strong>
             </div>
             <div className="footer-links">
-              <Link to="/">Find A Store</Link>
+              <Link to="/">Contact Us</Link>
             </div>
           </Grid>
           <Grid item xs={10} sm={10} md={3}>
