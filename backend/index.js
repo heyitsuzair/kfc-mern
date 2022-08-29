@@ -26,8 +26,8 @@ app.use("/api/fav", favRoutes);
 app.use("/api/location", locationRoutes);
 app.use("/api/order", orderRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
 
 mongoose
