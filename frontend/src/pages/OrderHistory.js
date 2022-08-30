@@ -44,10 +44,10 @@ export default function OrderHistory() {
                   <Grid item md={3} sm={3} xs={3}>
                     <strong>Payment Method</strong>
                   </Grid>
-                  <Grid item md={3} sm={3} xs={3}>
+                  <Grid item md={3} sm={3} xs={4}>
                     <strong>Address</strong>
                   </Grid>
-                  <Grid item md={3} sm={3} xs={3}>
+                  <Grid item md={3} sm={3} xs={2}>
                     <strong>Items</strong>
                   </Grid>
                   <Grid item md={3} sm={3} xs={3}>
@@ -73,10 +73,10 @@ export default function OrderHistory() {
                 <Grid item md={3} sm={3} xs={3}>
                   <strong>Payment Method</strong>
                 </Grid>
-                <Grid item md={3} sm={3} xs={3}>
+                <Grid item md={3} sm={3} xs={4}>
                   <strong>Address</strong>
                 </Grid>
-                <Grid item md={3} sm={3} xs={3}>
+                <Grid item md={3} sm={3} xs={2}>
                   <strong>Items</strong>
                 </Grid>
                 <Grid item md={3} sm={3} xs={3}>

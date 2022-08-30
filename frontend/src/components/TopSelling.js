@@ -28,7 +28,9 @@ export default function TopSelling() {
 
   return (
     <div className="top-selling">
-      <h2>Top Selling</h2>
+      <h2 style={{ textAlign: window.innerWidth < 768 ? "center" : "" }}>
+        Top Selling
+      </h2>
       <div className="card">
         <div className="cat-cards">
           <Box marginTop={6}>
@@ -37,10 +39,15 @@ export default function TopSelling() {
               container
               columnGap={{ xs: 0, sm: 4, md: 3 }}
               gap={1}
+              justifyContent={{
+                sm: "center",
+                xs: "center",
+                md: "flex-start",
+              }}
             >
               {topSell.slice(0, 4).map((prod, index) => {
                 return (
-                  <Grid key={index} item md={2.8} sm={5} xs={12}>
+                  <Grid key={index} item md={2.8} sm={5} xs={10}>
                     <Card
                       key={index}
                       title={prod.name}

@@ -370,7 +370,7 @@ body {
 }
 .grid-item h5 {
   color: #d4d4d4;
-  height: 2vh;
+  height: 4vh;
 }
 .grid-item .card-footer {
   display: flex;
@@ -864,13 +864,13 @@ body {
   .top-sel-img {
     margin: auto;
     padding: 0 0;
-    width: 120px;
+    width: 170px;
   }
   .plus-icon {
     display: block !important;
   }
   .grid .grid-item {
-    font-size: 9px;
+    font-size: 16px;
   }
   .grid-item .card-footer .add-to-bucket {
     display: none;
@@ -907,6 +907,10 @@ body {
   }
   .order-history {
     font-size: 10px;
+  }
+  .quantity {
+    text-align: center;
+    width: 7vw;
   }
 }
 @media (max-width: 464px) {

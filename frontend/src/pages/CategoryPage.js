@@ -51,7 +51,11 @@ export default function CategoryPage() {
             <CategoryPageSkeleton />
           ) : (
             <>
-              <h2>{products[0].catId.name}</h2>
+              <h2
+                style={{ textAlign: window.innerWidth < 768 ? "center" : "" }}
+              >
+                {products[0].catId.name}
+              </h2>
               <div className="cat-cards">
                 <Box marginTop={6}>
                   <Grid
@@ -59,10 +63,15 @@ export default function CategoryPage() {
                     container
                     columnGap={{ xs: 0, sm: 4, md: 3 }}
                     gap={1}
+                    justifyContent={{
+                      sm: "center",
+                      xs: "center",
+                      md: "flex-start",
+                    }}
                   >
                     {products.map((prod, index) => {
                       return (
-                        <Grid key={index} item md={2.8} sm={5} xs={12}>
+                        <Grid key={index} item md={2.8} sm={5} xs={10}>
                           <Card
                             key={index}
                             title={prod.name}

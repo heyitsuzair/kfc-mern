@@ -33,7 +33,7 @@ export default function PhoneNumber({ phoneValue, setPhoneValue }) {
             fontWeight: "bolder",
             marginBottom: "1rem",
             paddingRight: "0",
-            width: "50%",
+            width: "99%",
           }}
           inputProps={{ className: "floatingInput" }}
           InputLabelProps={{

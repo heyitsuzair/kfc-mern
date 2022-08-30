@@ -48,12 +48,12 @@ export default function MyKfc() {
                 display="flex"
                 gap=".7rem"
                 item
-                xs={2}
-                md={6}
-                sm={6}
+                xs={12}
+                md={12}
+                sm={12}
               >
-                <h1>Hello</h1>
-                <h1>{user.name}</h1>
+                <h3>Hello &#128512;</h3>
+                <h3>{user.name}</h3>
               </Grid>
             </Grid>
             <Grid item xs={12} md={12} sm={12}>

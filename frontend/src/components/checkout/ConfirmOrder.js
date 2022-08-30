@@ -156,6 +156,7 @@ export default function ConfirmOrder({ phoneValue }) {
           padding: ".8rem 2.6rem",
           backgroundColor: "#e4002b !important",
           margin: "0 1rem",
+          marginRight: "0",
         }}
         variant="contained"
         onClick={() => handleConfirm(stripeData)}

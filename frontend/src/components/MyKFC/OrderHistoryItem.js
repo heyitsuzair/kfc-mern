@@ -11,10 +11,10 @@ export default function OrderHistoryItem({ item }) {
       <Grid item md={3} xs={3} sm={3} textAlign="center">
         <span>{item.payment_method}</span>
       </Grid>
-      <Grid item md={3} xs={3} sm={3} textAlign="center">
+      <Grid item md={3} xs={4} sm={3} textAlign="center">
         <span>{item.address.substr(0, 30)}...</span>
       </Grid>
-      <Grid item md={3} xs={3} sm={3} textAlign="center">
+      <Grid item md={3} xs={2} sm={3} textAlign="center">
         <span>{item.totalItems}</span>
       </Grid>
       <Grid item md={3} xs={3} sm={3} textAlign="center">
