@@ -34,8 +34,12 @@ module.exports.addOrder = async (req, res) => {
             quantity: item.quantity,
           };
         }),
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/fail",
+        success_url: process.env.PORT
+          ? "https://kfc-mern-uzair.herokuapp.com/success"
+          : "http://localhost:3000/success",
+        cancel_url: process.env.PORT
+          ? "https://kfc-mern-uzair.herokuapp.com/fail"
+          : "http://localhost:3000/fail",
       });
 
       return res.status(200).json({
