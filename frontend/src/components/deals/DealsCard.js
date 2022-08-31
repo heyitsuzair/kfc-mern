@@ -4,7 +4,7 @@ export default function Deals({ src, name, classes, id }) {
   return (
     <div className="deals">
       <Link
-        to={`/cat/${id}`}
+        to={`/category/${name}`}
         style={{ color: "white", textDecoration: "none" }}
       >
         <div className="deals-inner">

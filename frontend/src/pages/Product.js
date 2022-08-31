@@ -15,8 +15,6 @@ import { useContext } from "react";
 import dealContext from "../context/dealContext";
 import DealSkeleton from "../components/deals/DealSkeleton";
 import addonContext from "../context/addonContext";
-import userContext from "../context/userContext";
-import { toast } from "react-toastify";
 import SoftDrinkCard from "../components/commons/SoftDrinkCard";
 import softDrinkContext from "../context/softDrinkContext";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,12 +31,14 @@ export default function Product() {
   const { getCats } = context;
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(true);
+
   // add to bucket text
   const [text, setText] = useState("Add To Bucket");
 
   // use follow context to get loading and addons to add in cart
   const addon_context = useContext(addonContext);
-  const { loading, setLoading, addonQuantity } = addon_context;
+  const { addonQuantity } = addon_context;
 
   // use the follow context to get softdrinks to add in cart
   const softDrinks_context = useContext(softDrinkContext);
@@ -48,10 +48,6 @@ export default function Product() {
   const [detail, setDetail] = useState([]);
   const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
-
-  // get user info and check whether it is null or not. If It is null. Dont Allow Add To Bucket
-  const userCont = useContext(userContext);
-  const { user } = userCont;
 
   // get product detail when page is loaded
   const getProdDetail = async (prodId) => {
@@ -80,14 +76,8 @@ export default function Product() {
     }
   };
 
-  const getUser = JSON.parse(localStorage.getItem("user"));
-
   // handle When clicked on add to bucket button
   const handleAddToCart = () => {
-    if ((!localStorage.getItem("user") && user === "") || user === null) {
-      toast.error("Please Login To Add!");
-      return;
-    }
     if (text === "Save") {
       dispatch(
         updateCartItem({
@@ -98,7 +88,6 @@ export default function Product() {
             src: detail.prodImg,
           },
           quantity: quantity,
-          email: getUser.email,
           addons: addonQuantity,
           softDrinks: softDrinksQuantity,
           prod_id: id,
@@ -114,7 +103,6 @@ export default function Product() {
             src: detail.prodImg,
           },
           quantity: quantity,
-          email: getUser.email,
           addons: addonQuantity,
           softDrinks: softDrinksQuantity,
           prod_id: id,
@@ -138,12 +126,17 @@ export default function Product() {
   };
 
   useEffect(() => {
+    setLoading(true);
     getCats();
     getProdDetail(id);
-    checkStorage(id);
 
     //eslint-disable-next-line
-  }, [id, cartItems]);
+  }, [id]);
+
+  useEffect(() => {
+    checkStorage(id);
+    //eslint-disable-next-line
+  }, [cartItems]);
 
   document.title = detail.name === undefined ? "Loading..." : detail.name;
   return (

@@ -24,10 +24,12 @@ module.exports.addProduct = async (req, res) => {
 };
 module.exports.getCatProds = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { name } = req.params;
+    const getId = await category.findOne({ name: name });
+
     const getCatProducts = await product
       .find({
-        catId: id,
+        catId: getId._id,
       })
       .populate({ path: "catId" });
     return res.status(200).json({ error: false, getCatProducts });

@@ -9,15 +9,11 @@ import { PersonOutline, ExitToApp } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import userContext from "../../context/userContext";
 import { useContext } from "react";
-import { useDispatch } from "react-redux";
-import { clearCart } from "../../redux/cart/cartSlice";
 
 export default function AccountMenu() {
   const context = useContext(userContext);
   const { setUser } = context;
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -34,8 +30,6 @@ export default function AccountMenu() {
     localStorage.removeItem("user");
     // navigate to login
     navigate("/login");
-    // set the cart state to its initial value
-    dispatch(clearCart());
   };
   const user = JSON.parse(localStorage.getItem("user"));
 

@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import userContext from "../../context/userContext";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { addToCart } from "../../redux/cart/cartSlice";
 
@@ -106,16 +105,11 @@ export default function Card({ src, title, desc, price, id, catName }) {
   // handle When clicked on add to bucket button
   const handleAddToCart = (id, e) => {
     e.preventDefault();
-    if ((!localStorage.getItem("user") && user === "") || user === null) {
-      toast.error("Please Login To Add!");
-      return;
-    }
 
     dispatch(
       addToCart({
         product: { price, title, id, src },
         quantity: 1,
-        email: getUser.email,
         addons: [],
         softDrinks: [],
         prod_id: id,

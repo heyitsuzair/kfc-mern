@@ -11,6 +11,8 @@ import ConfirmOrder from "../components/checkout/ConfirmOrder";
 import OrderTotal from "../components/checkout/OrderTotal";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 export default function Cart() {
   const context = useContext(locationContext);
   const { getLocations } = context;
@@ -22,13 +24,28 @@ export default function Cart() {
 
   const getUser = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    if (cartItems.length === 0 || getUser === null) {
+    if (cartItems.length === 0) {
       navigate("/");
       return;
     }
+    if (getUser === null) {
+      toast.error("Please Login To Checkout!");
+      navigate("/login");
+      return;
+    }
+
     getLocations(getUser.email);
     //eslint-disable-next-line
   }, [cartItems]);
+
+  useEffect(() => {
+    if (!getUser === null) {
+      cartItems.map((item) => {
+        return (item.email = getUser.email);
+      });
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <Container>

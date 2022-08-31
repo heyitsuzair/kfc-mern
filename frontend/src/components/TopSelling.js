@@ -13,7 +13,7 @@ export default function TopSelling() {
     await axios
       .get(
         process.env.REACT_APP_BACKEND +
-          `/api/product/getCatProds/62f64aa88383b6a625ff579d`
+          `/api/product/getCatProds/Signature%20Boxes`
       )
       .then((res) => {
         setTopSell(res.data.getCatProducts);

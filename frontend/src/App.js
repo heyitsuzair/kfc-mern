@@ -58,7 +58,10 @@ function App() {
                             path="/orderHistory"
                             element={<OrderHistory />}
                           />
-                          <Route path="/cat/:id" element={<CategoryPage />} />
+                          <Route
+                            path="/category/:name"
+                            element={<CategoryPage />}
+                          />
                           <Route path="/cart" element={<Cart />} />
                           <Route path="/delivery" element={<Checkout />} />
                         </Routes>

@@ -11,7 +11,7 @@ import softDrinkContext from "../context/softDrinkContext";
 import addonContext from "../context/addonContext";
 
 export default function CategoryPage() {
-  const { id } = useParams();
+  const { name } = useParams();
 
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
@@ -25,10 +25,15 @@ export default function CategoryPage() {
   // get all category products
   const getCatProds = async () => {
     await axios
-      .get(process.env.REACT_APP_BACKEND + `/api/product/getCatProds/${id}`)
+      .get(process.env.REACT_APP_BACKEND + `/api/product/getCatProds/${name}`)
       .then((res) => {
         setProducts(res.data.getCatProducts);
         setLoading(false);
+        window.history.replaceState(
+          null,
+          res.data.getCatProducts[0].catId.name,
+          "/category/" + res.data.getCatProducts[0].catId.name
+        );
       });
     //eslint-disable-next-line
   };
@@ -38,9 +43,12 @@ export default function CategoryPage() {
     window.scroll(0, 0);
     setAddonQuantity([]);
     setSoftDrinksQuantity([]);
+
     //eslint-disable-next-line
-  }, [id]);
-  document.title = products[0] === undefined ? "Deals" : products[0].catId.name;
+  }, [name]);
+  document.title =
+    products[0] === undefined ? "Loading..." : products[0].catId.name;
+
   return (
     <>
       <Container>
