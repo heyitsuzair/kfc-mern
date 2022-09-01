@@ -22,7 +22,7 @@ export default function CartProdItem({ item }) {
     } else {
       dispatch(decreaseItemQuantity(item.prod_id));
       setQuantity(quantity - 1);
-      if (item.quantity === 2) {
+      if (item.quantity < 2) {
         setDel(true);
         return;
       }
