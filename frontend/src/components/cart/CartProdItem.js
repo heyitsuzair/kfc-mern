@@ -9,16 +9,23 @@ import {
   delCartItem,
 } from "../../redux/cart/cartSlice";
 export default function CartProdItem({ item }) {
+  const [del, setDel] = useState(false);
+
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   // handle when clicked on plus or minus icon
   const handleQuantity = (condition) => {
     if (condition === "+") {
+      setDel(false);
       setQuantity(quantity + 1);
       dispatch(increaseItemQuantity(item.prod_id));
     } else {
       dispatch(decreaseItemQuantity(item.prod_id));
-      return quantity === 1 ? true : setQuantity(quantity - 1);
+      setQuantity(quantity - 1);
+      if (item.quantity === 2) {
+        setDel(true);
+        return;
+      }
     }
   };
   //  handle when clicked on delete button
@@ -50,15 +57,27 @@ export default function CartProdItem({ item }) {
             <strong>{item.product.title}</strong>
             <span>Rs {item.product.price}</span>
             <div className="cart-prod-item-quan" style={{ display: "flex" }}>
-              <Remove
-                sx={{
-                  color: "#e4002b",
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={() => handleQuantity("-")}
-              />
+              {del ? (
+                <DeleteOutlined
+                  onClick={() => removeFromCart()}
+                  sx={{
+                    color: "#e4002b",
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                />
+              ) : (
+                <Remove
+                  sx={{
+                    color: "#e4002b",
+                    "&:hover": {
+                      cursor: "pointer",
+                    },
+                  }}
+                  onClick={() => handleQuantity("-")}
+                />
+              )}
               <span style={{ width: "1rem", textAlign: "center" }}>
                 {item.quantity}
               </span>

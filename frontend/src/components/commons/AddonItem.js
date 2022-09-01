@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, DeleteOutline, Remove } from "@mui/icons-material";
 import addonContext from "../../context/addonContext";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
@@ -8,6 +8,8 @@ export default function AddonItem({ addon, index, prod_id }) {
   const ref = useRef();
   const { cartItems } = useSelector((store) => store.cart);
   const context = useContext(addonContext);
+  // delete icon trigger
+  const [del, setDel] = useState(false);
 
   const { addonQuantity, setAddonQuantity } = context;
   const [quantity, setQuantity] = useState({
@@ -23,6 +25,7 @@ export default function AddonItem({ addon, index, prod_id }) {
       quantity: 1,
     });
     setAddonQuantity(addonQuantity.concat({ addon: addon, quantity: 1 }));
+    setDel(false);
   };
 
   //handle when clicked on either + or -
@@ -32,6 +35,7 @@ export default function AddonItem({ addon, index, prod_id }) {
       return addonCheck.addon._id !== addon._id;
     });
     if (operator === "+") {
+      setDel(false);
       const newQuantity = quantity.quantity + 1;
       setQuantity({
         addon: addon,
@@ -42,7 +46,9 @@ export default function AddonItem({ addon, index, prod_id }) {
         filteredAddon.concat({ addon: addon, quantity: newQuantity })
       );
     } else {
-      if (quantity.quantity === 1) {
+      if (quantity.quantity < 2) {
+        // if quantity equals to one show delete button
+        setDel(true);
         return;
       }
       const newQuantity = quantity.quantity - 1;
@@ -66,10 +72,14 @@ export default function AddonItem({ addon, index, prod_id }) {
     const checkAddonInner = checkFilter.addons.find(
       (item) => item.addon._id === addon._id
     );
-
     if (checkAddonInner === undefined) {
       return;
     } else {
+      // removing incoming addon from addon quantity and adding it again. Purpose:When someone use browser navigation button it will not be added again and again
+      const filteredAddon = addonQuantity.filter((addonCheck) => {
+        return addonCheck.addon._id !== addon._id;
+      });
+      setAddonQuantity(filteredAddon);
       ref.current.parentElement.style.display = "none";
       ref.current.parentElement.nextSibling.style.display = "flex";
 
@@ -83,6 +93,16 @@ export default function AddonItem({ addon, index, prod_id }) {
         },
       ]);
     }
+  };
+
+  // handle when clicked on delete icon
+  const removeAddon = (addon) => {
+    const newAddons = addonQuantity.filter((item) => {
+      return item.addon._id !== addon._id;
+    });
+    setAddonQuantity(newAddons);
+    ref.current.parentElement.style.display = "flex";
+    ref.current.parentElement.nextSibling.style.display = "none";
   };
 
   useEffect(() => {
@@ -112,7 +132,12 @@ export default function AddonItem({ addon, index, prod_id }) {
         className="addon-quantity"
         style={{ display: "none", width: "15vw", justifyContent: "center" }}
       >
-        <Remove onClick={(e) => handleQuantity("-", e, addon)} />
+        {del ? (
+          <DeleteOutline onClick={() => removeAddon(addon)} />
+        ) : (
+          <Remove onClick={(e) => handleQuantity("-", e, addon)} />
+        )}
+
         <span>{quantity.quantity}</span>
         <Add onClick={(e) => handleQuantity("+", e, addon)} />
       </div>
