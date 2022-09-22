@@ -17,6 +17,9 @@ export default function Cart() {
     }
     //eslint-disable-next-line
   }, [cartItems]);
+
+  document.title = "Bucket";
+
   return (
     <Container>
       <div className="cart">

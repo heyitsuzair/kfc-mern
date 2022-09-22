@@ -47,6 +47,8 @@ export default function Cart() {
     //eslint-disable-next-line
   }, []);
 
+  document.title = "Checkout";
+
   return (
     <Container>
       <div className="cart">

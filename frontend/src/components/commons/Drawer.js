@@ -158,7 +158,7 @@ export default function TemporaryDrawer() {
                 onClick={toggleDrawer("right", false)}
               >
                 <Button variant="contained" className="view-cart-btn">
-                  View Cart
+                  View Bucket
                 </Button>
               </Link>
             </div>
