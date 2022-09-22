@@ -1,1 +1,0 @@
-This project is developed by Muhammad Uzair Using MONGODB, EXPRESS JS, REACT JS, NODE JS. It provides all functonalities KFC is providing including stripe, login with google, google maps integeration, geo reversing. It is live at https://kfc-mern-uzair.herokuapp.com Made With :heart: By Uzair
