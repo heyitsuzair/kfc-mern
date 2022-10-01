@@ -30,7 +30,7 @@ export default function LanguageSwitch() {
               currentLangCode === lang.code && "switch-active"
             }`}
           >
-            {lang.name}
+            <span>{lang.name}</span>
           </div>
         );
       })}

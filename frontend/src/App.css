@@ -27,7 +27,7 @@ body {
 .language-switcher {
   display: flex;
   position: fixed;
-  right: -50px;
+  right: -65px;
   top: 50%;
   transform: translateY(-50%) rotate(90deg);
   z-index: 1035;
@@ -45,11 +45,14 @@ body {
   cursor: pointer;
 }
 .switch-ur-PK {
-  padding: 0.4rem 2rem;
+  padding: 0.4rem 1.2rem;
   font-size: 15px;
   border: 2px solid var(--color-red);
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
+}
+.switch-ur-PK span {
+  padding: 0 1rem;
 }
 .switch-en {
   padding: 0.4rem 1.2rem;
