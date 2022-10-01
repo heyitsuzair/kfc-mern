@@ -3,6 +3,7 @@ import { Add, DeleteOutline, Remove } from "@mui/icons-material";
 import addonContext from "../../context/addonContext";
 import { useSelector } from "react-redux";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function AddonItem({ addon, index, prod_id }) {
   const ref = useRef();
@@ -16,6 +17,7 @@ export default function AddonItem({ addon, index, prod_id }) {
     addon: "",
     quantity: "",
   });
+  const { t } = useTranslation();
   // handle whcn clicked on add icon
   const handleAdd = (e, addon) => {
     e.target.parentElement.style.display = "none";
@@ -125,7 +127,7 @@ export default function AddonItem({ addon, index, prod_id }) {
         style={{ display: "flex", width: "15vw", justifyContent: "center" }}
       >
         <span onClick={(e) => handleAdd(e, addon)} ref={ref}>
-          + Add
+          + {t("add")}
         </span>
       </div>
       <div

@@ -10,6 +10,7 @@ import userContext from "../../context/userContext";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { addToCart } from "../../redux/cart/cartSlice";
+import { useTranslation } from "react-i18next";
 
 export default function Card({ src, title, desc, price, id, catName }) {
   const hour = new Date().getHours();
@@ -31,6 +32,9 @@ export default function Card({ src, title, desc, price, id, catName }) {
 
   // get logged in user
   const getUser = JSON.parse(localStorage.getItem("user"));
+
+  // translation
+  const { t } = useTranslation();
 
   // check the time if it is midnight or not
   const checkMidnight = () => {
@@ -180,7 +184,7 @@ export default function Card({ src, title, desc, price, id, catName }) {
               disabled={btn}
               onClick={(e) => handleAddToCart(id, e)}
             >
-              <strong>Add To Bucket</strong>
+              <strong>{t("addToBucket")}</strong>
             </Button>
           ) : (
             <Edit className="edit-icon" sx={{ color: "#e4002b" }} />

@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { Add, Remove, DeleteOutline } from "@mui/icons-material";
 import softDrinkContext from "../../context/softDrinkContext";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function AddonItem({ softDrink, index, prod_id }) {
   const context = useContext(softDrinkContext);
@@ -16,6 +17,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
     softDrink: "",
     quantity: "",
   });
+  const { t } = useTranslation();
   // handle whcn clicked on add icon
   const handleAdd = (e, softDrink) => {
     e.target.parentElement.style.display = "none";
@@ -135,7 +137,7 @@ export default function AddonItem({ softDrink, index, prod_id }) {
         style={{ display: "flex", width: "15vw", justifyContent: "center" }}
       >
         <span onClick={(e) => handleAdd(e, softDrink)} ref={ref}>
-          + Add
+          + {t("add")}
         </span>
       </div>
       <div

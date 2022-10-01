@@ -4,6 +4,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
 import SoftDrinkItem from "./SoftDrinkItem";
 import softDrinkContext from "../../context/softDrinkContext";
+import { useTranslation } from "react-i18next";
 
 export default function AddonCard({ title, prod_id }) {
   const [show, setShow] = useState("none");
@@ -14,6 +15,8 @@ export default function AddonCard({ title, prod_id }) {
     text: "View More (1)",
     icon: <KeyboardArrowDown />,
   });
+
+  const { t } = useTranslation();
   // handle click on view more and less more
   const handleClick = () => {
     show === "none" ? setShow("flex") : setShow("none");
@@ -37,7 +40,7 @@ export default function AddonCard({ title, prod_id }) {
     <Grid className="addons-container softDrink-container">
       <div className="add-ons">
         <h3>{title}</h3>
-        <span className="optional">Optional</span>
+        <span className="optional">{t("optional")}</span>
       </div>
       <div className="addon-item">
         {softDrinks.slice(0, 4).map((softDrink, index) => {

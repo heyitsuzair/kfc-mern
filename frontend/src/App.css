@@ -23,7 +23,46 @@ body {
 ::-webkit-scrollbar-track {
   background: transparent;
 }
-/* Loading Spinenr */
+/* Language Switcher */
+.language-switcher {
+  display: flex;
+  position: fixed;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  z-index: 1035;
+  transform: rotate(90deg);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.switch-en,
+.switch-ur-PK {
+  color: var(--color-primary);
+  font-family: "Poppins";
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.switch-ur-PK {
+  padding: 0.4rem 2rem;
+  font-size: 15px;
+  border: 2px solid var(--color-red);
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+.switch-en {
+  padding: 0.4rem 1.2rem;
+  font-size: 15px;
+  border: 2px solid var(--color-red);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.switch-active {
+  background-color: var(--color-red);
+  color: white;
+}
+/* Loading Spinner */
 .spinner {
   height: 75vh;
   display: flex;

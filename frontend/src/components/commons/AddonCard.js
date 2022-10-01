@@ -4,9 +4,11 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { useState } from "react";
 import AddonItem from "./AddonItem";
 import addonContext from "../../context/addonContext";
+import { useTranslation } from "react-i18next";
 
 export default function AddonCard({ title, prod_id }) {
   const [show, setShow] = useState("none");
+  const { t } = useTranslation();
   // use follow context to get all addons
   const context = useContext(addonContext);
   const { getAllAddons, addons } = context;
@@ -37,7 +39,7 @@ export default function AddonCard({ title, prod_id }) {
     <Grid className="addons-container">
       <div className="add-ons">
         <h3>{title}</h3>
-        <span className="optional">Optional</span>
+        <span className="optional">{t("optional")}</span>
       </div>
       <div className="addon-item">
         {addons.slice(0, 2).map((addon, index) => {

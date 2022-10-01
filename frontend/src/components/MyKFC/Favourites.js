@@ -2,6 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import FavouritesCard from "./FavouritesCard";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 export default function Favourites({ favs, setFavs }) {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -28,9 +29,11 @@ export default function Favourites({ favs, setFavs }) {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="favourites">
-      <h1>Favourites</h1>
+      <h1>{t("fav")}</h1>
       <Grid
         container
         columnSpacing={{ md: 0, xs: 0, sm: 2 }}
@@ -39,7 +42,7 @@ export default function Favourites({ favs, setFavs }) {
       >
         {favs.length < 1 ? (
           <Grid item md={12} sm={12} xs={12} marginBottom="1rem">
-            <h4>No Product Found</h4>
+            <h4>{t("noProd")}</h4>
           </Grid>
         ) : (
           ""

@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
 import userContext from "../../context/userContext";
+import { useTranslation } from "react-i18next";
 
 export default function SimpleAccordion() {
   const context = useContext(locationContext);
@@ -36,6 +37,8 @@ export default function SimpleAccordion() {
     setTagIndex(null);
   };
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     getLocations(getUser.email);
     //eslint-disable-next-line
@@ -58,10 +61,10 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <h3>Personal Info</h3>
+          <h3>{t("personalInfo")}</h3>
         </AccordionSummary>
         <AccordionDetails>
-          <h3>Email</h3>
+          <h3>{t("email")}</h3>
           <span style={{ fontFamily: "Poppins" }}>{getUser.email}</span>
         </AccordionDetails>
       </Accordion>
@@ -80,7 +83,7 @@ export default function SimpleAccordion() {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <h3>My Addresses</h3>
+          <h3>{t("myAddresses")}</h3>
         </AccordionSummary>
         <AccordionDetails>
           <Grid
@@ -125,7 +128,7 @@ export default function SimpleAccordion() {
                 <AddCircle />
               </div>
               <div className="select-dif-loc" onClick={clickSelecDifLoc}>
-                <span>Select A Different Location</span>
+                <span>{t("selectADifLocation")}</span>
               </div>
             </Grid>
           </Grid>

@@ -4,7 +4,6 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 import locationContext from "../../context/locationContext";
-
 export default class AutoComplete extends React.Component {
   static contextType = locationContext;
 

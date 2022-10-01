@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import userContext from "../context/userContext";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export default function Login() {
   const navigate = useNavigate();
   const context = useContext(userContext);
@@ -25,7 +26,7 @@ export default function Login() {
     localStorage.setItem("user", JSON.stringify(userObj));
     navigate("/");
   };
-
+  const { t } = useTranslation();
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
@@ -59,7 +60,7 @@ export default function Login() {
           </Grid>
           <Grid item md={6} sm={6} xs={12} textAlign="center">
             <h1 style={{ marginBottom: "1rem", textAlign: "left" }}>
-              Welcome!
+              {t("welcome")}!
             </h1>
             <form>
               <TextField

@@ -7,6 +7,7 @@ import { useEffect, useContext } from "react";
 import userContext from "../../context/userContext";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
 export default function TemporaryDrawer() {
   const { cartItems, totalItems, amount } = useSelector((state) => state.cart);
@@ -30,6 +31,8 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
+  const { t } = useTranslation();
+
   const list = (anchor) => (
     <>
       <Box className="drawer-main" role="presentation">
@@ -47,7 +50,7 @@ export default function TemporaryDrawer() {
             >
               {totalItems}
             </Button>
-            <strong> Your Bucket</strong>
+            <strong>{t("yourBucket")}</strong>
           </div>
           <div>
             <strong
@@ -102,7 +105,7 @@ export default function TemporaryDrawer() {
                 color: "gray",
               }}
             />
-            <strong>You haven’t added any items in cart yet</strong>
+            <strong>{t("emptyBucket")}</strong>
           </Box>
         )}
       </Box>
@@ -158,7 +161,7 @@ export default function TemporaryDrawer() {
                 onClick={toggleDrawer("right", false)}
               >
                 <Button variant="contained" className="view-cart-btn">
-                  View Bucket
+                  {t("viewBucket")}
                 </Button>
               </Link>
             </div>

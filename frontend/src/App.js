@@ -24,6 +24,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Success from "./pages/Success";
 import Fail from "./pages/Fail";
+import LanguageSwitch from "./components/commons/LanguageSwitch";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                 <UserState>
                   <PaymentState>
                     <SoftDrinkState>
+                      <LanguageSwitch />
                       <ToastContainer
                         autoClose={2000}
                         position="top-right"

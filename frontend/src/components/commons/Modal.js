@@ -5,6 +5,7 @@ import Map from "./Map";
 import AutoComplete from "./AutoComplete";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
+import { useTranslation } from "react-i18next";
 const style = {
   position: "absolute",
   top: "50%",
@@ -18,6 +19,7 @@ const style = {
   height: window.innerWidth < 768 ? "85vh" : "90vh",
 };
 export default function ModalFunc() {
+  const { t } = useTranslation();
   const context = useContext(locationContext);
   const { getLocation } = context;
   const [open, setOpen] = React.useState(false);
@@ -32,7 +34,7 @@ export default function ModalFunc() {
   return (
     <div>
       <div className="sel-loc" onClick={handleOpen}>
-        Select Location <ArrowDropDown />
+        {t("selectLocation")} <ArrowDropDown />
       </div>
 
       <Modal
@@ -48,7 +50,7 @@ export default function ModalFunc() {
       >
         <Box sx={style} id="modal">
           <Typography id="modal-modal-title" variant="h4" component="h2">
-            Select Location
+            {t("selectLocation")}
           </Typography>
 
           <Map />
@@ -60,7 +62,7 @@ export default function ModalFunc() {
             onClick={handleClick}
           >
             <LocationSearching style={{ color: "#e4002b" }} />
-            <strong>Select My Current Location</strong>
+            <strong>{t("selectCurrentLocation")}</strong>
           </Box>
           <Box
             sx={{
@@ -84,7 +86,7 @@ export default function ModalFunc() {
               variant="outlined"
               onClick={handleClose}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button
               sx={{
@@ -101,7 +103,7 @@ export default function ModalFunc() {
               variant="outlined"
               onClick={handleClose}
             >
-              Select
+              {t("select")}
             </Button>
           </Box>
         </Box>

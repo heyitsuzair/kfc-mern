@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function MyKfcAddLocation() {
   const context = useContext(locationContext);
@@ -35,6 +36,9 @@ export default function MyKfcAddLocation() {
       second: "flex",
     });
   };
+
+  const { t } = useTranslation();
+
   // handle when clicked on done button
   const handleDone = async () => {
     if (tagIndex === null) {
@@ -106,13 +110,13 @@ export default function MyKfcAddLocation() {
   };
   const tags = [
     {
-      tag: "Home",
+      tag: t("home"),
     },
     {
-      tag: "Office",
+      tag: t("office"),
     },
     {
-      tag: "Partner",
+      tag: t("partner"),
     },
   ];
 
@@ -190,7 +194,7 @@ export default function MyKfcAddLocation() {
           variant="outlined"
           onClick={handleCancel}
         >
-          Cancel
+          {t("cancel")}
         </Button>
         <Button
           sx={{
@@ -204,7 +208,7 @@ export default function MyKfcAddLocation() {
           variant="contained"
           onClick={handleDone}
         >
-          Done
+          {t("save")}
         </Button>
       </Grid>
     </>

@@ -1,7 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import PaymentMethAvailable from "./PaymentMethAvailable";
 
 export default function PaymentMethod() {
+  const { t } = useTranslation();
   return (
     <div className="checkout-item">
       <div
@@ -12,7 +14,7 @@ export default function PaymentMethod() {
           flexDirection: "column",
         }}
       >
-        <strong>Payment Method</strong>
+        <strong>{t("paymentMethod")}</strong>
       </div>
       <PaymentMethAvailable />
     </div>

@@ -10,6 +10,7 @@ import axios from "axios";
 import locationContext from "../../context/locationContext";
 import { useLocation } from "react-router-dom";
 import RadioBtn from "../commons/RadioBtn";
+import { useTranslation } from "react-i18next";
 
 export default function MyKfcLocationItem({ location, index }) {
   const [address, setAddress] = useState("");
@@ -75,6 +76,8 @@ export default function MyKfcLocationItem({ location, index }) {
     setRadioValue({ value: location.street + "," + address, index: index });
   };
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     getAddress(location.lat, location.lng);
   }, [location.lat, location.lng]);
@@ -94,9 +97,9 @@ export default function MyKfcLocationItem({ location, index }) {
         </div>
       )}
       <div className="address">
-        <h3>{location.tag === "0" ? "Home" : ""}</h3>
-        <h3>{location.tag === "1" ? "Office" : ""}</h3>
-        <h3>{location.tag === "2" ? "Partner" : ""}</h3>
+        <h3>{location.tag === "0" ? t("home") : ""}</h3>
+        <h3>{location.tag === "1" ? t("office") : ""}</h3>
+        <h3>{location.tag === "2" ? t("partner") : ""}</h3>
         <span style={{ fontFamily: "Poppins" }}>
           {location.street}, {address.length < 1 ? "Not Available" : address}
         </span>
@@ -107,11 +110,11 @@ export default function MyKfcLocationItem({ location, index }) {
         <div className="edit-address">
           <div className="del-add" onClick={() => handleDelete(location._id)}>
             <Delete />
-            Remove
+            {t("remove")}
           </div>
           <div className="edit-add" onClick={() => handleEdit(location._id)}>
             <Edit />
-            Edit
+            {t("edit")}
           </div>
         </div>
       )}

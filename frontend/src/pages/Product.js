@@ -24,12 +24,14 @@ import {
   increaseItemQuantity,
   decreaseItemQuantity,
 } from "../redux/cart/cartSlice";
+import { useTranslation } from "react-i18next";
 
 export default function Product() {
   const { cartItems } = useSelector((store) => store.cart);
   const context = useContext(dealContext);
   const { getCats } = context;
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
 
@@ -78,7 +80,9 @@ export default function Product() {
 
   // handle When clicked on add to bucket button
   const handleAddToCart = () => {
-    if (text === "Save") {
+    // console.log(text);
+    // return;
+    if (text === "محفوظ کریں" || text === "save") {
       dispatch(
         updateCartItem({
           product: {
@@ -117,10 +121,10 @@ export default function Product() {
       return item.prod_id === prod_id;
     });
     if (filter.length > 0) {
-      setText("Save");
+      setText(t("save"));
       setQuantity(filter[0].quantity);
     } else {
-      setText("Add To Bucket");
+      setText(t("addToBucket"));
       setQuantity(1);
     }
   };
@@ -136,7 +140,7 @@ export default function Product() {
   useEffect(() => {
     checkStorage(id);
     //eslint-disable-next-line
-  }, [cartItems]);
+  }, [cartItems, t]);
 
   document.title = detail.name === undefined ? "Loading..." : detail.name;
   return (
@@ -230,10 +234,10 @@ export default function Product() {
                 columnSpacing={{ xs: 3, sm: 3, md: 3 }}
               >
                 <Grid item sm={6} xs={12} md={4}>
-                  <AddonCard title="Add Ons" prod_id={id} />
+                  <AddonCard title={t("addons")} prod_id={id} />
                 </Grid>
                 <Grid item sm={6} xs={12} md={4}>
-                  <SoftDrinkCard title="Add a Soft Drink" prod_id={id} />
+                  <SoftDrinkCard title={t("softDrink")} prod_id={id} />
                 </Grid>
               </Grid>
             </Box>

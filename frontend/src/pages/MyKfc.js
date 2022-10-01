@@ -6,6 +6,7 @@ import PastOrders from "../components/MyKFC/PastOrders";
 import Favourites from "../components/MyKFC/Favourites";
 import { useNavigate } from "react-router-dom";
 import MyKFCSkeleton from "../components/MyKFC/MyKFCSkeleton";
+import { useTranslation } from "react-i18next";
 import axios from "axios";
 export default function MyKfc() {
   document.title = "My KFC";
@@ -26,6 +27,7 @@ export default function MyKfc() {
       console.log(error);
     }
   };
+  const { t } = useTranslation();
   useEffect(() => {
     if (!localStorage.getItem("user")) {
       navigate("/login");
@@ -52,7 +54,7 @@ export default function MyKfc() {
                 md={12}
                 sm={12}
               >
-                <h3>Hello &#128512;</h3>
+                <h3>{t("hello")} &#128512;</h3>
                 <h3>{user.name}</h3>
               </Grid>
             </Grid>

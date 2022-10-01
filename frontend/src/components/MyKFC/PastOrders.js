@@ -2,7 +2,10 @@ import React from "react";
 import { Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import OrderHistory from "../../pages/OrderHistory";
+import { useTranslation } from "react-i18next";
 export default function PastOrders() {
+  const { t } = useTranslation();
+
   return (
     <>
       <Grid
@@ -11,9 +14,9 @@ export default function PastOrders() {
         justifyContent="space-between"
         display="flex"
       >
-        <h1>Past Orders</h1>
+        <h1>{t("pastOrders")}</h1>
         <Link to="/orderHistory" className="view-all">
-          View All
+          {t("viewAll")}
         </Link>
       </Grid>
       <div className="past-orders">

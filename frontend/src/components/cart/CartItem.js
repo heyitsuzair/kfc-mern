@@ -16,9 +16,11 @@ import {
   decreaseItemQuantity,
 } from "../../redux/cart/cartSlice";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 export default function CartItem({ item }) {
   const ref = useRef();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
   const [icon, setIcon] = useState("Down");
@@ -140,12 +142,12 @@ export default function CartItem({ item }) {
                 flexDirection="column"
               >
                 <Grid item sm={12} xs={12} md={12} marginBottom={5}>
-                  <AddonCard title="Add Ons" prod_id={item.prod_id} />
+                  <AddonCard title={t("addons")} prod_id={item.prod_id} />
                 </Grid>
                 <hr className="cart-item-hr" />
                 <Grid item sm={12} xs={12} md={12} marginBottom={5}>
                   <SoftDrinkCard
-                    title="Add a Soft Drink"
+                    title={t("softDrink")}
                     prod_id={item.prod_id}
                   />
                 </Grid>

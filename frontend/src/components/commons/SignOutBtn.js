@@ -9,6 +9,7 @@ import { PersonOutline, ExitToApp } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import userContext from "../../context/userContext";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function AccountMenu() {
   const context = useContext(userContext);
@@ -33,10 +34,12 @@ export default function AccountMenu() {
   };
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const { t } = useTranslation();
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <Tooltip title="Account settings">
+        <Tooltip title="My KFC">
           <IconButton
             onClick={handleClick}
             size="small"
@@ -92,7 +95,7 @@ export default function AccountMenu() {
             className="menu-item"
             sx={{ fontFamily: "Poppins !important" }}
           >
-            <PersonOutline /> <span>Profile</span>
+            <PersonOutline /> <span>{t("profile")}</span>
           </MenuItem>
         </Link>
         <div onClick={handleSignout}>
@@ -100,7 +103,7 @@ export default function AccountMenu() {
             className="menu-item"
             sx={{ fontFamily: "Poppins !important", color: "white" }}
           >
-            <ExitToApp /> <span>Logout</span>
+            <ExitToApp /> <span>{t("logout")}</span>
           </MenuItem>
         </div>
       </Menu>

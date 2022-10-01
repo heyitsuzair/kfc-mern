@@ -11,18 +11,21 @@ import Drawer from "./Drawer";
 import { Link } from "react-router-dom";
 import SignOutBtn from "./SignOutBtn";
 import userContext from "../../context/userContext";
+import { useTranslation } from "react-i18next";
+import cookies from "js-cookie";
 
 export default function Header() {
+  const { t } = useTranslation();
   const context = useContext(locationContext);
   const { getLocation } = context;
   const context2 = useContext(userContext);
   const { user } = context2;
-
+  const currentLangCode = cookies.get("i18next") || "en";
   useEffect(() => {
     getLocation();
     // getCartInfo();
     //eslint-disable-next-line
-  }, [user, localStorage.getItem("user")]);
+  }, [user, localStorage.getItem("user"), currentLangCode]);
 
   return (
     <div className="header">
@@ -35,7 +38,7 @@ export default function Header() {
         <div className="btn-header">
           <Button variant="contained" disableElevation>
             <img src={rider} alt="Rider" />
-            <strong style={{ marginLeft: "10px" }}> Delivery</strong>
+            <strong style={{ marginLeft: "10px" }}> {t("deliveryBtn")}</strong>
           </Button>
         </div>
         <div className="select-location-header">
@@ -50,7 +53,8 @@ export default function Header() {
         {localStorage.getItem("user") === null ? (
           <Link to="/login" style={{ textDecoration: "none" }}>
             <Button variant="contained" className="regLogBtn">
-              <strong>Register / Sign In</strong>
+              <strong>{t("registerBtn")} </strong>
+              {/* <strong>Register </strong> */}
             </Button>
           </Link>
         ) : (

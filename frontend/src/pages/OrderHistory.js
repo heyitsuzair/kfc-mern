@@ -4,6 +4,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Grid } from "@mui/material";
 import OrderHistoryItem from "../components/MyKFC/OrderHistoryItem";
+import { useTranslation } from "react-i18next";
 export default function OrderHistory() {
   const navigate = useNavigate();
 
@@ -20,6 +21,8 @@ export default function OrderHistory() {
       .then((res) => setOrders(res.data));
   };
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (!localStorage.getItem("user")) {
       navigate("/login");
@@ -34,24 +37,24 @@ export default function OrderHistory() {
     <div>
       {location.pathname === "/orderHistory" ? (
         <Container>
-          <h1>Order History</h1>
+          <h1>{t("pastOrders")}</h1>
           <div className="order-history">
             {orders.length < 1 ? (
-              <span>You Have No Order History Right Now.</span>
+              <span>{t("noOrder")}</span>
             ) : (
               <>
                 <Grid container display="flex" justifyContent="space-around">
                   <Grid item md={3} sm={3} xs={3}>
-                    <strong>Payment Method</strong>
+                    <strong>{t("paymentMethod")}</strong>
                   </Grid>
                   <Grid item md={3} sm={3} xs={4}>
-                    <strong>Address</strong>
+                    <strong>{t("address")}</strong>
                   </Grid>
                   <Grid item md={3} sm={3} xs={2}>
-                    <strong>Items</strong>
+                    <strong>{t("items")}</strong>
                   </Grid>
                   <Grid item md={3} sm={3} xs={3}>
-                    <strong>Sub Total</strong>
+                    <strong>{t("subTotal")}</strong>
                   </Grid>
                 </Grid>
                 <div>
@@ -66,25 +69,25 @@ export default function OrderHistory() {
       ) : (
         <div className="order-history">
           {orders.length < 1 ? (
-            <span>You Have No Order History Right Now.</span>
+            <span>{t("noOrder")}</span>
           ) : (
             <>
               <Grid container display="flex" justifyContent="space-around">
                 <Grid item md={3} sm={3} xs={3}>
-                  <strong>Payment Method</strong>
+                  <strong>{t("paymentMethod")}</strong>
                 </Grid>
                 <Grid item md={3} sm={3} xs={4}>
-                  <strong>Address</strong>
+                  <strong>{t("address")}</strong>
                 </Grid>
                 <Grid item md={3} sm={3} xs={2}>
-                  <strong>Items</strong>
+                  <strong>{t("items")}</strong>
                 </Grid>
                 <Grid item md={3} sm={3} xs={3}>
-                  <strong>Sub Total</strong>
+                  <strong>{t("subTotal")}</strong>
                 </Grid>
               </Grid>
               <div>
-                {orders.map((item, index) => {
+                {orders.slice(0, 3).map((item, index) => {
                   return <OrderHistoryItem key={index} item={item} />;
                 })}
               </div>

@@ -4,34 +4,36 @@ import MyKfcLocations from "../MyKFC/MyKfcLocations";
 import { useContext } from "react";
 import locationContext from "../../context/locationContext";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function DeliveryDetails() {
+  const { t } = useTranslation();
   const location_context = useContext(locationContext);
   const { locations } = location_context;
 
   return (
     <div className="checkout-item">
       <div className="delivery-head" style={{ marginBottom: "1rem" }}>
-        <strong>Delivery Details</strong>
+        <strong>{t("deliveryDetails")}</strong>
       </div>
       <div className="map">
         <Map />
       </div>
       {locations.length > 0 ? (
         <div className="deliver-to">
-          <p>Delivering To</p>
+          <p>{t("deliveringTo")}</p>
           <MyKfcLocations />
         </div>
       ) : (
         <div style={{ marginTop: "1rem" }}>
-          You Currently Have No Addresses Added In Profile. Go To
+          {t("noAddress")}
           <Link
             to={"/MyKFC"}
             style={{ textDecoration: "none", color: "#e4002b" }}
           >
-            <strong> Profile </strong>
+            <strong> {t("profile")} </strong>
           </Link>
-          To Add Addresses!
+          {t("toAdd")}
         </div>
       )}
     </div>

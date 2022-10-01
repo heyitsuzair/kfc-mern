@@ -11,8 +11,11 @@ import { clearCart } from "../../redux/cart/cartSlice";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function ConfirmOrder({ phoneValue }) {
+  const { t } = useTranslation();
+
   const dispatch = useDispatch();
 
   const { cartItems, totalItems, amount } = useSelector((store) => store.cart);
@@ -146,7 +149,7 @@ export default function ConfirmOrder({ phoneValue }) {
         variant="outlined"
         onClick={handleBack}
       >
-        Back
+        {t("back")}
       </Button>
       <Button
         sx={{
@@ -161,7 +164,7 @@ export default function ConfirmOrder({ phoneValue }) {
         variant="contained"
         onClick={() => handleConfirm(stripeData)}
       >
-        Confirm Order
+        {t("confirmOrder")}
       </Button>
     </div>
   );

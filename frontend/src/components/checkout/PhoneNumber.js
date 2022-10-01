@@ -1,10 +1,12 @@
 import React from "react";
 import { TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function PhoneNumber({ phoneValue, setPhoneValue }) {
   const handleChange = (e) => {
     setPhoneValue(e.target.value);
   };
+  const { t } = useTranslation();
   return (
     <div className="checkout-item" style={{ marginBottom: "2rem" }}>
       <div
@@ -15,12 +17,12 @@ export default function PhoneNumber({ phoneValue, setPhoneValue }) {
           flexDirection: "column",
         }}
       >
-        <strong>Phone Number</strong>
+        <strong>{t("phnNo")}</strong>
       </div>
       <div className="phone-no">
         <TextField
           id="filled-basic"
-          label="Phone Number"
+          label={t("phnNo")}
           variant="filled"
           value={phoneValue}
           onChange={(e) => handleChange(e)}

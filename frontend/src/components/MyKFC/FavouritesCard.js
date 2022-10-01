@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/cart/cartSlice";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function BasicCard({
   src,
@@ -21,6 +22,7 @@ export default function BasicCard({
   const dispatch = useDispatch();
   const getUser = JSON.parse(localStorage.getItem("user"));
   const [edit, setEdit] = useState(false);
+  const { t } = useTranslation();
   const handleAdd = (e) => {
     e.preventDefault();
 
@@ -77,12 +79,12 @@ export default function BasicCard({
             {edit === false ? (
               <div className="add-fav-to-bucket" onClick={(e) => handleAdd(e)}>
                 <AddCircle sx={{ color: "#e4002b" }} />
-                <span className="add-fav">Add</span>
+                <span className="add-fav">{t("add")}</span>
               </div>
             ) : (
               <div className="add-fav-to-bucket">
                 <Edit sx={{ color: "#e4002b" }} />
-                <span className="add-fav">Edit</span>
+                <span className="add-fav">{t("edit")}</span>
               </div>
             )}
           </div>
