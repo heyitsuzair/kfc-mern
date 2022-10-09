@@ -9,6 +9,10 @@
   </h1>
 </div>
 
+## Live Link 📌
+
+-   [Kfc Clone](https://kfc-mern-uzair.vercel.app)
+
 ## How To Use 🔧
 
 From your command line, first clone Portfolio:
@@ -46,3 +50,8 @@ $ yarn start
 
 -   [Reactjs](https://reactjs.org/)
 -   [Nodejs](https://nodejs.org/)
+
+<hr/>
+<div align="center">
+ <h1>Made with ♥ by Uzair</h1>
+</div>
