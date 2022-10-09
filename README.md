@@ -19,7 +19,7 @@ From your command line, first clone Portfolio:
 
 ```bash
 # Clone the repository
-$ git clone https://github.com/msarimhassan/kfc-mern.git
+$ git clone https://github.com/heyitsuzair/kfc-mern.git
 # Move into the repository
 $ cd kfc-mern
 # Remove the current origin repository
